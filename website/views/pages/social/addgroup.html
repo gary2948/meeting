@@ -1,0 +1,40 @@
+{{template "template/socialtemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+<div class="pageheader">
+            <div class="pageicon"><span class="fa fa-users"></span></div>
+            <div class="pagetitle">
+                <h5>creat group</h5>
+                <h1 style="margin-top:6px;">创建小组</h1>
+            </div>
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                    <div id="dashboard-left" class="span8" style="min-height: 500px;">
+                     <div class="group_name">
+                     <span class="red">*</span>小组名称：<input type="text" value="" maxlength="40" placeholder="输入小组名称"> 
+                       <span style="color:#999;">&nbsp;&nbsp;&nbsp;最多输入20个汉字或者40个字母</span>
+                     </div>
+                     <div class="group_addmethod">
+                      加入方式：<input type="radio" name="method" > 用户申请和管理员邀请 
+                     </div>
+                     <div class="group_addmethod" style="text-indent: 90px;">
+                     <input type="radio" name="method" > 仅管理员邀请 </span>
+                     </div>
+                     <div class="group_name" style="text-indent: 0;margin-top:50px;">
+                     <span class="creatmeetingbtn" style="float:none;margin-left:95px;"><a href="#">创建</a></span>
+
+                     </div>
+
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}
+        

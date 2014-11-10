@@ -1,0 +1,113 @@
+{{template "template/maintemplate.html" .}}
+{{define "head"}}
+<link rel="stylesheet" type="text/css" href="static/css/clouddisk.css">
+<link rel="stylesheet" type="text/css" href="/static/css/fileExtension.css">
+<link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-1.10.4.custom.min.css">
+<script type="text/javascript" src="static/js/clouddisk.js"></script>
+<script type="text/javascript" src="/static/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="/static/js/UploadFile.js"></script>
+<script type="text/javascript" src="/static/js/TreePath.js"></script>
+<script type="text/javascript" src="/static/js/CheckBox.js"></script>
+<script type="text/javascript" src="/static/js/DataGrid.js"></script>
+{{end}}
+{{define "body"}}
+<div id="clouddisk">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="list-group" id="functionBlock">
+                <a class="list-group-item" href="#myfileFunc" id="myfileFunc" data-linkblock="#myfileToolbarContainer">
+                <span class="clouddiskitem"></span>
+                <span>我的文件</span>
+                </a>
+                <a class="list-group-item" href="#myshareFunc" id="myshareFunc" data-linkblock="#myshareToolbarContainer">
+                <span class="clouddiskitem"></span>
+                <span>我的分享</span>
+                </a>
+                <a class="list-group-item" href="#myrecycledFunc" id="myrecycledFunc" data-linkblock="#myrecycledToolbarContainer">
+                <span class="clouddiskitem"></span>
+                <span>回收站</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-10" id="cloudleftblock">
+            <div id="AllToolContainer">
+                <div id="myfileToolbarContainer" style="display: none">
+                    <div class="row">
+                        <div class="col-md-12 navbar-left">
+                            <ol class="breadcrumb" id="filePathLink" >
+                               <!-- <li class="default" id="mainfilePathLink" ><a>主目录</a></li>-->
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="btn-toolbar col-md-8" role="toolbar">
+                            <div class="btn-group" id="fileButtonVisible">
+                                <button type="button" class="btn btn-default" id="fileButtonUpload">上传</button>
+                                <button type="button" class="btn btn-default" id="fileButtonNewFolder">新建文件夹</button>
+                            </div>
+                            <div class="btn-group" id="fileButtonHide" style="display:none">
+                                <button type="button" class="btn btn-default" id="fileButtonRename">重命名</button>
+                                <button type="button" class="btn btn-default" id="fileButtonDownload">下载</button>
+                                <button type="button" class="btn btn-default" id="fileButtonDelete">删除</button>
+                                <button type="button" class="btn btn-default" id="fileButtonShare">分享</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="searchFile">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="searchFileButton">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myshareToolbarContainer" style="display: none">
+                    <div class="row">
+                        <div class="col-md-6 navbar-left">
+                            <div class="btn-group" id="shareFuncButton">
+                                <button type="button" class="btn btn-default" id="gotoSharePage" disabled="disabled">查看分享</button>
+                                <button type="button" class="btn btn-default" id="cancelShare" disabled="disabled">取消分享</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 navbar-right">
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myrecycledToolbarContainer" style="display: none">
+                    <div class="row">
+                        <div class="col-md-6 navbar-left">
+                            <div class="btn-group" id="shareFuncButton">
+                                <button type="button" class="btn btn-default" id="ShiftDeleteFile"  disabled="disabled">彻底删除</button>
+                                <button type="button" class="btn btn-default" id="ReBackFile"  disabled="disabled">恢复文件</button>
+                                <button type="button" class="btn btn-default" id="ClearRecycleBin" >清空回收站</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 navbar-right">
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="fileList">
+                <div id="fileListHead" class="row" style="padding-bottom: 10px;"></div>
+                <div id="fileListMain" class="row" ></div>
+            </div>
+            <div id="loadingMask"></div>
+        </div>
+    </div>
+</div>
+<div class="" id="uploadDlg" title="文件上传">
+</div>
+{{end}}

@@ -1,0 +1,58 @@
+{{template "template/maintemplate.html" .}}
+{{define "head"}}
+<script type="text/javascript" src="/static/js/calender.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/fullcalendar.css">
+<script type="text/javascript" src="/static/js/moment.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="/static/js/fullcalendar.js"></script>
+<script type="text/javascript" src="/static/js/fullcalendar-zh-cn.js"></script>
+<style>
+.popover
+{
+z-index:10000;
+}
+.fc-view{
+	overflow: visible;
+}
+a.list-group-item.active,
+		a.list-group-item.active:hover,
+		a.list-group-item.active:focus{
+	z-index: auto
+}
+.fc-header .fc-state-active,
+		.fc-header .ui-state-active {
+			z-index:auto;
+		}
+</style>
+{{end}}
+{{define "body"}}
+<div>
+	<div class="row">
+		<div class="col-md-3">
+			<a href="/userinfo">
+				<img style="width:100%" src="{{.userinfo.Lc_photoFile}}">
+			</a>
+			<div class="list-group">
+				<a href="/meeting" class="list-group-item">会议信息</a>
+				<a href="#" class="list-group-item  active">日程</a>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div id="calendar">
+			</div>
+		</div>
+	</div>
+	<div>
+		{{template "template/createMeetingDlg.html"}}
+	</div>
+	<div id="tooltip" class="popover top in">
+		<div class="arrow" ></div>
+		<h3 class="popover-title"></h3>
+		<div class="popover-content"></div>
+		<div class="bottomtoolBar">
+			<button class="btn btn-default" id="deleteMeetingtool">删除</button>
+			<button class="btn btn-default" id="editMeetingtool" >编辑</button>
+		</div>
+	</div>
+</div>
+{{end}}

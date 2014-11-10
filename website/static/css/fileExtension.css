@@ -1,0 +1,312 @@
+.icon{
+	width:16px;
+	height: 16px;
+	display: inline-block;
+	background-repeat: round;
+}
+
+.fileExt-folder{
+	background-image:url("/static/img/file/folder.png");
+}
+
+.fileExt-none{
+	background-image:url("/static/img/file/Default.png");
+}
+
+.fileExt-ac3{
+	background-image:url('/static/img/file/AC3.png')
+}
+.fileExt-ace{
+	background-image:url('/static/img/file/ACE.png')
+}
+.fileExt-ade{
+	background-image:url('/static/img/file/ADE.png')
+}
+.fileExt-adp{
+	background-image:url('/static/img/file/ADP.png')
+}
+.fileExt-ai{
+	background-image:url('/static/img/file/AI.png')
+}
+.fileExt-aiff{
+	background-image:url('/static/img/file/AIFF.png')
+}
+.fileExt-au{
+	background-image:url('/static/img/file/AU.png')
+}
+.fileExt-avi{
+	background-image:url('/static/img/file/AVI.png')
+}
+.fileExt-bat{
+	background-image:url('/static/img/file/BAT.png')
+}
+.fileExt-bin{
+	background-image:url('/static/img/file/BIN.png')
+}
+.fileExt-bmp{
+	background-image:url('/static/img/file/BMP.png')
+}
+.fileExt-bup{
+	background-image:url('/static/img/file/BUP.png')
+}
+.fileExt-cab{
+	background-image:url('/static/img/file/CAB.png')
+}
+.fileExt-cat{
+	background-image:url('/static/img/file/CAT.png')
+}
+.fileExt-chm{
+	background-image:url('/static/img/file/CHM.png')
+}
+.fileExt-css{
+	background-image:url('/static/img/file/CSS.png')
+}
+.fileExt-cue{
+	background-image:url('/static/img/file/CUE.png')
+}
+.fileExt-dat{
+	background-image:url('/static/img/file/DAT.png')
+}
+.fileExt-dcr{
+	background-image:url('/static/img/file/DCR.png')
+}
+.fileExt-default{
+	background-image:url('/static/img/file/Default.png')
+}
+.fileExt-der{
+	background-image:url('/static/img/file/DER.png')
+}
+.fileExt-dic{
+	background-image:url('/static/img/file/DIC.png')
+}
+.fileExt-divx{
+	background-image:url('/static/img/file/DIVX.png')
+}
+.fileExt-diz{
+	background-image:url('/static/img/file/DIZ.png')
+}
+.fileExt-dll{
+	background-image:url('/static/img/file/DLL.png')
+}
+.fileExt-doc{
+	background-image:url('/static/img/file/DOC.png')
+}
+.fileExt-docx{
+	background-image:url('/static/img/file/DOCX.png')
+}
+.fileExt-dos{
+	background-image:url('/static/img/file/DOS.png')
+}
+.fileExt-dvd{
+	background-image:url('/static/img/file/DVD.png')
+}
+.fileExt-dwg{
+	background-image:url('/static/img/file/DWG.png')
+}
+.fileExt-dwt{
+	background-image:url('/static/img/file/DWT.png')
+}
+.fileExt-emf{
+	background-image:url('/static/img/file/EMF.png')
+}
+.fileExt-exc{
+	background-image:url('/static/img/file/EXC.png')
+}
+.fileExt-fon{
+	background-image:url('/static/img/file/FON.png')
+}
+.fileExt-gif{
+	background-image:url('/static/img/file/GIF.png')
+}
+.fileExt-hlp{
+	background-image:url('/static/img/file/HLP.png')
+}
+.fileExt-html{
+	background-image:url('/static/img/file/HTML.png')
+}
+.fileExt-ifo{
+	background-image:url('/static/img/file/IFO.png')
+}
+.fileExt-inf{
+	background-image:url('/static/img/file/INF.png')
+}
+.fileExt-ini{
+	background-image:url('/static/img/file/INI.png')
+}
+.fileExt-ins{
+	background-image:url('/static/img/file/INS.png')
+}
+.fileExt-ip{
+	background-image:url('/static/img/file/IP.png')
+}
+.fileExt-iso{
+	background-image:url('/static/img/file/ISO.png')
+}
+.fileExt-isp{
+	background-image:url('/static/img/file/ISP.png')
+}
+.fileExt-java{
+	background-image:url('/static/img/file/JAVA.png')
+}
+.fileExt-jfif{
+	background-image:url('/static/img/file/JFIF.png')
+}
+.fileExt-jpeg{
+	background-image:url('/static/img/file/JPEG.png')
+}
+.fileExt-jpg{
+	background-image:url('/static/img/file/JPG.png')
+}
+.fileExt-log{
+	background-image:url('/static/img/file/LOG.png')
+}
+.fileExt-m4a{
+	background-image:url('/static/img/file/M4A.png')
+}
+.fileExt-mid{
+	background-image:url('/static/img/file/MID.png')
+}
+.fileExt-mmf{
+	background-image:url('/static/img/file/MMF.png')
+}
+.fileExt-mmm{
+	background-image:url('/static/img/file/MMM.png')
+}
+.fileExt-mov{
+	background-image:url('/static/img/file/MOV.png')
+}
+.fileExt-movie{
+	background-image:url('/static/img/file/MOVIE.png')
+}
+.fileExt-mp2{
+	background-image:url('/static/img/file/MP2.png')
+}
+.fileExt-mp2v{
+	background-image:url('/static/img/file/MP2V.png')
+}
+.fileExt-mp3{
+	background-image:url('/static/img/file/MP3.png')
+}
+.fileExt-mp4{
+	background-image:url('/static/img/file/MP4.png')
+}
+.fileExt-mpe{
+	background-image:url('/static/img/file/MPE.png')
+}
+.fileExt-mpeg{
+	background-image:url('/static/img/file/MPEG.png')
+}
+.fileExt-mpg{
+	background-image:url('/static/img/file/MPG.png')
+}
+.fileExt-mpv2{
+	background-image:url('/static/img/file/MPV2.png')
+}
+.fileExt-nfo{
+	background-image:url('/static/img/file/NFO.png')
+}
+.fileExt-pdd{
+	background-image:url('/static/img/file/PDD.png')
+}
+.fileExt-pdf{
+	background-image:url('/static/img/file/PDF.png')
+}
+.fileExt-php{
+	background-image:url('/static/img/file/PHP.png')
+}
+.fileExt-png{
+	background-image:url('/static/img/file/PNG.png')
+}
+.fileExt-ppt{
+	background-image:url('/static/img/file/PPT.png')
+}
+.fileExt-pptx{
+	background-image:url('/static/img/file/PPTX.png')
+}
+.fileExt-psd{
+	background-image:url('/static/img/file/PSD.png')
+}
+.fileExt-rar{
+	background-image:url('/static/img/file/RAR.png')
+}
+.fileExt-reg{
+	background-image:url('/static/img/file/REG.png')
+}
+.fileExt-rtf{
+	background-image:url('/static/img/file/RTF.png')
+}
+.fileExt-scp{
+	background-image:url('/static/img/file/SCP.png')
+}
+.fileExt-theme{
+	background-image:url('/static/img/file/THEME.png')
+}
+.fileExt-tif{
+	background-image:url('/static/img/file/TIF.png')
+}
+.fileExt-tiff{
+	background-image:url('/static/img/file/TIFF.png')
+}
+.fileExt-tlb{
+	background-image:url('/static/img/file/TLB.png')
+}
+.fileExt-ttf{
+	background-image:url('/static/img/file/TTF.png')
+}
+.fileExt-txt{
+	background-image:url('/static/img/file/TXT.png')
+}
+.fileExt-uis{
+	background-image:url('/static/img/file/UIS.png')
+}
+.fileExt-url{
+	background-image:url('/static/img/file/URL.png')
+}
+.fileExt-vbs{
+	background-image:url('/static/img/file/VBS.png')
+}
+.fileExt-vcr{
+	background-image:url('/static/img/file/VCR.png')
+}
+.fileExt-vob{
+	background-image:url('/static/img/file/VOB.png')
+}
+.fileExt-wav{
+	background-image:url('/static/img/file/WAV.png')
+}
+.fileExt-wba{
+	background-image:url('/static/img/file/WBA.png')
+}
+.fileExt-wma{
+	background-image:url('/static/img/file/WMA.png')
+}
+.fileExt-wmv{
+	background-image:url('/static/img/file/WMV.png')
+}
+.fileExt-wpl{
+	background-image:url('/static/img/file/WPL.png')
+}
+.fileExt-wri{
+	background-image:url('/static/img/file/WRI.png')
+}
+.fileExt-wtx{
+	background-image:url('/static/img/file/WTX.png')
+}
+.fileExt-xls{
+	background-image:url('/static/img/file/xls.png')
+}
+.fileExt-xlsx{
+	background-image:url('/static/img/file/XLSX.png')
+}
+.fileExt-xml{
+	background-image:url('/static/img/file/XML.png')
+}
+.fileExt-xsl{
+	background-image:url('/static/img/file/XSL.png')
+}
+.fileExt-zap{
+	background-image:url('/static/img/file/ZAP.png')
+}
+.fileExt-zip{
+	background-image:url('/static/img/file/ZIP.png')
+}

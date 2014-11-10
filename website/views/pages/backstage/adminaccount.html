@@ -1,0 +1,79 @@
+{{template "template/backstagetemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+<div class="pageheader">
+
+         <span class="creatmeetingbtn"><a href="#"><i class="fa fa-plus"></i>创建账号</a></span>
+         <span class="creatmeetingbtn" style="margin-left:30px;"><a href="#">批量导入</a></span>
+
+         <form style="float:right;">
+           <input type="submit" class="addbtn fr" value="搜索" />
+           <input type="text" class="addinput" placeholder="输入邮箱进行查找" />
+
+         </form>
+
+        </div><!--pageheader-->
+
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+
+                            <div id="meeting_tabs">
+                                <ul>
+                                    <li class="tabulous_active"><a href="#tabs_jx" title="">管理员列表</a></li>
+                                </ul>
+
+                                <div id="tabs_container">
+ 
+                                    <div class="pane" id="tabs_jx" style="width:98%;margin:10px auto;">
+                                       <table style="width:100%;margin-top:10px;" class="main_meeting_table">
+                                        <tr class="main_meeting">
+                                            <td class="bl">
+                                            <a href="#" class="meeting_a_thime">
+                                                <div class="fl"> <img src="static/newstyle/images/group.jpg" border="0" /></div>
+                                                <div class="fl mt3 ml10">
+                                                  <div class="mywork">徐阳波</div>
+                                                  <div class="clear"></div>
+                                                  <div class="meet_time">研发</div>
+                                                </div>
+                                             </a>
+
+                                            </td>
+                                            <td align="center">asdasdasdas@gmail.com</td>
+                                        </tr>
+                                    </table>
+                                    <div class="renming">任命其他管理员</div>
+                                    <input type="text" value="" placeholder="输入用户名或者邮箱">
+                                    <span class="creatmeetingbtn" style="margin-left:30px;float: none"><a style="padding:5px 20px;" href="#">确认</a></span>
+
+                                    <div class="renming" style="font-size:12px;">温馨提示：可以把公司信息部同事或者网络管理员设为云之家的管理员</div>
+
+
+
+
+
+
+
+
+                                    </div>
+
+
+                                </div><!--End tabs container-->
+                                
+                            </div><!--End tabs-->
+
+
+
+
+    
+
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}
+        

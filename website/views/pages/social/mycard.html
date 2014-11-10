@@ -1,0 +1,126 @@
+{{template "template/socialtemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+<div class="pageheader">
+            <div class="pageicon"><span class="fa fa-newspaper-o"></span></div>
+            <div class="pagetitle">
+                <h5>Business card</h5>
+                <h1 style="margin-top:6px;">工作名片</h1>
+            </div>
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                    <div id="dashboard-left" class="span8">
+                            <div id="meeting_tabs">
+
+                                <div id="tabs_container">
+
+                                    <div class="pane" id="tabs_notstart" style="width:98%;margin:10px auto;">
+                                        <div class="main_info_title">基本信息</div>
+                                        <div class="main_d_info">
+                                          <div class="lefthead_img">
+                                           <a href="#"><img src="static/newstyle/images/righthead.jpg"></a>
+                                          </div>
+                                          <div class="right_d_info">
+                                           <table class="d_info_table">
+                                               <tr>
+                                                  <td align="right">昵称：</td>
+                                                  <td align="left">某某某</td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">备注名：</td>
+                                                  <td align="left"><input type="text" value="" placeholder="真实姓名或者其他备注名"></td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">部门：</td>
+                                                  <td align="left"><input type="text" value="" placeholder="请输入部门"></td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">职位：</td>
+                                                  <td align="left"><input type="text" value="" placeholder="请输入职位"></td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">&nbsp;&nbsp;&nbsp;</td>
+                                                  <td align="right">
+                                                   <a href="#" class="already_addbtn" style="cursor:pointer;"><span class="fa fa-times"></span> 取消</a>
+                                                   <a href="#" class="add_addbtn"><span class="fa fa-floppy-o"></span> 保存</a>
+
+
+
+                                                  </td>
+                                               </tr>
+
+                                           </table>
+                                              
+
+                                          </div>
+                                        </div>
+                                        <div class="main_info_title" style="margin-top:25px;">联系方式</div>
+                                        <div class="main_d_info">
+                                          <div class="lefthead_img xiaohidethis"></div>
+                                          <div class="right_d_info">
+                                           <table class="d_info_table">
+                                               <tr>
+                                                  <td align="right">邮箱：</td>
+                                                  <td align="left"><input type="text" value="2131231231@163.com" ></td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">其他邮箱：</td>
+                                                  <td align="left"><input type="text" value="" placeholder="请填写个人其他邮箱"></td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">座机：</td>
+                                                  <td align="left"><input type="text" value="" ></td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">其他座机：</td>
+                                                  <td align="left"><input type="text" value=""  name=""></td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">手机：</td>
+                                                  <td align="left"><input type="text" value="" ></td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">其他手机：</td>
+                                                  <td align="left"><input type="text" value=""  name=""></td>
+                                               </tr>
+                                               <tr>
+                                                  <td align="right">&nbsp;&nbsp;&nbsp;</td>
+                                                  <td align="right">
+                                                   <a href="#" class="already_addbtn" style="cursor:pointer;"><span class="fa fa-times"></span> 取消</a>
+                                                   <a href="#" class="add_addbtn"><span class="fa fa-floppy-o"></span> 保存</a>
+
+
+
+                                                  </td>
+                                               </tr>
+
+                                           </table>
+                                              
+
+                                          </div>
+                                        </div>
+
+                                        <div class="new_tips_info">2014年10月18日 &nbsp;&nbsp;&nbsp;<b>某某某</b>&nbsp;&nbsp;&nbsp;新增此条通讯录</div>
+
+
+
+                                    </div>
+
+
+                                </div><!--End tabs container-->
+                                
+                            </div><!--End tabs-->
+                     </div>
+
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}

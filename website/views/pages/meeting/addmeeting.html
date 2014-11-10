@@ -1,0 +1,242 @@
+{{template "template/meetingtemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+<script type="text/javascript">
+jQuery(document).ready(function() {
+
+
+  jQuery(".rightbtns").click(function(){
+        if(jQuery(this).hasClass("r_click")){
+            jQuery(this).removeClass("r_click");
+            jQuery(this).parent().parent().parent().css("width","100%");
+            jQuery(this).parent().parent().parent().next().css({"width":"0%",'margin-left':'0%'});
+            jQuery(this).parent().parent().parent().next().hide();
+        }else{
+           jQuery(this).addClass("r_click"); 
+            jQuery(this).parent().parent().parent().css("width","80%");
+            jQuery(this).parent().parent().parent().next().css({"width":"19%",'margin-left':'1%'});
+            jQuery(this).parent().parent().parent().next().show();
+        }
+
+
+  })
+  showornot();
+    jQuery(window).resize(function(){
+       showornot(); 
+       if(jQuery("#dashboard-left").eq(0).next().css("margin-left")=='0%'){
+        jQuery(".rightbtns ").eq(0).removeClass("r_click");
+       }
+       var swidth=parseInt(jQuery(".topsearch").width())*0.8;
+       jQuery(".searchresults_list").width(swidth);
+    }); 
+    jQuery(".close_search").live("click",function(){
+           jQuery(this).parent().hide(100);
+    })
+
+     jQuery(".contractp_zu").live("click",function(){
+      if(jQuery(this).hasClass("oxia")){
+          jQuery(this).removeClass("oxia");
+          jQuery(this).next().hide(200);
+          }
+          else
+          {
+          jQuery(this).addClass("oxia");
+          jQuery(this).next().show(200);
+          }
+        })
+
+     jQuery("#searchcontractpeople").click(function(){
+       var swidth=parseInt(jQuery(".topsearch").width())*0.8;
+       jQuery(".searchresults_list").width(swidth);
+        jQuery(".searchresults_list").show(100);
+     })
+
+    jQuery('#meeting_tabs ul li').click(function(){
+        jQuery(this).addClass('tabulous_active').siblings().removeClass('tabulous_active');
+        jQuery('#tabs_container>.pane:eq('+jQuery(this).index()+')').show().siblings().hide();   
+    })
+
+    rome(meeting_input_t,{monthFormat:"YYYY MMMM"});
+
+})
+
+function showornot(){
+
+    if(jQuery(".rightbtns").eq(0).is(":hidden")){
+            jQuery("#dashboard-left").eq(0).css("width","100%");
+            jQuery("#dashboard-left").eq(0).next().css({"width":"0%",'margin-left':'0%'}); 
+            jQuery("#dashboard-left").eq(0).next().hide(100);
+    }
+}
+</script>
+
+        <div class="pageheader">
+
+         <span class="creatmeetingbtn"><a href="add_meeting.html">创建会议</a></span>
+
+         <form style="float:right;">
+           <input type="submit" class="addbtn fr" value="快速加入" />
+           <input type="text" class="addinput" placeholder="会议码" />
+
+         </form>
+
+        </div><!--pageheader-->
+
+        <script type="text/javascript" src="static/newstyle/js/romedate/rome.js" ></script> 
+        <link rel="stylesheet" href="static/newstyle/js/romedate/rome.css">
+        <link rel="stylesheet" href="static/newstyle/css/uniform.tp.css">
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                <div id="dashboard-left" class="span8">
+                    <div id="meeting_tabs">
+                            <ul>
+                                <li class="tabulous_active"><a href="#tabs_info" title="">详情</a></li>
+                                <div class="rightbtns" title="联系人"></div>
+                            </ul>
+
+                            <div id="tabs_container">
+                                <div  class="pane" id="tabs_info" style="width:98%;margin:10px auto;">
+                                <div class="onelist_meeting">
+                                  <b>开始时间：</b><input type="text" value="" placeholder="格式：2014-10-10 10:30" id="meeting_input_t" />
+                                  <br class="m_hh" />
+                                  <b class="ml15 m_flag">时长：</b>
+                                  <select>
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                  </select>
+                                  <span>小时</span>
+                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <select>
+                                    <option>0</option>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>40</option>
+                                    <option>50</option>
+                                    <option>60</option>
+                                  </select>
+                                  <span>分钟</span>
+                                </div>
+
+                                <div class="onelist_meeting">
+                                <b>重复：</b>
+                                <input type="radio" name="repeat" />天
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 <input type="radio" name="repeat" />周
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <input type="radio" name="repeat" />月
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <input type="radio" name="repeat" checked="checked" />不重复
+
+                                </div>
+
+                                <div class="onelist_meeting">
+                                <b>主题：</b>
+                                <input type="text" class="meet_input" placeholder="输入会议主题" />
+
+                                </div>
+                                <div class="onelist_meeting">
+                                <b>内容：</b>
+                                <textarea placeholder="输入会议内容" rows="5"></textarea>
+
+                                </div>
+                                <div class="onelist_meeting">
+                                <b>创建人：</b>
+                                <span>张三</span>
+
+                                </div>
+                                <div class="onelist_meeting">
+                                <b>与会人员：</b>
+                                <input type="text" class="meet_input" placeholder="你可以右侧添加人员" />
+
+                                </div>
+
+                                <div class="onelist_meeting">
+                                <b>会议状态：</b>
+                                <span>进行中</span>
+
+                                </div>
+
+                                <div class="onelist_meeting">
+                                <b style="dispaly:block;float:left;margin-top:18px;">会议文档：</b>
+                                <a class="afile" href="javascript:void(0)">选择文件<input type="file" value="" accept="image/png,image/gif,application/msword,image/jpeg,application/pdf,application/vnd.ms-powerpoint,text/plain,aplication/zip"></a>
+
+
+                                </div>
+
+                                <div class="onelist_meeting" style="padding-top:15px;">
+                                <b>会议密码：</b>
+                                 <input type="password" class="meet_input" placeholder="你可以右侧添加人员" />
+
+                                </div>
+                                <div class="onelist_meeting" >
+                                <b>&nbsp;</b>
+                                 <input type="checkbox"  >显示密码
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <input type="checkbox"  >将密码添加到邀请信息中
+
+                                </div>
+                                  <div class="onelist_meeting" >
+                                  
+                                    <b>&nbsp;</b>
+                                     <span style="display:inline-block;float:none" class="creatmeetingbtn"><a href="add_meeting.html">保存</a></span>
+
+                                </div>
+
+
+
+
+                           
+                                </div>
+
+                             
+
+                            </div><!--End tabs container-->
+                            
+                        </div><!--End tabs-->
+                 </div>
+                     <div class="right_contract" style="display:none;">
+                        <div class="contract_people">
+                          <div class="topsearch"><input type="text" class="s_input" placeholder="查找联系人" /><input type="button" title="添加联系人" class="b_input" id="searchcontractpeople" /></div>
+
+                            <div class="searchresults_list"  style="display: none;">   
+                              <div class="close_search"></div>
+                                 <div style="padding:5px 5px 5px 8px;">1个搜索结果</div>
+                                <ul class="search_results" >
+                                <li><a href="#">战三是</a></li>
+                                </ul>
+                          
+                           </div>
+
+                            <div class="contractlist" id="user_friends_box11">
+                                <div class="contractp_zu" title="我的好友">我的好友</div>
+                                  <ul class="onegroups" style="display: none;">
+                                   <li class="friendlists" title="李四"><a href="javascript:void(0)">李四</a></li>
+                                 </ul>
+                             <div class="contractp_zu" title="好友">好友</div>
+                               <ul class="onegroups" style="display: none;">
+                                   <li class="friendlists" title="张三"><a href="javascript:void(0)">张三</a></li>
+                               </ul>
+                            </div>
+
+                        </div>
+                         
+
+                     </div>
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}

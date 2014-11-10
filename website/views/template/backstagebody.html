@@ -1,0 +1,126 @@
+<div class="mainwrapper">
+    
+    <div class="header">
+        <div class="logo">
+            <a href="#"><img src="static/newstyle/images/logo.png" alt="" /></a>
+        </div>
+        <div class="headerinner">
+            <ul class="headmenu">
+                <li class="odd">
+                    <a class="dropdown-toggle"  href="/">
+                        <span class="head-icon head-home"></span>
+                        <span class="headmenu-label">首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+                    <span class="count">10</span>
+                    <span class="head-icon head-meeting"></span>
+                    <span class="headmenu-label">会议</span>
+                    </a>
+                    <ul class="dropdown-menu" style="width:220px;">
+                        <li class="nav-header">会议</li>
+                        <li><a href=""><span class="icon-envelope fl"></span> <div class="meetingname" title="某某某会议某某某会议">某某某会议某某某会议</div><strong class="gname">张三</strong> <small class="muted fl">19小时</small></a></li>
+                        <li><a href=""><span class="icon-envelope fl"></span> <div class="meetingname" title="某某某会议某某某会议">某某某会议</div><strong class="gname">张三</strong> <small class="muted fl">19小时</small></a></li>
+                        <li><a href=""><span class="icon-envelope fl"></span> <div class="meetingname" title="某某某会议某某某会议">某某某会议</div><strong class="gname">张三</strong> <small class="muted fl">19小时</small></a></li>
+                        <li><a href=""><span class="icon-envelope fl"></span> <div class="meetingname" title="某某某会议某某某会议">某某某会议</div><strong class="gname">张三</strong> <small class="muted fl">19小时</small></a></li>
+                        <li><a href=""><span class="icon-envelope fl"></span> <div class="meetingname" title="某某某会议某某某会议">某某某会议</div><strong class="gname">张三</strong> <small class="muted fl">19小时</small></a></li>
+                        <li><a href=""><span class="icon-envelope fl"></span> <div class="meetingname" title="某某某会议某某某会议">某某某会议</div><strong class="gname">张三</strong> <small class="muted fl">19小时</small></a></li>
+                        <li class="viewmore"><a href="/meetinginfo">更多</a></li>
+                    </ul>
+                </li>
+                <li class="odd" class="sj_shejiao">
+                    <a class="dropdown-toggle" href="/weibo">
+                    <span class="count">1</span>
+                    <span class="head-icon head-shejiao"></span>
+                    <span class="headmenu-label">社交</span>
+                    </a>
+                </li>
+                <li class="ht_background">
+                    <a class="dropdown-toggle" href="/backstage">
+                    <span class="count">1</span>
+                    <span class="head-icon head-backmanage"></span>
+                    <span class="headmenu-label">后台管理</span>
+                    </a>
+                </li>
+                <li class="odd wp_cloud">
+                    <a class="dropdown-toggle"  href="/mydoc">
+                    <span class="count">1</span>
+                    <span class="head-icon head-cloud"></span>
+                    <span class="headmenu-label">网盘</span>
+                    </a>
+                </li>
+                <li class="right">
+                    <div class="userloggedinfo">
+                        <img src="{{.userinfo.Lc_photoFile}}" alt="" />
+                        <div class="userinfo">
+                            <h5>{{.userinfo.Lc_nickName}} <small>- {{.userinfo.Lc_email}}</small></h5>
+                            <ul>
+                                <li><a href="/myinfo">编辑信息</a></li>
+                                <li><a href="">账号管理</a></li>
+                                <li><a href="/logout">退出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul><!--headmenu-->
+        </div>
+    </div>
+    
+    <div class="leftpanel">
+        
+        <div class="leftmenu">        
+            <ul class="nav nav-tabs nav-stacked">
+            	<li class="nav-header">导航</li>
+                <li class="dropdown active"><a href=""><span class="fa fa-cog"></span> 系统管理</a>
+                    <ul style="display: block">
+                        <li class="active"><a href="/backstage">基本信息</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href=""><span class="fa fa-user"></span>用户管理</a>
+                    <ul>
+                        <li class="active"><a href="/useraccount">成员账号</a></li>
+                        <li><a href="/adminaccount">管理员账号</a></li>
+                        <li><a href="/teamaccount">团队账号</a></li>
+                        <li><a href="/memberinfo">成员资料管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href=""><span class="fa fa-folder-open"></span>内容管理</a>
+                    <ul>
+                        <li class="active"><a href="/dynamicmanager">动态设置</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href=""><span class="fa fa-lock"></span>安全管理</a>
+                    <ul>
+                        <li class="active"><a href="/ipmanager">ip访问控制</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--leftmenu-->
+        
+    </div><!-- leftpanel -->
+    
+    <div class="rightpanel">
+        
+        <ul class="breadcrumbs">
+            <li><a href="meeting.html"><i class="fa fa-home"></i></a> <span class="separator"></span></li>
+            <li>我的账号</li>
+            <!--li class="right">
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-tint"></i> 皮肤颜色</a>
+                    <ul class="dropdown-menu pull-right skin-color">
+                        <li><a href="default">默认颜色</a></li>
+                        <li><a href="blue">蓝色</a></li>
+                        <li><a href="palegreen">军绿色</a></li>
+                        <li><a href="red">红色</a></li>
+                        <li><a href="green">绿色</a></li>
+                        <li><a href="brown">棕色</a></li>
+                    </ul>
+            </li-->
+        </ul>
+        		{{template "body" .}}
+
+        
+    </div><!--rightpanel-->
+    
+</div><!--mainwrapper-->
+

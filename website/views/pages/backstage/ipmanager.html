@@ -1,0 +1,74 @@
+{{template "template/backstagetemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+<div class="pageheader">
+            <div class="pageicon"><span class="fa fa-cog"></span></div>
+            <div class="pagetitle">
+                <h5>IP access control</h5>
+                <h1 style="margin-top:6px;">ip访问控制</h1>
+            </div>
+        </div><!--pageheader-->
+
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+
+                            <div id="meeting_tabs">
+
+                                <div id="tabs_container">
+ 
+                                    <div class="pane" id="tabs_jx" style="width:98%;margin:10px auto;">
+                                        <div class="suoding_it" style="margin-bottom:0px;color:#666;">
+                                            <input type="checkbox" name="" >
+                                            运行以下IP段访问本公司，管理员账号不受此限制。
+
+                                        </div>
+                                        <div class="suoding_it" style="margin-top:10px;margin-bottom:10px;">
+                                        <input type="text" value="" placeholder="示例:192.168.1.1" name="" />&nbsp;~&nbsp;<input type="text" value="" name="" placeholder="示例:192.168.1.100" /> 
+                                        &nbsp;&nbsp;
+                                        <a href="#" class="add_addbtn"><span class="fa fa-plus"></span> 添加</a>
+
+                                        </div> 
+                                        <div class="suoding_it" style="margin-top:0px;">
+                                        <p><input type="text" value="" placeholder="192.168.1.1" style="width:530px;" name="" /></p>
+
+                                        </div> 
+                                        <div class="suoding_it" style="margin-bottom:0px;color:#666;">
+                                            <input type="checkbox" name="" >
+                                            禁止以下IP访问本公司，管理员账号不受此限制。
+
+                                        </div>
+                                        <div class="suoding_it" style="margin-top:10px;margin-bottom:10px;">
+                                        <input type="text" value="" placeholder="示例:192.168.1.1" name="" />&nbsp;~&nbsp;<input type="text" value="" name="" placeholder="示例:192.168.1.100" /> 
+                                        &nbsp;&nbsp;
+                                        <a href="#" class="add_addbtn"><span class="fa fa-plus"></span> 添加</a>
+
+                                        </div> 
+                                        <div class="suoding_it" style="margin-top:0px;">
+                                        <p><input type="text" value="" placeholder="192.168.1.1" style="width:530px;" name="" /></p>
+
+                                        </div> 
+
+
+                                    </div>
+
+
+                                </div><!--End tabs container-->
+                                
+                            </div><!--End tabs-->
+
+
+
+
+    
+
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}
+        

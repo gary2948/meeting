@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+        <style>
+            .bg
+            {
+                width:100%;
+                height:100%;
+                position:absolute;
+                background-image:url("http://www.processon.com/themes/default/images/signup/bg16.jpg")
+            }
+            .leftblock
+            {
+                left:40%;
+                width:60%;
+                height:100%;
+                padding-top:100px;
+                position:fixed;
+                background-color:rgba(200,200,200,0.3);
+                padding-left:20px;
+            }
+        </style>
+        <script type="text/javascript">
+        	function login(){
+        	    if (document.getElementsByName("email")[0].value.search(/^\s*$/) !== -1 ||
+        	    	document.getElementsByName("password")[0].value.search(/^\s*$/) !== -1 ||
+        	    	document.getElementsByName("nickname")[0].value.search(/^\s*$/) !== -1) {
+        	        return false
+        	    } else {
+                    return true
+        	    }
+        	}
+        </script>
+	</head>
+	<body>
+	<div id="background-img" class="bg"></div>
+        <div class="leftblock">
+            <form action="/regist" method="post" onsubmit="return login()">
+                <div class="row" >
+                    <div class="col-md-4">
+                        <div><h1>MeetinWare</h1></div>
+                        <div class="input-group" style="width:100%;margin-top:20px;">
+                            <input class="form-control" type="email" name="email" placeholder="邮箱地址"  />
+                        </div>
+
+                        <div class="input-group" style="width:100%;margin-top:20px;">
+                            <input class="form-control"  type="password" name="password" placeholder="密码" />
+                        </div>
+
+                        <div class="input-group" style="width:100%;margin-top:20px;">
+                        	<input class="form-control" type="text" name="nickname" placeholder="昵称"  />
+                        </div>
+
+                        <div class="row" style="margin-top:20px">
+                            <div class="col-md-7">
+                                <input type="submit" class="btn btn-primary btn-lg" value="立即注册" />
+                            </div>
+                        </div>
+                        <div style="margin-top:20px">
+                            已有账户？点此<a href="/" style="margin-left:10px;">登录</a>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+
+                    </div>
+                </div>
+		</form>
+        </div>
+	</body>
+</html>
+
+
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<title>用户注册</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+		<script type="text/javascript" src="/static/js/jquery-2.1.1.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<form class="form-horizontal" action="/regist" method="post" >
+				<div class="form-group">
+					<label for="lc_email" class="col-sm-2 control-label">账号</label>
+					<div class="col-sm-10">
+						<input type="email" name="email" id="lc_email" placeholder="账号(邮箱)" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="lc_email" class="col-sm-2 control-label">昵称</label>
+					<div class="col-sm-10"><input type="text" name="nickname" placeholder="昵称" class="form-control" /></div>
+				</div>
+				<div class="form-group">
+					<label for="lc_email" class="col-sm-2 control-label">真实姓名</label>
+					<div class="col-sm-10"><input type="text" name="realname" placeholder="真实姓名" class="form-control" /></div>
+				</div>
+				<div class="form-group">
+					<label for="lc_email" class="col-sm-2 control-label">手机</label>
+					<div class="col-sm-10"><input type="text" name="mobilephone" placeholder="手机" class="form-control" /></div>
+				</div>
+				<div class="form-group">
+					<label for="lc_email" class="col-sm-2 control-label">密码</label>
+					<div class="col-sm-10"><input type="password" name="password" placeholder=" 密码" class="form-control" /></div>
+				</div>
+				<div class="form-group">
+					<label for="lc_email" class="col-sm-2 control-label">自我简介</label>
+					<div class="col-sm-10"><textarea name="introduction" placeholder="自我简介" class="form-control"></textarea></div>
+				</div>
+				<div class="form-group">
+					<label for="lc_email" class="col-sm-2 control-label">性别</label>
+					<div class="col-sm-10">
+						<select name="sex" class="form-control">
+							<option value="M">男</option>
+							<option value="W">女</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="submit" value="提交" class="form-control" /></div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>-->

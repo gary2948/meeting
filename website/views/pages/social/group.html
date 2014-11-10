@@ -1,0 +1,201 @@
+{{template "template/socialtemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+
+    jQuery('#meeting_tabs ul li').click(function(){
+        jQuery(this).addClass('tabulous_active').siblings().removeClass('tabulous_active');
+        jQuery('#tabs_container>.pane:eq('+jQuery(this).index()+')').show().siblings().hide();   
+    })
+
+})
+
+
+</script>
+
+ <div class="pageheader">
+
+         <span class="creatmeetingbtn"><a href="/addgroup">创建小组</a></span>
+
+         <form style="float:right;">
+           <input type="submit" class="addbtn fr" value="搜索" />
+           <input type="text" class="addinput" placeholder="输入小组名称,内容" />
+
+         </form>
+
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                    <div id="dashboard-left" class="span8">
+                            <div id="meeting_tabs">
+                                <ul>
+                                    <li class="tabulous_active"><a href="#tabs_jx" title="">我的小组</a></li>
+                                    <li><a href="#tabs_notstart" title="">所有小组</a></li>
+                                </ul>
+
+                                <div id="tabs_container">
+                                    
+
+                                    <div  class="pane" id="tabs_jx" style="width:98%;margin:10px auto;">
+ 
+                                    <table style="width:100%;margin-top:10px;" class="main_meeting_table">
+                                        <tr class="topmeeting_tr">
+                                            <td width="48%" class="bl">名称</td>
+                                            <td width="12%">微博</td>
+                                            <td width="25%">成员</td>
+                                            <td width="15%">操作</td>
+                                        </tr>
+                                        <tr class="main_meeting">
+                                            <td class="bl">
+                                            <a href="#" class="meeting_a_thime">
+                                                <div class="fl"> <img src="static/newstyle/images/group.jpg" border="0" /></div>
+                                                <div class="fl mt3 ml10">
+                                                  <div class="mywork">DEV</div>
+                                                  <div class="clear"></div>
+                                                  <div class="meet_time">欢迎来到DEV小组</div>
+                                                </div>
+                                             </a>
+
+                                            </td>
+                                            <td align="center">0</td>
+                                            <td align="center">2</td>
+                                            <td align="center">
+                                               <a href="#" class="add_addbtn"><span class="fa fa-sign-out"></span> 退出</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+
+                                    </div>
+
+                                    <div class="pane" id="tabs_notstart" style="width:98%;margin:10px auto;display: none;">
+                                       <div class="topbar_fl">
+                                        <div class="inner_topbar clearfix">
+                                         <div><a href="#">所有</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">A</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">B</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">C</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">D</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">E</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">F</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">G</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">H</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">I</a></div>
+                                         <div>|</div>
+                                         <div>|</div>
+                                         <div><a href="#">J</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">K</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">L</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">M</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">N</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">O</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">P</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">Q</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">R</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">S</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">T</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">U</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">V</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">W</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">X</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">Y</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">Z</a></div>
+                                         <div>|</div>
+                                         <div><a href="#">其他</a></div>
+                                         <div>|</div>
+                                      </div>
+                                       </div>
+                                       <table style="width:100%;margin-top:10px;" class="main_meeting_table">
+                                        <tr class="topmeeting_tr">
+                                            <td width="48%" class="bl">名称</td>
+                                            <td width="12%">微博</td>
+                                            <td width="25%">成员</td>
+                                            <td width="15%">操作</td>
+                                        </tr>
+                                        <tr class="main_meeting">
+                                            <td class="bl">
+                                            <a href="#" class="meeting_a_thime">
+                                                <div class="fl"> <img src="static/newstyle/images/group.jpg" border="0" /></div>
+                                                <div class="fl mt3 ml10">
+                                                  <div class="mywork">DEV</div>
+                                                  <div class="clear"></div>
+                                                  <div class="meet_time">欢迎来到DEV小组</div>
+                                                </div>
+                                             </a>
+
+                                            </td>
+                                            <td align="center">0</td>
+                                            <td align="center">2</td>
+                                            <td align="center">
+                                               <a href="#" class="already_addbtn"><span class="fa fa-check"></span> 已加入</a>
+                                            </td>
+                                        </tr>
+                                        <tr class="main_meeting">
+                                            <td class="bl">
+                                            <a href="#" class="meeting_a_thime">
+                                                <div class="fl"> <img src="static/newstyle/images/group.jpg" border="0" /></div>
+                                                <div class="fl mt3 ml10">
+                                                  <div class="mywork">DEV2</div>
+                                                  <div class="clear"></div>
+                                                  <div class="meet_time">欢迎来到DEV小组</div>
+                                                </div>
+                                             </a>
+
+                                            </td>
+                                            <td align="center">0</td>
+                                            <td align="center">2</td>
+                                            <td align="center">
+                                               <a href="#" class="add_addbtn"><span class="fa fa-plus-square"></span> 加入</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+
+
+
+                                    </div>
+
+
+                                </div><!--End tabs container-->
+                                
+                            </div><!--End tabs-->
+                     </div>
+
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}

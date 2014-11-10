@@ -1,0 +1,39 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>XXXX</title>
+<link rel="stylesheet" href="static/newstyle/css/style.default.css" type="text/css" />
+
+<link rel="stylesheet" href="static/newstyle/css/responsive-tables.css">
+<script type="text/javascript" src="static/newstyle/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/jquery-migrate-1.1.1.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/modernizr.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="static/newstyle/js/flot/jquery.flot.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/flot/jquery.flot.resize.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/responsive-tables.js"></script>
+<script type="text/javascript" src="static/newstyle/js/custom.js"></script>
+<script type="text/javascript" src="static/newstyle/js/jquery.tips.js"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="static/newstyle/js/excanvas.min.js"></script><![endif]-->
+<script type="text/javascript">
+jQuery(document).ready(function(){
+
+    
+    jQuery('.taglist .close').click(function(){
+        jQuery(this).parent().remove();
+        return false;
+    });
+    var percent1 = jQuery('#progress_bar1').attr('title');
+    var percent2 = jQuery('#progress_bar2').attr('title');
+    var percent3 = jQuery('#progress_bar3').attr('title');
+    var percent4 = jQuery('#progress_bar4').attr('title');
+    jQuery("#progress_bar1").animate({width:percent1},1000);
+    jQuery("#progress_bar2").animate({width:percent2},1000);
+    jQuery("#progress_bar3").animate({width:percent3},1000);
+    jQuery("#progress_bar4").animate({width:percent4},1000);
+    
+});
+
+</script>
+        {{template "head"}}

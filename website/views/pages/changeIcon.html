@@ -1,0 +1,66 @@
+{{template "template/maintemplate.html" .}}
+{{define "head"}}
+<script type="text/javascript" src="/static/js/changeIcon.js"></script>
+{{end}}
+{{define "body"}}
+<div>
+	<div class="row">
+		<div class="col-md-2">
+			<div><a href="/home">返回主页</a></div>
+			<div class="list-group">
+				<a href="/userinfo" class="list-group-item">我的账号</a>
+				<a href="#" class="list-group-item active">修改头像</a>
+				<a href="/changepassword" class="list-group-item">修改密码</a>
+				<a class="list-group-item">付费信息</a>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div>
+				<h1>修改头像</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<form action="/changeicon" method="post" enctype="multipart/form-data">
+						<div>
+							<button class="btn btn-default" type="submit">上传图片</button>
+							<span>支持jpg、gif、png 图片文件，且文件小于2M</span>
+						</div>
+						<div class="row">
+							<div class="col-md-6" style="border-right-width: 1px;border-style: solid;border-left-width: 0px;border-right-color: dark;border-top-width:0px; border-bottom-width:0px;">
+								<img src="http://image.tianjimedia.com/uploadImages/2013/101/BKOHIWC2UON5_1000x500.jpg" style="width:100%;height:100%">
+								<input name="file" type="file" accept="image/*" style="opacity:0;position: absolute;top:0px;left:0px;" id="selectFile"  />
+								<input name="filename" type="text" id="filename" style="display:none" />
+							</div>
+							<div class="col-md-6" id="imageView">
+								<div>
+									您上传的头像会自动生成四种此存请注意各种尺寸的头像是否清晰
+								</div>
+								<div class="row">
+									<div class="col-md-7">
+										<img style="width:180px;height:180px" />
+										<span>180x180</span>
+									</div>
+									<div class="col-md-5">
+										<div>
+											<img src="" style="width:50px;height:50px;">
+											<div>50x50</div>
+										</div>
+										<div>
+											<img src="" style="width:30px;height:30px;">
+											<div>30x30</div>
+										</div>
+										<div>
+											<img src="" style="width:25px;height:25px;">
+											<div>25x25</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{end}}

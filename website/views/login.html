@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>登陆</title>
+<link rel="stylesheet" href="static/newstyle/css/style.default.css" type="text/css" />
+<script type="text/javascript" src="static/newstyle/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/jquery-migrate-1.1.1.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/modernizr.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="static/newstyle/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="static/newstyle/js/custom.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+		if (jQuery('#errmsg')[0].innerHTML != "")
+		{
+			jQuery('.login-error').fadeIn();
+		}
+        jQuery('#login').submit(function(){
+            var u = jQuery('#username').val();
+            var p = jQuery('#password').val();
+            if(u == '' && p == '') {
+                jQuery('.login-alert').fadeIn();
+                return false;
+            }
+        });
+    });
+</script>
+</head>
+
+<body class="loginpage">
+
+<div class="loginpanel">
+    <div class="loginpanelinner">
+        <div class="logo animate0 bounceIn"><img src="static/newstyle/images/logo.png" alt="" /></div>
+        <form id="login" action="/" method="post">
+            <div class="inputwrapper login-alert">
+                <div class="alert alert-error">用户名或者密码不能为空</div>
+            </div>
+            <div class="inputwrapper login-alert login-error">
+                <div class="alert alert-error" id="errmsg">{{.err}}</div>
+            </div>
+            <div class="inputwrapper animate1 bounceIn">
+                <input type="text" name="email" id="username" placeholder="请输入邮箱地址" />
+            </div>
+            <div class="inputwrapper animate2 bounceIn">
+                <input type="password" name="password" id="password" placeholder="请输入密码" />
+            </div>
+            <div class="inputwrapper animate3 bounceIn">
+                <button name="submit">登陆</button>
+            </div>
+            <div class="inputwrapper animate4 bounceIn">
+                <label><input type="checkbox" class="remember" name="signin" /> 记住密码</label>
+                <a href="register" style="float: right;color:#fff;margin-top:10px;">用户注册</a>
+            </div>
+            
+        </form>
+    </div><!--loginpanelinner-->
+</div><!--loginpanel-->
+
+<div class="loginfooter">
+    <p>&copy; 2014. 励铖软件 All Rights Reserved.</p>
+</div>
+
+</body>
+</html>

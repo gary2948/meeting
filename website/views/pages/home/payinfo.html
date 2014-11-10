@@ -1,0 +1,187 @@
+{{template "template/maintemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+<script type="text/javascript" src="static/newstyle/js/jQuery.peSlider.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    //创建选择滑块
+    jQuery('select#version').attr('aria-hidden','true').after('<div class="slider-status" aria-hidden="true"></div>').peSlider({
+        slide:function(e,ui){
+            jQuery(this).next().next().text(jQuery(this).find('a:eq(0)').attr('aria-valuetext'));
+            freeornot();
+        }
+    }).each(function(){
+        jQuery(this).next().text(jQuery(this).prev().find('a:eq(0)').attr('aria-valuetext'));
+        freeornot();
+    });
+    
+    //添加选择的标签
+    jQuery('<div class="sliders-labels" aria-hidden="true"><span class="label-first">'+ jQuery('#version option:first').text() +'</span><span class="label-last">'+ jQuery('#version option:last').text() +'</span></div>').insertBefore('#amenities');
+
+    jQuery('#meeting_tabs ul li').click(function(){
+        jQuery(this).addClass('tabulous_active').siblings().removeClass('tabulous_active');
+        jQuery('#tabs_container>.pane:eq('+jQuery(this).index()+')').show().siblings().hide();   
+    })
+
+    jQuery("#select_taocan").click(function(){
+        jQuery(this).parent().parent().hide();
+        jQuery(this).parent().parent().next().show();
+    })
+
+
+})
+
+function freeornot(){
+        if(jQuery("#version").val()=="free"){
+            jQuery("#contract_it").html("简介free");
+            jQuery("#price_nums").html(0);
+        }
+        if(jQuery("#version").val()=="vip"){
+            jQuery("#contract_it").html("简介vip");
+            jQuery("#price_nums").html(1799);
+        }
+}
+</script>
+<div class="pageheader">
+            <form action="results.html" method="post" class="searchbar">
+                <input type="text" name="keyword" placeholder="输入搜索内容搜索..." />
+            </form>
+            <div class="pageicon"><span class="fa fa-paypal"></span></div>
+            <div class="pagetitle">
+                <h5>Payment information</h5>
+                <h1 style="margin-top:6px;">付费信息</h1>
+            </div>
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                    <div id="dashboard-left" class="span8">
+                        <div id="meeting_tabs">
+                                <ul>
+                                    <li class="tabulous_active"><a href="javascript:void(0)" title="">在线支付</a></li>
+                                    <li><a href="javascript:void(0)" title="">使用积分兑换</a></li>
+                                    <li><a href="javascript:void(0)" title="">使用VIP卡</a></li>
+                                    <li><a href="javascript:void(0)" title="">支付日志</a></li>
+                                </ul>
+
+                                <div id="tabs_container">
+                                    
+
+                                    <div  class="pane"  style="width:98%;margin:10px auto;">
+                                     <div class="select_taocan_div">
+                                        <fieldset id="amenities">
+                                            <div class="question">
+
+                                                <select name="version" id="version">
+                                                    <option value="free">免费版</option>
+                                                    <option value="vip">vip版</option>
+                                                </select>
+                                            </div>
+                                        </fieldset>
+                                        <div class="js_wz" id="contract_it">简介</div>
+                                        <div class="js_wz wz_price" id="the_price"><span id="price_nums">0</span>元/<span style="font-size:14px;">月</span></div>
+
+                                        <div class="btnselect"><input type="submit" class="addbtn" id="select_taocan" value="选择套餐" /></div>
+
+                                    </div>
+                                    <div class="payment_infor" style="display: none">
+
+                                        <div class="payment_top_img">
+                                          <div class="version_title">VIP版</div>
+                                          <div class="imgborder">
+                                              <img src="static/newstyle/images/sodtimg.gif" />
+                                              <br/>
+                                              <p>1799元/月</p>
+                                          </div>
+                                            
+                                        </div>
+
+                                        <div class="wz_hang">
+                                            <input type="radio" name="fs" />按年
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input type="radio" name="fs" checked="checked" />按月
+                                            &nbsp;&nbsp;
+                                            <select style="width:90px;margin-top:5px;">
+                                                <option>1个月</option>
+                                                <option>2个月</option>
+                                                <option>3个月</option>
+                                                <option>4个月</option>
+                                                <option>5个月</option>
+                                                <option>6个月</option>
+                                                <option>7个月</option>
+                                                <option>8个月</option>
+                                                <option>9个月</option>
+                                                <option>10个月</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="wz_hang" style="margin-top:3px;">有效期至：2015年10月9号</div>
+
+                                        <div class="wz_hang" >支付金额：<span class="theprices">1799元</span></div>
+                                        <div class="wz_hang" >支付方式：</div>
+                                        <div class="wz_hang">
+                                           <div class="fl mt8"><input type="radio" checked="checked" name="payment"></div>
+                                           <div class="fl"><img src="static/newstyle/images/zhifub.gif"></div>
+
+                                            <div class="fl mt8 ml30"><input type="radio" name="payment"></div>
+                                           <div class="fl"><img src="static/newstyle/images/kuaiqian.gif"></div>
+                                            <div class="fl mt8 ml30"><input type="radio" name="payment"></div>
+                                           <div class="fl"><img src="static/newstyle/images/caifut.png"></div>
+
+
+                                        </div>
+
+                                        <div class="buyitbtn">
+                                            
+                                            <input type="submit" class="addbtn" id="buythesoft" value="立刻购买" />
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                                        
+
+                                    </div>
+
+
+                                    
+
+
+                                    </div>
+
+                                    <div class="pane"  style="width:98%;margin:10px auto;display: none;">2
+                                   
+                                
+                                    </div>
+
+                                    <div class="pane"  style="width:98%;margin:10px auto;display: none;">3
+                                   
+                                    </div>
+
+                                    <div class="pane"  style="width:98%;margin:10px auto;display: none;">4
+                                   
+                                    </div>
+
+                                </div><!--End tabs container-->
+                                
+                            </div><!--End tabs-->
+                     </div>
+                </div><!--tabbedwidget-->
+                        
+                
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}

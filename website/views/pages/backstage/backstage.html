@@ -1,0 +1,117 @@
+{{template "template/backstagetemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+
+    
+    jQuery('.taglist .close').click(function(){
+        jQuery(this).parent().remove();
+        return false;
+    });
+    var percent1 = jQuery('#progress_bar1').attr('title');
+    var percent2 = jQuery('#progress_bar2').attr('title');
+    var percent3 = jQuery('#progress_bar3').attr('title');
+    var percent4 = jQuery('#progress_bar4').attr('title');
+    jQuery("#progress_bar1").animate({width:percent1},1000);
+    jQuery("#progress_bar2").animate({width:percent2},1000);
+    jQuery("#progress_bar3").animate({width:percent3},1000);
+    jQuery("#progress_bar4").animate({width:percent4},1000);
+    
+});
+
+</script>
+
+<div class="pageheader">
+            <form action="results.html" method="post" class="searchbar">
+                <input type="text" name="keyword" placeholder="输入搜索内容搜索..." />
+            </form>
+            <div class="pageicon"><span class="fa fa-user"></span></div>
+            <div class="pagetitle">
+                <h5>My account</h5>
+                <h1 style="margin-top:6px;">我的账号</h1>
+            </div>
+        </div><!--pageheader-->
+
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                <h3 class="subtitle" style="font-size:18px;">我的工作</h3>
+                  <ul class="shortcuts">
+                        <li class="events">
+                            <a href="">
+                                <span class="shortcuts-icon iconsi-users"></span>
+                                <span class="shortcuts-label">当前用户数1000000</span>
+                            </a>
+                        </li>
+                        <li class="products">
+                            <a href="">
+                                <span class="shortcuts-icon iconsi-weibo"></span>
+                                <span class="shortcuts-label">微博总数0</span>
+                            </a>
+                        </li>
+                        <li class="archive">
+                            <a href="">
+                                <span class="shortcuts-icon iconsi-duanyou"></span>
+                                <span class="shortcuts-label">短邮总数0</span>
+                            </a>
+                        </li>
+                        <li class="help">
+                            <a href="">
+                                <span class="shortcuts-icon iconsi-wendang"></span>
+                                <span class="shortcuts-label">文档总数0</span>
+                            </a>
+                        </li>
+                  </ul>
+
+
+                  <div class="roomshome">
+                     <div class="left_icon_home fl">空间：</div>
+
+                     <div class="progress_container fl mt15"><div class="progress_bar tip" id="progress_bar1" title="10%"></div></div>
+                     <div class="show_num_tips">已用1.00G 共10G </div>
+
+                  </div>
+
+                  <div class="roomshome">
+                     <div class="left_icon_message fl">短信：</div>
+
+                     <div class="progress_container fl mt15"><div class="progress_bar tip" id="progress_bar2" title="50%"></div></div>
+                     <div class="show_num_tips">已用100条 共200条 </div>
+
+                  </div>
+
+                  <div class="roomshome">
+                     <div class="left_icon_rili fl">日历：</div>
+
+                     <div class="progress_container fl mt15"><div class="progress_bar tip" id="progress_bar3" title="25%"></div></div>
+                     <div class="show_num_tips">已用2个 共8个 </div>
+
+                  </div>
+
+                  <div class="roomshome">
+                     <div class="left_icon_notice fl">公告：</div>
+
+                     <div class="progress_container fl mt15"><div class="progress_bar tip" id="progress_bar4" title="0%"></div></div>
+                     <div class="show_num_tips">已用0个 共100 </div>
+
+                  </div>
+                        
+    
+
+
+
+
+    
+
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}
+        

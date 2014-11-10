@@ -1,0 +1,97 @@
+{{template "template/maintemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+        <div class="pageheader">
+            <!--form action="results.html" method="post" class="searchbar">
+                <input type="text" name="keyword" placeholder="输入搜索内容搜索..." />
+            </form-->
+            <div class="pageicon"><span class="fa fa-home"></span></div>
+            <div class="pagetitle">
+                <h5>My home</h5>
+                <h1 style="margin-top:6px;">首页</h1>
+            </div>
+        </div><!--pageheader-->
+
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                <h3 class="subtitle" style="font-size:18px;">我的服务</h3>
+                  <ul class="shortcuts">
+                        <li class="events">
+                            <a href="">
+                                <span class="shortcuts-icon iconsi-huiyi"></span>
+                                <span class="shortcuts-label">参加会议1</span>
+                            </a>
+                        </li>
+                        <li class="events">
+                            <a href="">
+                                <span class="shortcuts-icon iconsi-cloud"></span>
+                                <span class="shortcuts-label">网盘容量5G</span>
+                            </a>
+                        </li>
+                        <li class="products">
+                            <a href="">
+                                <span class="shortcuts-icon iconsi-weibo"></span>
+                                <span class="shortcuts-label">微博总数0</span>
+                            </a>
+                        </li>
+                        <li class="archive">
+                            <a href="">
+                                <span class="shortcuts-icon iconsi-duanyou"></span>
+                                <span class="shortcuts-label">短邮总数0</span>
+                            </a>
+                        </li>
+                        <li class="help">
+                            <a href="">
+                                <span class="shortcuts-icon iconsi-wendang"></span>
+                                <span class="shortcuts-label">文档总数{{.doctotal}}</span>
+                            </a>
+                        </li>
+                  </ul>
+
+
+                  <div class="roomshome">
+                     <div class="left_icon_home fl">空间：</div>
+
+                     <div class="progress_container fl mt15"><div class="progress_bar tip" id="progress_bar1" title="{{.Sizep}}"></div></div>
+                     <div class="show_num_tips">已用{{.uSize}} 共{{.mSize}} </div>
+
+                  </div>
+
+                  <div class="roomshome">
+                     <div class="left_icon_message fl">短信：</div>
+
+                     <div class="progress_container fl mt15"><div class="progress_bar tip" id="progress_bar2" title="50%"></div></div>
+                     <div class="show_num_tips">已用100条 共200条 </div>
+
+                  </div>
+
+                  <div class="roomshome">
+                     <div class="left_icon_rili fl">日历：</div>
+
+                     <div class="progress_container fl mt15"><div class="progress_bar tip" id="progress_bar3" title="25%"></div></div>
+                     <div class="show_num_tips">已用2个 共8个 </div>
+
+                  </div>
+
+                        
+    
+
+
+
+
+    
+
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+
+
+
+{{end}}

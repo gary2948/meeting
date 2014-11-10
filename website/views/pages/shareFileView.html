@@ -1,0 +1,65 @@
+﻿{{template "template/maintemplate.html" .}}
+{{define "head"}}
+<link rel="stylesheet" type="text/css" href="/static/css/fileExtension.css">
+<script type="text/javascript" src="/static/js/TreePath.js"></script>
+<script type="text/javascript" src="/static/js/CheckBox.js"></script>
+<script type="text/javascript" src="/static/js/DataGrid.js"></script>
+<script type="text/javascript" src="/static/js/sharefileview.js"></script>
+<style>
+    .icon-64
+    {
+    width: 64px;
+    height: 64px;
+    display: inline-block;
+    background-repeat: round;
+    background-image: url("");
+    }
+    .mycheckboxouter {
+    height: 20px;
+    width: 20px;
+    border-radius: 3px;
+    display: block;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    transition: all .5s;
+    }
+    .mycheckbox {
+    border-radius: 3px;
+    border-bottom: 2px solid black;
+    border-right: 3px solid black;
+    background-color: transparent;
+    margin-left: 4px;
+    margin-top: 1px;
+    height: 13px;
+    width: 9px;
+    transform: rotate(45deg);
+    transform-origin: 50% 40%;
+    transition: all 0.2s;
+    }
+</style>
+{{end}}
+{{define "body" }}
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4" style="width:128px;height:98px;">
+                    <img src="/static/img/file/Default.png" style="width:98px; height: 98px" />
+                </div>
+                <div class="col-md-8">
+                    <h3 >{{.ShareInfo.ShareName}}</h3>
+                    <p><span>zhaotest123</span>分享于<span>{{.ShareTime}}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div>
+        <ol class="breadcrumb" id="filePathLink" data-defaultid="{{.id}}" data-defaultactiontype="GetSharedFile" >
+        </ol>
+        <div id="datagrid"></div>
+    </div>
+</div>
+{{end}}

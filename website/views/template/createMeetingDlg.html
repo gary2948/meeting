@@ -1,0 +1,74 @@
+<div id="CreateMeetingDlg" style="display:none" title="创建会议">
+		<div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="input-group">
+						<span class="input-group-addon">主题</span>
+						<input type="text" class="form-control" id="meetingtopic" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="input-group">
+						<span class="input-group-addon">内容</span>
+						<textarea class="form-control" id="meetingschema"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4" >
+					<div class="input-group">
+						<span class="input-group-addon">时间</span>
+						<input type="text" class="form-control" id="meetingdate" />
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="btn-group">
+						<button type="button" class="btn btn-info disabled" id="meetingTimeValue">09:30</button>
+						<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu" style="height:100px;overflow-y: auto" id="meetingTimeList">
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<span>时长</span>
+					<div class="btn-group">
+						<button type="button" class="btn btn-info disabled" id="meetingLengthHour">01</button>
+						<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+						<span>时</span>
+						</button>
+						<ul class="dropdown-menu" role="menu" style="height:100px;overflow-y: auto" id="meetingLengthHourList">
+						</ul>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-info disabled" id="meetingLengthMin">30</button>
+						<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+						<span>分</span>
+						</button>
+						<ul class="dropdown-menu" role="menu" style="height:100px;overflow-y: auto" id="meetingLengthMinList">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="input-group">
+						<span class="input-group-addon">会议密码</span>
+						<input type="text" class="form-control" id="meetingPassword" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-10 col-md-2">
+					<button class="btn btn-default navbar-right" id="createMeetingClick">创建会议</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/static/js/jquery-ui-1.10.4.custom.min.js"></script>
+	<script type="text/javascript" src="/static/js/CreateMeetingDlg.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-1.10.4.custom.min.css">

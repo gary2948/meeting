@@ -1,0 +1,217 @@
+{{template "template/clouddisktemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+
+<div class="pageheader">
+        <link rel="stylesheet" href="static/newstyle/css/cloud.css">
+           <div class="btn-group circle_btn">
+           <button data-toggle="dropdown" onclick="" class="btn dropdown-toggle"><span class="fa fa-file-o"></span>新建 <span class="caret"></span></button>
+                    <ul class="dropdown-menu" style="margin-left:20px;">
+                      <li><a href="#"><span class="fa fa-file-text"></span>&nbsp;&nbsp;&nbsp;文本文档</a></li>
+                      <li><a href="#"><span class="fa fa-folder"></span>&nbsp;&nbsp;&nbsp;文件夹</a></li>
+                      <li><a href="#"><span class="fa fa-share-alt-square"></span>&nbsp;&nbsp;&nbsp;来自链接</a></li>
+                    </ul>
+             </div>
+
+           <div class="btn-group circle_btn" title="最大上传500M">
+               <button data-toggle="dropdown" onclick="" class="btn"><span class="fa fa-cloud-upload"></span>上传 </button>
+               <span></span>
+            </div>
+
+         <form style="float:right;">
+           <input type="submit" class="addbtn fr" value="搜索" />
+           <input type="search" class="addinput" placeholder="输入搜索内容搜索" />
+
+         </form>
+
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+
+
+
+
+<table id="filestable"  class="">
+    <thead>
+        <tr>
+            <th id="headerName" class="column-name">
+                <div id="headerName-container">
+                    <input type="checkbox" id="checkAll" class="select-all" original-title="">
+                    <label for="select_all_files"></label>
+                    <a class="name sort columntitle"  href="#">
+                        <span>名称</span>
+                        <span class="sort-indicator icon-triangle-n"></span>
+                    </a>
+                    <span id="selectedActionsList" class="selectedActions hidden">
+                        <a href="" class="download">
+                            <img class="svg" alt="Download" src="static/newstyle/images/svg/download.svg">下载</a>
+                    </span>
+                </div>
+            </th>
+            <th id="headerSize" class="column-size" >
+                <a class="size sort columntitle" href="#">
+                    <span>大小</span>
+                    <span class="sort-indicator icon-triangle-n"></span>
+                </a>
+            </th>
+            <th id="headerDate" class="column-mtime">
+                <a id="modified" class="columntitle" href="#">
+                    <span>修改日期</span>
+                    <span class="sort-indicator icon-triangle-s"></span>
+                </a>
+                <span class="selectedActions hidden">
+                    <a href="#" class="delete-selected">
+                        删除
+                        <img class="svg" alt="删除" src="static/newstyle/images/svg/delete.svg"></a>
+                </span>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="fileList">
+        <tr>
+            <td class="filename ui-draggable ui-droppable" style="background-image: url(static/newstyle/images/svg/folder-public.svg); background-size: 32px;">
+                <input id="" name="subBox" type="checkbox">
+                <label for="select-files-4"></label>
+                <div class="name">
+                    <span class="nametext">
+                        <span class="innernametext">Music</span>
+                        <a href="#" class="action action-rename" data-action="Rename" original-title="">
+                            <img class="svg" src="static/newstyle/images/svg/rename.svg">
+                            <span></span>
+                        </a>
+                        <input type="text" value="" style="display: none;" class="change_file_name" />
+                    </span>
+                    <span class="uploadtext" currentuploads="0"></span>
+                    <span class="fileactions">
+                        <a href="#" class="action action-download" data-action="Download" original-title="">
+                            <img class="svg" src="static/newstyle/images/svg/download.svg">
+                            <span>下载</span>
+                        </a>
+                        <a href="#" class="action action-share permanent" data-action="Share" original-title="">
+                            <img class="svg" src="static/newstyle/images/svg/public.svg">
+                            <span>已共享</span>
+                        </a>
+                    </span>
+                </div>
+            </td>
+            <td class="filesize" style="color:rgb(-4780,-4780,-4780)">70.3 MB</td>
+            <td class="date">
+                <span class="modified" title="September 29, 2014 14:45" style="color:rgb(0,0,0)">2 分钟前</span>
+                <a href="#" original-title="删除" class="action delete delete-icon"></a>
+            </td>
+        </tr>
+
+        <tr >
+            <td class="filename ui-draggable ui-droppable" style="background-image:url(static/newstyle/images/svg/folder.svg); background-size: 32px;">
+                <input id="" name="subBox" type="checkbox">
+                <label for="select-files-11"></label>
+                <div class="name" >
+                    <span class="nametext">
+                        <span class="innernametext">Photos</span>
+                        <a href="#" class="action action-rename" data-action="Rename">
+                            <img class="svg" src="static/newstyle/images/svg/rename.svg">
+                            <span></span>
+                        </a>
+                        <input type="text" value="" style="display: none;" class="change_file_name"  />
+                    </span>
+                    <span class="uploadtext" currentuploads="0"></span>
+                    <span class="fileactions">
+                        <a href="#" class="action action-download" data-action="Download">
+                            <img class="svg" src="static/newstyle/images/svg/download.svg">
+                            <span>下载</span>
+                        </a>
+                        <a href="#" class="action action-share" data-action="Share">
+                            <img class="svg" src="static/newstyle/images/svg/share.svg">
+                            <span>分享</span>
+                        </a>
+                    </span>
+                </div>
+            </td>
+            <td class="filesize" style="color:rgb(159,159,159)">762 kB</td>
+            <td class="date">
+                <span class="modified" style="color:rgb(0,0,0)" original-title="September 29, 2014 16:36">2 分钟前</span>
+                <a href="#" original-title="删除" class="action delete delete-icon"></a>
+            </td>
+        </tr>
+        <tr >
+            <td class="filename ui-draggable ui-droppable" style="background-image:url(static/newstyle/images/svg/folder.svg); background-size: 32px;">
+                <input id="" name="subBox" type="checkbox">
+                <label for=""></label>
+                <div class="name" >
+                    <span class="nametext">
+                        <span class="innernametext">Photos22</span>
+                        <a href="#" class="action action-rename" data-action="Rename">
+                            <img class="svg" src="static/newstyle/images/svg/rename.svg">
+                            <span></span>
+                        </a>
+                        <input type="text" value="" style="display: none;" class="change_file_name"  />
+                    </span>
+                    <span class="uploadtext" currentuploads="0"></span>
+                    <span class="fileactions">
+                        <a href="#" class="action action-download" data-action="Download">
+                            <img class="svg" src="static/newstyle/images/svg/download.svg">
+                            <span>下载</span>
+                        </a>
+                        <a href="#" class="action action-share" data-action="Share">
+                            <img class="svg" src="static/newstyle/images/svg/share.svg">
+                            <span>分享</span>
+                        </a>
+                    </span>
+                </div>
+            </td>
+            <td class="filesize" style="color:rgb(159,159,159)">762 kB</td>
+            <td class="date">
+                <span class="modified" style="color:rgb(0,0,0)" original-title="September 29, 2014 16:36">2 分钟前</span>
+                <a href="#" original-title="删除" class="action delete delete-icon"></a>
+            </td>
+        </tr>
+        <tr >
+            <td class="filename ui-draggable ui-droppable" style="background-image:url(static/newstyle/images/svg/folder.svg); background-size: 32px;">
+                <input id="" name="subBox" type="checkbox">
+                <label for=""></label>
+                <div class="name" >
+                    <span class="nametext">
+                        <span class="innernametext">Photos2</span>
+                        <a href="#" class="action action-rename" data-action="Rename">
+                            <img class="svg" src="static/newstyle/images/svg/rename.svg">
+                            <span></span>
+                        </a>
+                        <input type="text" value="" style="display: none;" class="change_file_name"  />
+                    </span>
+                    <span class="uploadtext" currentuploads="0"></span>
+                    <span class="fileactions">
+                        <a href="#" class="action action-download" data-action="Download">
+                            <img class="svg" src="static/newstyle/images/svg/download.svg">
+                            <span>下载</span>
+                        </a>
+                        <a href="#" class="action action-share" data-action="Share">
+                            <img class="svg" src="static/newstyle/images/svg/share.svg">
+                            <span>分享</span>
+                        </a>
+                    </span>
+                </div>
+            </td>
+            <td class="filesize" style="color:rgb(159,159,159)">762 kB</td>
+            <td class="date">
+                <span class="modified" style="color:rgb(0,0,0)" original-title="September 29, 2014 16:36">2 分钟前</span>
+                <a href="#" original-title="删除" class="action delete delete-icon"></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+    
+
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}

@@ -1,0 +1,114 @@
+{{template "template/maintemplate.html" .}}
+{{define "head"}}
+<script type="text/javascript" src="/static/js/editmeeting.js"></script>
+<script type="text/javascript" src="/static/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="/static/js/BlockItemList.js"></script>
+<script type="text/javascript" src="/static/js/UploadFile.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-1.10.4.custom.min.css">
+{{end}}
+{{define "body"}}
+<div>
+	<div class="row">
+		<div class="col-md-3">
+			<div id="calendar"></div>
+			<div class="list-group">
+				<a href="/meeting" class="list-group-item">会议信息</a>
+				<a href="/calendar" class="list-group-item">日程</a>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div>
+				<div class="btn btn-default">创建后续会议</div>
+			</div>
+			<div>
+			</div>
+			<div style="padding-top:20px;">
+				<ul class="nav nav-tabs">
+					<li class="active" style="margin-left: 20px;"><a href="#" id="meetingInfoTab">详情</a></li>
+					<li><a href="#" id="meetingLogTab">日志</a></li>
+				</ul>
+				<div id="container" style="padding-top:20px;">
+					<div id="meetingInfo" class="form-horizontal">
+						<input type="text" style="display:none" value="{{.meetingInfo.Id}}" />
+						<div class="form-group row">
+							<label class="col-md-2 control-label">主题</label>
+							<div class="col-md-8">
+								<input id="Lc_topic" class="form-control" type="text" value="{{ .meetingInfo.Lc_topic}}" {{if .canEdit}} disabled="disabled" {{end}} />
+							</div>
+						</div>
+						<div class="form-group row">
+                            <label class="col-md-2 control-label">议程</label>
+							<div class="col-md-8">
+								<textarea id="Lc_schema" style="height:100px;" class="form-control" {{if .canEdit}} disabled="disabled" {{end}} >{{ .meetingInfo.Lc_schema}}</textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+                            <label class="col-md-2 control-label">创建人</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" value="{{.userInfo.Lc_nickName}}"  disabled="disabled" />
+							</div>
+						</div>
+						<div class="form-group row">
+                            <label class="col-md-2 control-label">会议状态</label>
+							<div class="col-md-8">
+                                <p class="form-control-static">{{.MeetingState}}</p>
+							</div>
+						</div>
+						<div class="form-group row">
+                            <label class="col-md-2 control-label">文档</label>
+							<div class="col-md-8">
+								<div style="padding-bottom:5px;"><button {{if .canEdit}} disabled="disabled" {{end}} class="btn btn-default" id="uploadFileClick" >上传文件</button></div>
+								<div id="MeetingFileList">
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+                            <label class="col-md-2 control-label">邀请人员</label>
+							<div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" {{if .canEdit}} disabled="disabled" {{end}} id="inputInvitee" placeholder="请输入邀请人邮箱"  />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="btn-group">
+										<button type="button" {{if .canEdit}} disabled="disabled" {{end}} class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+										<span class="caret"></span>
+										<span>添加</span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="#">Action</a></li>
+											<li><a href="#">Another action</a></li>
+											<li><a href="#">Something else here</a></li>
+											<li class="divider"></li>
+											<li><a href="#">Separated link</a></li>
+										</ul>
+									</div>
+                                    </div>
+                                </div>
+								<div id="MeetingInviterList">
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+                            <label class="col-md-2 control-label">会议密码</label>
+							<div class="col-md-8">
+								<input id="password" type="text"  class="form-control" value="{{.meetingInfo.Lc_passwd}}" {{if .canEdit}} disabled="disabled" {{end}} />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+								<button class="btn btn-default" {{if .canEdit}} style="display:none" {{end}} id="saveChange" >保存</button>
+								<button class="btn btn-default" {{if .canEdit}} style="display:none" {{end}} >放弃修改</button>
+							</div>
+						</div>
+					</div>
+					<div id="meetingLog">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="" id="uploadDlg" title="文件上传">
+	</div>
+</div>
+{{end}}

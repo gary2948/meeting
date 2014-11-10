@@ -1,0 +1,52 @@
+{{template "template/backstagetemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+<div class="pageheader">
+            <div class="pageicon"><span class="fa fa-cog"></span></div>
+            <div class="pagetitle">
+                <h5>Dynamic set</h5>
+                <h1 style="margin-top:6px;">动态设置</h1>
+            </div>
+        </div><!--pageheader-->
+
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+
+                            <div id="meeting_tabs">
+
+                                <div id="tabs_container">
+ 
+                                    <div class="pane" id="tabs_jx" style="width:98%;margin:10px auto;">
+                                        <div class="suoding_it" style="color:#666;">
+                                           <p><input type="checkbox" name="dt" />&nbsp;创建小组、加入小组、创建社区后自动发布状态。</p>
+                                           <p><input type="checkbox" name="dt" />&nbsp;创建小组、加入小组、创建社区后自动发布状态。</p>
+                                           <p><input type="checkbox" name="dt" />&nbsp;创建小组、加入小组、创建社区后自动发布状态。</p>
+
+
+                                        </div>
+                                    <span class="creatmeetingbtn" style="margin-left:30px;float: none"><a style="padding:5px 20px;" href="#">保存</a></span>
+
+
+                                    </div>
+
+
+                                </div><!--End tabs container-->
+                                
+                            </div><!--End tabs-->
+
+
+
+
+    
+
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}
+        

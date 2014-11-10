@@ -1,0 +1,152 @@
+{{template "template/meetingtemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+<script type="text/javascript">
+jQuery(document).ready(function() {
+
+
+  jQuery(".rightbtns").click(function(){
+        if(jQuery(this).hasClass("r_click")){
+            jQuery(this).removeClass("r_click");
+            jQuery(this).parent().parent().parent().css("width","100%");
+            jQuery(this).parent().parent().parent().next().css({"width":"0%",'margin-left':'0%'});
+            jQuery(this).parent().parent().parent().next().hide();
+        }else{
+           jQuery(this).addClass("r_click"); 
+            jQuery(this).parent().parent().parent().css("width","80%");
+            jQuery(this).parent().parent().parent().next().css({"width":"19%",'margin-left':'1%'});
+            jQuery(this).parent().parent().parent().next().show();
+        }
+
+
+  })
+  showornot();
+    jQuery(window).resize(function(){
+       showornot(); 
+       if(jQuery("#dashboard-left").eq(0).next().css("margin-left")=='0%'){
+        jQuery(".rightbtns ").eq(0).removeClass("r_click");
+       }
+       var swidth=parseInt(jQuery(".topsearch").width())*0.8;
+       jQuery(".searchresults_list").width(swidth);
+    }); 
+    jQuery(".close_search").live("click",function(){
+           jQuery(this).parent().hide(100);
+    })
+
+     jQuery(".contractp_zu").live("click",function(){
+      if(jQuery(this).hasClass("oxia")){
+          jQuery(this).removeClass("oxia");
+          jQuery(this).next().hide(200);
+          }
+          else
+          {
+          jQuery(this).addClass("oxia");
+          jQuery(this).next().show(200);
+          }
+        })
+
+     jQuery("#searchcontractpeople").click(function(){
+       var swidth=parseInt(jQuery(".topsearch").width())*0.8;
+       jQuery(".searchresults_list").width(swidth);
+        jQuery(".searchresults_list").show(100);
+     })
+
+    jQuery('#meeting_tabs ul li').click(function(){
+        jQuery(this).addClass('tabulous_active').siblings().removeClass('tabulous_active');
+        jQuery('#tabs_container>.pane:eq('+jQuery(this).index()+')').show().siblings().hide();   
+    })
+
+})
+
+function showornot(){
+
+    if(jQuery(".rightbtns").eq(0).is(":hidden")){
+            jQuery("#dashboard-left").eq(0).css("width","100%");
+            jQuery("#dashboard-left").eq(0).next().css({"width":"0%",'margin-left':'0%'}); 
+            jQuery("#dashboard-left").eq(0).next().hide(100);
+    }
+}
+</script>
+        
+        <div class="pageheader">
+
+         <span class="creatmeetingbtn"><a href="add_meeting.html">创建会议</a></span>
+
+         <form style="float:right;">
+           <input type="submit" class="addbtn fr" value="快速加入" />
+           <input type="text" class="addinput" placeholder="会议码" />
+
+         </form>
+
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                    <div id="dashboard-left" class="span8">
+                        <div id="meeting_tabs">
+                                <ul>
+                                    <li class="tabulous_active"><a href="#tabs_log" title="">会议日志</a></li>
+                                    <div class="rightbtns" title="联系人"></div>
+                                </ul>
+
+                                <div id="tabs_container">
+                                    
+
+                                    <div  class="pane" id="tabs_log" style="width:98%;margin:10px auto;">
+                                     <div class="onelist_meeting">
+                                      <span>2014-05-05：12:04:33 徐阳波创建会议</span>
+                                      </div>
+                                     <div class="onelist_meeting">
+                                      <span>2014-05-05：12:04:33 徐阳波创建会议</span>
+                                      </div>
+                                     <div class="onelist_meeting">
+                                      <span>2014-05-05：12:04:33 徐阳波创建会议</span>
+                                      </div>
+
+
+                                    </div>
+
+                                 
+
+                                </div><!--End tabs container-->
+                                
+                            </div><!--End tabs-->
+                     </div>
+                     <div class="right_contract" style="display:none;">
+                        <div class="contract_people">
+                          <div class="topsearch"><input type="text" class="s_input" placeholder="查找联系人" /><input type="button" title="添加联系人" class="b_input" id="searchcontractpeople" /></div>
+
+                            <div class="searchresults_list"  style="display: none;">   
+                              <div class="close_search"></div>
+                                 <div style="padding:5px 5px 5px 8px;">1个搜索结果</div>
+                                <ul class="search_results" >
+                                <li><a href="#">战三是</a></li>
+                                </ul>
+                          
+                           </div>
+
+                            <div class="contractlist" id="user_friends_box11">
+                                <div class="contractp_zu" title="我的好友">我的好友</div>
+                                  <ul class="onegroups" style="display: none;">
+                                   <li class="friendlists" title="李四"><a href="javascript:void(0)">李四</a></li>
+                                 </ul>
+                             <div class="contractp_zu" title="好友">好友</div>
+                               <ul class="onegroups" style="display: none;">
+                                   <li class="friendlists" title="张三"><a href="javascript:void(0)">张三</a></li>
+                               </ul>
+                            </div>
+
+                        </div>
+                         
+
+                     </div>
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+{{end}}

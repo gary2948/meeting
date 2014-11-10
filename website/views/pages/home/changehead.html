@@ -1,0 +1,264 @@
+{{template "template/maintemplate.html" .}}
+{{define "head"}}
+
+{{end}}
+{{define "body" }}
+<link rel="stylesheet" type="text/css" href="static/newstyle/js/changehead/css/imgareaselect-default.css" />
+
+<script type="text/javascript" src="static/newstyle/js/changehead/scripts/jquery.imgareaselect.pack.js"></script>
+<script type="text/javascript" src="static/newstyle/js/changehead/scripts/jQueryRotate.js"></script>
+
+<style type="text/css">
+.changeheads{width:720px;height:400px;margin-top:20px;}
+.portrait_left{float:left;height:auto;width:306px;}
+#preview{border:1px solid #000000;overflow:hidden;position:relative;height:auto;width:280px;margin:0 auto;}
+#avatar{height:280px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+.portrait_revolve{height:auto;padding-top:15px;width:306px;}
+.revolve_left{background:url("static/newstyle/js/changehead/images/btn.gif") no-repeat 0px 0px;float:left;height:22px;width:22px;}
+.revol_left_txt{color:#FF6699;float:left;height:22px;line-height:22px;text-align:left;width:110px;}
+.revol_left_txt{color:#FF6699;float:left;height:22px;line-height:22px;text-align:left;width:110px;}
+.revol_right_txt{color:#FF6699;float:left;height:22px;line-height:22px;text-align:right;width:131px;}
+.revolve_right{background:url("static/newstyle/js/changehead/images/btn.gif") no-repeat scroll -18px 0px;float:left;height:22px;width:22px;}
+.setup_but{height:28px;padding-left:50px;padding-top:40px;width:auto;}
+.baseinf_but1{background:url("static/newstyle/js/changehead/images/btn.gif") no-repeat 0px -22px;border:medium none;color:#FFFFFF;font-size:14px;font-weight:bold;height:28px;line-height:28px;margin-right:22px;outline:medium none;width:78px;}
+.portrait_right{float:left;font-size:12px;height:280px;padding-left:80px;width:320px;}
+.portrait_right_bottom{color:#666666;height:220px;width:310px;}
+.portrait1{float:left;height:200px;width:180px;}
+#img_big_preview{height:180px;margin:0 auto;width:180px;}
+.img_preview{border:1px solid #000000;overflow:hidden;position:relative;}
+.img_preview img{margin:0;position:relative;max-width: 200%;}
+.portrait2{float:left;height:auto;padding-left:40px;width:68px;}
+#img_small_preview{height:49px;margin:0 auto;width:49px;}
+.img_preview{border:1px solid #000000;overflow:hidden;position:relative;}
+#preview img{max-width: 200%;width:280px;}
+.afile input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.headqueding{color: #fff;
+background: #3b6c8e;
+padding: 8px 20px;
+border-radius: 3px;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+border: none;
+font-weight: bold;
+margin-top:10px;margin-left:20px;
+}
+</style>
+
+        <div class="pageheader">
+            <div class="pageicon"><span class="fa fa-user"></span></div>
+            <div class="pagetitle">
+                <h5>Change Head</h5>
+                <h1 style="margin-top:6px;">修改头像</h1>
+            </div>
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                <div class="changeheads">
+
+                <div class="portrait_left">
+                
+                    <div id="preview"><img id="avatar" alt="请上传头像" src="{{.userinfo.Lc_photoFile}}"></div>
+                    
+                    <form id="crop_form" method="post" action=".">
+                        <!--通过生成尺寸和旋转角度 后台获取尺寸和旋转角度再进行裁剪-->
+                        <input id="id_top" type="hidden" name="top" value="90">
+                        <input id="id_left" type="hidden" name="left" value="61">
+                        <input id="id_right" type="hidden" name="right" value="201">
+                        <input id="id_bottom" type="hidden" name="bottom" value="200">
+                        <input id="rotation" type="hidden" value="0" name="rotation">
+                    </form>
+                    
+                    <div class="portrait_revolve">
+                        <div class="revolve_left"></div>
+                        <a href="javascript:;" class="revol_left_txt" onClick="avatarrotateleft();">向左旋转</a>
+                        <a href="javascript:;" class="revol_right_txt" onClick="avatarrotateright();">向右旋转</a>
+                        <div class="revolve_right"></div>
+                    </div>
+                    
+                    <div class="setup_but">  <a class="afile" href="javascript:void(0)">选择图片<input type="file" accept="image/png,image/gif,image/jpeg" onchange="previewImage(this)" /></a>
+
+                      <input type="button" class="headqueding" value="确定" onClick="submit_avatar();">
+
+                    </div>
+                </div>
+
+
+                <div class="portrait_right">
+                
+                    <p class="portrait_right_txt">您上传的头像会自动生成小尺寸头像，请注意小尺寸的头像是否清晰</p>
+                
+                    <div class="portrait_right_bottom">
+                        <div class="portrait1">
+                            <div id="img_big_preview" class="img_preview"><img id="avatar1" alt="头像预览" src="{{.userinfo.Lc_photoFile}}" style="width:360px;height:360px;max-width: 200%;margin-left:-117px;margin-top:-44px;" /></div>
+                            <p>大尺寸头像，180×180</p>
+                        </div>
+                    </div>
+                    <div class="portrait2">
+                        <div id="img_small_preview" class="img_preview"><img id="avatar2" alt="预览" src="{{.userinfo.Lc_photoFile}}" style="width: 98px;max-width: 200%; height: 98px; margin-left: -32px; margin-top: -12px;"></div>
+                        <p>中尺寸头像</p>
+                        <p>50×50</p>
+                    </div>
+                </div>
+              </div>
+                </div><!--tabbedwidget-->
+                        
+                
+                {{template "template/footer.html"}}
+                
+            </div><!--maincontentinner-->
+<script type="text/javascript">
+jQuery(document).ready(function (){
+    function adjust(el, selection) {
+        var scaleX = jQuery(el).width() / (selection.width || 1);
+        var scaleY = jQuery(el).height() / (selection.width || 1);
+        jQuery(el+' img').css({
+            width: Math.round(scaleX*jQuery('#avatar').width() ) + 'px',
+            height: Math.round(scaleY*jQuery('#avatar').height() ) + 'px',
+            marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+            marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+        });
+    }
+    function preview(img, selection) {
+        adjust('#img_small_preview', selection);
+        adjust('#img_big_preview', selection);
+    }
+    jQuery('#avatar').imgAreaSelect({
+        aspectRatio: "4:4",
+        x1: 60,
+        y1:60,
+        x2: 200,
+        y2: 200,
+        onSelectEnd:function(img, selection) {
+            jQuery('#id_top').val(selection.y1);
+            jQuery('#id_left').val(selection.x1);
+            jQuery('#id_right').val(selection.x2);
+            jQuery('#id_bottom').val(selection.y2);
+        },
+        onSelectChange: preview
+    });
+}); 
+
+
+
+var value = 0;
+function avatarrotateleft(){
+    value -=90;
+    jQuery('#avatar').rotate({ animateTo:value});
+    jQuery('#avatar1').rotate({ animateTo:value});
+    jQuery('#avatar2').rotate({ animateTo:value});
+}
+function avatarrotateright(){
+    value +=90;
+    jQuery('#avatar').rotate({ animateTo:value});
+    jQuery('#avatar1').rotate({ animateTo:value});
+    jQuery('#avatar2').rotate({ animateTo:value});
+}
+function select_avatar(){
+    jQuery('#avatar_id').click();
+}
+function uploadavatar(){
+    jQuery('#avatar_form').submit();
+}
+function submit_avatar(){
+    jQuery('#rotation').val(value);
+    alert('修改成功');
+    jQuery('#crop_form').submit();
+} 
+
+     //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 260; 
+          var MAXHEIGHT = 180;
+          var div = document.getElementById('preview');
+          var div1 = document.getElementById('img_big_preview');
+          var div2 = document.getElementById('img_small_preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=avatar>';
+              var img = document.getElementById('avatar');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+              
+              div1.innerHTML ='<img id=avatar1>';
+              var img1 = document.getElementById('avatar1');
+              img1.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img1.offsetWidth, img1.offsetHeight);
+                img1.width  =  360;
+                img1.height =  360;
+//                 img.style.marginLeft = rect.left+'px';
+                img1.style.marginTop = rect.top+'px';
+              }
+              var reader1 = new FileReader();
+              reader1.onload = function(evt){img1.src = evt.target.result;}
+              reader1.readAsDataURL(file.files[0]);
+              
+              
+              div2.innerHTML ='<img id=avatar2>';
+              var img2 = document.getElementById('avatar2');
+              img2.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img2.offsetWidth, img2.offsetHeight);
+                img2.width  = 360;
+                img2.height = 360;
+//                 img.style.marginLeft = rect.left+'px';
+                img2.style.marginTop = rect.top+'px';
+              }
+              var reader2 = new FileReader();
+              reader2.onload = function(evt){img2.src = evt.target.result;}
+              reader2.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=avatar>';
+            var img = document.getElementById('avatar');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight )
+            {
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                
+                if( rateWidth > rateHeight )
+                {
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else
+                {
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+            
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+</script>
+
+{{end}}
