@@ -17,6 +17,7 @@ type Lctb_userInfo struct {
 	Lc_sex          string    `xorm:"varchar(5)"`
 	Lc_postAddress  string    `xorm:"varchar(200)"`
 	Lc_photoFile    string    `xorm:"varchar(500)"`
+	Lc_UUID         string    `xorm:"'lc_UUID' varchar(50)"`
 }
 
 type Lctb_userClient struct {

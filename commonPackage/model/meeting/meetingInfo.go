@@ -14,7 +14,7 @@ type Lctb_meetingInfo struct {
 	Lc_planTime     time.Time
 	Lc_planTimespan time.Time
 	Lc_topic        string `xorm:"varchar(200)"`
-	Lc_schema       string `xorm:"text`
+	Lc_schema       string `xorm:"text"`
 	Lc_remindTime   int
 	Lc_remindType   int
 	Lc_code         string `xorm:"varchar(50)"`

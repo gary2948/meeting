@@ -15,6 +15,7 @@ import (
 )
 
 const TimeFormat = "2006-01-02 15:04:05"
+const RTMP_PRIX = `rtmp://115.29.172.111:1935/live/livestream.`
 
 func init() {
 	ACCESS_KEY = "spVfjluxAEzJTIDFQ-uNqORCKU-1GpJi8XMpA_ki"
@@ -72,6 +73,7 @@ const (
 	JSON_FILEIDS       = "FILEIDS" //[]int64
 	JSON_FILEMAPID     = "FILEMAPID"
 	JSON_LINKFILEMAPID = "LINKFILEMAPID"
+	JSON_MD5           = "MD5"
 	JSON_FILENAME      = "FILENAME"
 	JSON_SHAREFILETYPE = "SHAREFILETYPE"
 	JSON_SHARENAME     = "SHARENAME"
@@ -86,6 +88,8 @@ const (
 	JSON_START         = "START"
 	JSON_KINDNAME      = "KINDNAME"
 	JSON_KINDID        = "KINDID"
+	JSON_UPTOKEN       = "UPTOKEN"
+	JSON_DOWNLOADURL   = "DOWNLOADURL"
 )
 
 const (
