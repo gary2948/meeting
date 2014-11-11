@@ -29,6 +29,10 @@ jQuery(document).ready(function() {
         jQuery(this).parent().parent().hide();
         jQuery(this).parent().parent().next().show();
     })
+    jQuery("#gobackselect").click(function(){
+        jQuery(".payment_infor").hide();
+        jQuery(".select_taocan_div").show();
+    })
 
 
 })
@@ -137,6 +141,8 @@ function freeornot(){
                                         <div class="buyitbtn">
                                             
                                             <input type="submit" class="addbtn" id="buythesoft" value="立刻购买" />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="button" class="addbtn" id="gobackselect" value="返回重选" />
                                         </div>
 
 

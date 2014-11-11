@@ -6,9 +6,9 @@
 
         
 <div class="pageheader">
-            <form action="results.html" method="post" class="searchbar">
+            <!--form action="results.html" method="post" class="searchbar">
                 <input type="text" name="keyword" placeholder="输入搜索内容搜索..." />
-            </form>
+            </form-->
             <div class="pageicon"><span class="fa fa-user"></span></div>
             <div class="pagetitle">
                 <h5>My account</h5>
@@ -16,21 +16,30 @@
             </div>
         </div><!--pageheader-->
         <link rel="stylesheet" href="static/newstyle/css/cloud.css">
+        <style type="text/css">.icon_p{overflow: hidden;}
+        .quxiao_btn,.jyquxiao_btn{background-color: #ccc;margin-left: 15px;}
+        .quxiao_btn:hover,.jyquxiao_btn:hover{background-color: #ddd;}
+		.addbtn{padding:5px 15px;}
+		.deleteaction{-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.5)";filter: alpha(opacity=0.5);opacity:0.5;line-height:1.5;margin-right:10px;margin-top:5px;float:right;}
+		.deleteaction:hover{-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.9)";filter: alpha(opacity=0.9);opacity:0.9;}
+		.deleteaction img{vertical-align:middle;}
+		textarea{resize:none;}
+        </style>
         <div class="maincontent">
             <div class="maincontentinner">
-                <div class="row-fluid">
+              <div class="row-fluid">
                      <div class="span4 profile-left">
                         
                         <div class="widgetbox profile-photo">
                             <div class="headtitle">
                                <div class="right_edit_icon">
-                                        <a class="fa fa-pencil" href="/changehead"></a>
+                                        <a class="fa fa-pencil" href="changehead.html"></a>
                                      </div>
                                 <h4 class="widgettitle">我的头像</h4>
                             </div>
                             <div class="widgetcontent">
                                 <div class="profilethumb">
-                                    <img src="{{.userinfo.Lc_photoFile}}" alt="" class="img-polaroid" />
+                                    <img src="static/newstyle/images/profilethumb.png" alt="" class="img-polaroid" />
                                 </div><!--profilethumb-->
                             </div>
                         </div>
@@ -38,14 +47,52 @@
                             
                         <div class="widgetbox tags">
                                    <div class="headtitle">
+                                         <div class="right_edit_icon" id="zhich_info">
+                                            <a class="fa fa-plus" href="javascript:void(0)"></a>
+                                         </div>
                                         <h4 class="widgettitle">职业信息</h4>
                                      </div>
                        <div class="widgetcontent">
                         <table style="width:100%;">  
-                            <tbody id="fileList">   
+                            <tbody id="fileList"> 
+                              <tr style="display:none;" class="zhich_tr_new">
+                                <td>
+                                     <p class="icon_p">
+                                            <label class="left_name" style="width:70px;">公司名称:</label>
+                                            <input class="right_input" type="text" name=""  value="" />
+                                        </p>
+                                     <p class="icon_p">
+                                            <label class="left_name" style="width:70px;">职位头衔:</label>
+                                            <input class="right_input" type="text" name=""  value="" />
+                                     </p>
+                                     <p class="icon_p">
+                                            <label class="left_name" style="width:70px;">工作地点:</label>
+                                            <input class="right_input" type="text" name=""  value="" />
+                                     </p>
+                                     <p class="icon_p">
+                                            <label class="left_name" style="width:70px;">在职时间:</label>
+                                            <input class="right_input" type="date" name=""  value="" />
+                                     </p>
+                                      <p class="icon_p">
+                                            <label class="left_name" style="width:70px;">至</label>
+                                            <input class="right_input" type="date" name=""   value="" />
+                                        </p>
+                                     <p class="icon_p">
+                                            <label class="left_name" style="width:70px;">简单描述:</label>
+                                            <textarea  class="right_input" name="" class="span8"></textarea>
+                                     </p>
+                                       <p class="icon_p tl_r">
+                                           <input type="button" class="addbtn fr quxiao_btn zc_qx " value="取消" />
+                                           <input type="button" class="addbtn fr save_edu2" value="保存" />
+                                           <label style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>
+                                        </p>
+                                </td>
+                            </tr>
+
+
                               <tr>
                                 <td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">
-                                <span class="nametext" style="left:0;width:100%;height:auto;background-color:#f2f2f2;">
+                                <span class="nametext" style="left:0;width:100%;height:auto;background-color:#f2f2f2;max-width:100%;">
                                       <div class="list_workinfo"> 
                                              <div title="2003年9月-2007年6月">2003年9月-2007年6月</div>
                                              <div title="公司名称啊啊">公司名称啊啊</div>
@@ -63,37 +110,43 @@
                               <tr style="display:none;">
                                 <td>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">公司名称:</label>
+                                            <label class="left_name" style="width:70px;">公司名称:</label>
                                             <input class="right_input" type="text" name=""  value="" />
                                         </p>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">职位头衔:</label>
+                                            <label class="left_name" style="width:70px;">职位头衔:</label>
                                             <input class="right_input" type="text" name=""  value="" />
                                      </p>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">工作地点:</label>
+                                            <label class="left_name" style="width:70px;">工作地点:</label>
                                             <input class="right_input" type="text" name=""  value="" />
                                      </p>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">在职时间:</label>
+                                            <label class="left_name" style="width:70px;">在职时间:</label>
                                             <input class="right_input" type="date" name=""  value="" />
-                                            <label class="left_name" style="width:auto;">至</label>
-                                            <input class="right_input" type="text" name="" placeholder="在职可以写至今"  value="" />
-
                                      </p>
+                                      <p class="icon_p">
+                                            <label class="left_name" style="width:70px;">至</label>
+                                            <input class="right_input" type="date" name=""  value="" />
+                                        </p>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">简单描述:</label>
+                                            <label class="left_name" style="width:70px;">简单描述:</label>
                                             <textarea  class="right_input" name="" class="span8"></textarea>
                                      </p>
                                        <p class="icon_p tl_r">
-                                           <input type="button" class="addbtn fr save_edu" value="保存" />
+                                           <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />
+                                           <input type="button" class="addbtn fr " value="保存" />
+                                            <a href="#" class="deleteaction">
+                                                <img class="svg" src="static/newstyle/images/svg/delete.svg">
+                                                <span>删除</span>
+                                            </a>
                                         </p>
                                 </td>
                             </tr>
 
  <tr>
                                 <td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">
-                                <span class="nametext" style="left:0;width:100%;height:auto;background-color:#f2f2f2;">
+                                <span class="nametext" style="left:0;width:100%;height:auto;background-color:#f2f2f2;max-width:100%;">
                                       <div class="list_workinfo"> 
                                              <div title="2003年9月-2007年6月">2003年9月-2007年6月</div>
                                              <div title="公司名称啊啊">公司名称啊啊</div>
@@ -111,30 +164,35 @@
                               <tr style="display:none;">
                                 <td>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">公司名称:</label>
+                                            <label class="left_name" style="width:70px;">公司名称:</label>
                                             <input class="right_input" type="text" name=""  value="" />
                                         </p>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">职位头衔:</label>
+                                            <label class="left_name" style="width:70px;">职位头衔:</label>
                                             <input class="right_input" type="text" name=""  value="" />
                                      </p>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">工作地点:</label>
+                                            <label class="left_name" style="width:70px;">工作地点:</label>
                                             <input class="right_input" type="text" name=""  value="" />
                                      </p>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">在职时间:</label>
+                                            <label class="left_name" style="width:70px;">在职时间:</label>
                                             <input class="right_input" type="date" name=""  value="" />
-                                            <label class="left_name" style="width:auto;">至</label>
-                                            <input class="right_input" type="text" name="" placeholder="在职可以写至今"  value="" />
+                                            <label class="left_name" style="width:70px;">至</label>
+                                            <input class="right_input" type="date" name=""  value="" />
 
                                      </p>
                                      <p class="icon_p">
-                                            <label class="left_name" style="width:auto;">简单描述:</label>
+                                            <label class="left_name" style="width:70px;">简单描述:</label>
                                             <textarea  class="right_input" name="" class="span8"></textarea>
                                      </p>
                                        <p class="icon_p tl_r">
-                                           <input type="button" class="addbtn fr save_edu" value="保存" />
+                                           <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />
+                                           <input type="button" class="addbtn fr " value="保存" />
+                                            <a href="#" class="deleteaction">
+                                                <img class="svg" src="static/newstyle/images/svg/delete.svg">
+                                                <span>删除</span>
+                                            </a>
                                         </p>
                                 </td>
                             </tr>
@@ -147,7 +205,7 @@
                             
                         </div><!--span4-->
                         <div class="span8">
-                            <form action="editprofile.html" class="editprofileform" method="post">
+                            <form action="#" class="editprofileform" method="post">
                                 
                                 <div class="widgetbox login-information">
                                  <div class="headtitle">
@@ -158,49 +216,50 @@
                                  </div>
                                     <div class="widgetcontent">
                                         <p class="icon_p">
-                                           <span class="left_icon fa fa-mobile"></span>
-                                           <span class="inner_wz">15800009090</span>
+                                           <span class="left_icon fa fa-mobile" style="font-size:50px;text-indent:5px;"></span>
+                                           <span class="inner_wz" id="Lc_mobilePhone1_label">{{.userinfoex.Lc_mobilePhone1}}</span>
 
                                         </p>
                                          <p class="icon_p">
                                            <span class="left_icon fa fa fa-qq"></span>
-                                           <span class="inner_wz">34555555</span>
+                                           <span class="inner_wz" id="Lc_qq_label">{{.userinfoex.Lc_qq}}</span>
 
                                         </p>
                                         <p class="icon_p">
                                            <span class="left_icon fa fa-weixin"></span>
-                                           <span class="inner_wz">15800009090</span>
+                                           <span class="inner_wz" id="Lc_weixin_label">{{.userinfoex.Lc_weixin}}</span>
 
                                         </p>
                                          <p class="icon_p">
                                            <span class="left_icon fa fa-weibo"></span>
-                                           <span class="inner_wz">15800009090@sin.com</span>
+                                           <span class="inner_wz" id="Lc_weibo_label">{{.userinfoex.Lc_weibo}}</span>
 
                                         </p>
                                     </div>
                                     <div class="widgetcontent"  style="display:none;">
                                         <p class="icon_p">
-                                           <span class="left_icon fa fa-mobile"></span>
-                                           <span class="inner_wz"><input type="text" value="{{.userinfoex.Lc_mobilePhone1}}" placeholder="手机号码" /></span>
+                                           <span class="left_icon fa fa-mobile" style="font-size:50px;text-indent:5px;"></span>
+                                           <span class="inner_wz"><input type="text" value="{{.userinfoex.Lc_mobilePhone1}}" id="Lc_mobilePhone1" placeholder="手机号码" /></span>
 
                                         </p>
                                          <p class="icon_p">
                                            <span class="left_icon fa fa fa-qq"></span>
-                                           <span class="inner_wz"><input type="text" value="{{.userinfoex.Lc_qq}}" placeholder="QQ号码" /></span>
+                                           <span class="inner_wz"><input type="text" value="{{.userinfoex.Lc_qq}}" id="Lc_qq" placeholder="QQ号码" /></span>
 
                                         </p>
                                         <p class="icon_p">
                                            <span class="left_icon fa fa-weixin"></span>
-                                           <span class="inner_wz"><input type="text" value="{{.userinfoex.Lc_weixin}}" placeholder="微信号" /></span>
+                                           <span class="inner_wz"><input type="text" value="{{.userinfoex.Lc_weixin}}" id="Lc_weixin"  placeholder="微信号" /></span>
 
                                         </p>
                                          <p class="icon_p">
                                            <span class="left_icon fa fa-weibo"></span>
-                                           <span class="inner_wz"><input type="text" value="{{.userinfoex.Lc_weibo}}" placeholder="微博" /></span>
+                                           <span class="inner_wz"><input type="text" value="{{.userinfoex.Lc_weibo}}" id="Lc_weibo"  placeholder="微博" /></span>
 
                                         </p>
                                          <p class="icon_p tl_r">
-                                           <input type="submit" class="addbtn" value="保存" />
+                                           <input type="button" class="addbtn" value="保存" id="savecontactbtn" style="float:right;" />
+                                           <label id="savecontactbtnstatus" style="color:red;float:right;margin-right: 10px;margin-top:1px;display:none;"></label>
                                         </p>
                                     </div>
                                 </div>
@@ -213,63 +272,72 @@
                                          </div>
                                         <h4 class="widgettitle">基本信息</h4>
                                      </div>
-                                    <div class="widgetcontent">
+                                    <div class="widgetcontent" style="display:none;">
                                         <p class="icon_p">
                                             <label>账号:</label>
-                                            <input type="text" name="firstname" class="input-xlarge" value="" />
+                                            <span>{{.userinfo.Lc_email}}</span>
                                         </p>
-                                        <p class="icon_p">
+                                        <!--p class="icon_p">
                                             <label>类型:</label>
                                             <select>
                                                 <option>个人</option>
                                                 <option>企业</option>
                                             </select>
-                                        </p>
+                                        </p-->
                                         <p class="icon_p">
                                             <label>性别:</label>
-                                            <input type="radio" name="sax" checked="checked" />&nbsp;&nbsp;男
+											{{if eq .userinfo.Lc_sex  "男"}}
+                                            <input type="radio" name="sax" checked="checked" value="男"/>
+											{{else}}
+                                            <input type="radio" name="sax" value="男"/>
+											{{end}}
+											&nbsp;&nbsp;男
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input type="radio" name="sax"  />&nbsp;&nbsp;女
+											
+											{{if eq .userinfo.Lc_sex  "女"}}
+                                            <input type="radio" name="sax" checked="checked" value="女"/>
+											{{else}}
+                                            <input type="radio" name="sax" value="女" />
+											{{end}}
+                                            &nbsp;&nbsp;女
                                         </p>
                                         <p class="icon_p">
                                             <label>生日:</label>
-                                            <input type="text" name="website" class="input-xlarge" value="" />
+                                            <input type="date" name="website" id="Lc_birthday" value="{{.userinfoex.Lc_birthday}}" />
                                         </p>
                                         <p class="icon_p">
                                             <label>语言:</label>
-                                            <select>
-                                                <option>简体中文</option>
-                                                <option>英语</option>
-                                            </select>
+											<input type="text" value="{{.userinfoex.Lc_language}}" id="Lc_language" placeholder="语言" />
                                         </p>
                                         <p class="icon_p">
                                             <label>简介:</label>
                                             <textarea name="about" class="span8"></textarea>
                                         </p>
                                        <p class="icon_p tl_r">
-                                           <input type="submit" class="addbtn" value="保存" />
+                                           <input type="button" class="addbtn" value="保存" style="float:right;" id="savebasebtn"/>
+                                           <label style="color:red;float:right;margin-right: 10px;margin-top:1px;" id="savebasebtnstatus"></label>
                                         </p>
                                     </div>
-                                    <div class="widgetcontent" style="display:none;">
+                                    <div class="widgetcontent">
                                         <p class="icon_p">
                                             <label>账号:</label>
-                                            <span>1231313123@qq.com</span>
+                                            <span>{{.userinfo.Lc_email}}</span>
                                         </p>
-                                        <p class="icon_p">
+                                        <!--p class="icon_p">
                                             <label>类型:</label>
                                           <span>个人</span>
-                                        </p>
+                                        </p-->
                                         <p class="icon_p">
                                             <label>性别:</label>
-                                             <span>男</span>
+                                             <span>{{.userinfo.Lc_sex}}</span>
                                         </p>
                                         <p class="icon_p">
                                             <label>生日:</label>
-                                            <span>1988-09-09</span>
+                                            <span id="Lc_birthday_label"></span>
                                         </p>
                                         <p class="icon_p">
                                             <label>语言:</label>
-                                            <span>简体中文</span>
+                                            <span id="Lc_language_label">{{.userinfoex.Lc_language}}</span>
                                         </p>
                                         <p class="icon_p">
                                             <label>简介:</label>
@@ -279,23 +347,55 @@
                                 </div>
                                 
                                 <div class="widgetbox profile-notifications">
+                                           <div class="right_edit_icon" id="addnew_edu">
+                                            <a class="fa fa-plus" href="javascript:void(0)"></a>
+                                         </div>
                                     <h4 class="widgettitle">教育信息</h4>
                        <div class="widgetcontent">
                         <table style="width:100%;">  
-                            <tbody id="fileList">   
+                            <tbody id="fileList"> 
+                              <tr style="display:none;" class="new_edulist">
+                                <td>
+                                   <p class="icon_p">
+                                            <label class="left_name">学校名称:</label>
+                                            <input class="right_input" type="text" name=""  value="" />
+                                        </p>
+                                     <p class="icon_p">
+                                            <label class="left_name">所学专业:</label>
+                                            <input class="right_input" type="text" name=""  value="" />
+                                     </p>
+                                     <p class="icon_p">
+                                            <label class="left_name">入学时间:</label>
+                                            <input class="right_input" type="date" name=""  value="" />
+                                     </p>
+                                     <p class="icon_p">
+                                            <label class="left_name">毕业时间:</label>
+                                            <input class="right_input" type="date" name=""  value="" />
+                                     </p>
+                                       <p class="icon_p tl_r">
+                                           <input type="button" class="addbtn fr jyquxiao_btn jy_qx" value="取消" />
+                                           <input type="button" class="addbtn fr save_edu2" value="保存" />
+                                           <label style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>
+                                        </p>
+                                </td>
+                            </tr> 
                               <tr>
                                 <td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">
-                                <span class="nametext" style="left:0;width:100%;height:auto;">
+                                <span class="nametext" style="left:0;width:100%;height:auto;max-width:100%;">
                                       <p class="list_educate"> 
                                              <span>2003年9月-2007年6月</span>
                                              <span>某某大学</span>
                                              <span>某某专业</span>
                                         </p>
                                      </span>
-                                        <span class="fileactions">
+                                        <span class="fileactions" style="margin-top:6px;">
                                             <a href="javascript:void(0)" class="action action-share changeedu">
                                                 <img class="svg" src="static/newstyle/images/svg/rename.svg">
                                                 <span>修改</span>
+                                            </a>
+                                            <a href="#" class="action action-download" data-action="Download">
+                                                <img class="svg" src="static/newstyle/images/svg/delete.svg">
+                                                <span>删除</span>
                                             </a>
                                         </span>
                                 </td>
@@ -319,7 +419,8 @@
                                             <input class="right_input" type="date" name=""  value="" />
                                      </p>
                                        <p class="icon_p tl_r">
-                                           <input type="button" class="addbtn fr save_edu" value="保存" />
+                                           <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />
+                                           <input type="button" class="addbtn fr " value="保存" />
                                         </p>
                                 </td>
                             </tr>
@@ -327,17 +428,21 @@
 
                               <tr >
                                 <td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">
-                                <span class="nametext" style="left:0;width:100%;height:auto;">
+                                <span class="nametext" style="left:0;width:100%;height:auto;max-width:100%;">
                                       <p class="list_educate"> 
                                              <span>2003年9月-2007年6月</span>
                                              <span>某某大学</span>
                                              <span>某某专业</span>
                                         </p>
                                      </span>
-                                        <span class="fileactions">
+                                        <span class="fileactions" style="margin-top:6px;">
                                             <a href="javascript:void(0)" class="action action-share changeedu">
                                                 <img class="svg" src="static/newstyle/images/svg/rename.svg">
                                                 <span>修改</span>
+                                            </a>
+                                            <a href="#" class="action action-download" data-action="Download">
+                                                <img class="svg" src="static/newstyle/images/svg/delete.svg">
+                                                <span>删除</span>
                                             </a>
                                         </span>
                                 </td>
@@ -361,7 +466,8 @@
                                             <input class="right_input" type="date" name=""  value="" />
                                      </p>
                                        <p class="icon_p tl_r">
-                                           <input type="button" class="addbtn fr save_edu" value="保存" />
+                                           <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />
+                                           <input type="button" class="addbtn fr " value="保存" />
                                         </p>
                                 </td>
                             </tr>
@@ -388,7 +494,9 @@
             </div><!--maincontentinner-->
 <script type="text/javascript">
 jQuery(document).ready(function(){
-jQuery("#contractinfos").click(function(){
+
+    jQuery("#contractinfos").click(function(){
+		jQuery('#savecontactbtnstatus').hide();
         if(jQuery(this).parent().next().is(":hidden")){
             jQuery(this).parent().next().show();
             jQuery(this).parent().next().next().hide();
@@ -407,7 +515,6 @@ jQuery("#contractinfos").click(function(){
             jQuery(this).parent().next().hide();
             jQuery(this).parent().next().next().show();  
         }
-
     })
 
     jQuery(".changeedu").click(function(){
@@ -418,6 +525,92 @@ jQuery("#contractinfos").click(function(){
         jQuery(this).parent().parent().parent().hide();
         jQuery(this).parent().parent().parent().prev().show();
     })
+    jQuery("#addnew_edu").click(function(){
+        jQuery(".new_edulist").show();
+
+    })
+    jQuery(".zc_qx").click(function(){
+        jQuery(".zhich_tr_new").hide();
+
+    })
+    jQuery(".jy_qx").click(function(){
+        jQuery(".new_edulist").hide();
+
+    })
+    jQuery("#zhich_info").click(function(){
+        jQuery(".zhich_tr_new").show();
+
+    })
+    jQuery(".save_edu2").click(function(){
+        jQuery(this).next().show();
+
+    })
+	
+	//生日字段处理
+	//alert(jQuery("#Lc_birthday")[0].defaultValue)
+	jQuery("#Lc_birthday").attr("value", jQuery("#Lc_birthday")[0].defaultValue.split(" ")[0])
+	jQuery("#Lc_birthday_label")[0].innerHTML =  jQuery("#Lc_birthday")[0].defaultValue.split(" ")[0]
+	
+	
+	jQuery("#savecontactbtn").click(function(){
+		var param =new Object();
+		param["Lc_mobilePhone1"] = jQuery("#Lc_mobilePhone1").val();
+		param["Lc_qq"] = jQuery("#Lc_qq").val();
+		param["Lc_weixin"] = jQuery("#Lc_weixin").val();
+		param["Lc_weibo"] = jQuery("#Lc_weibo").val();
+		
+		jQuery.ajax({
+		    url: '/updateexcontactinfo',
+		    type: 'POST',
+			data: param,
+		    success:function(data){
+        		data = eval("(" + data + ")");
+				if (data.result)
+				{
+					jQuery("#Lc_mobilePhone1_label")[0].innerHTML = jQuery("#Lc_mobilePhone1").val();
+					jQuery("#Lc_qq_label")[0].innerHTML = jQuery("#Lc_qq").val();
+					jQuery("#Lc_weixin_label")[0].innerHTML = jQuery("#Lc_weixin").val();
+					jQuery("#Lc_weibo_label")[0].innerHTML = jQuery("#Lc_weibo").val();
+					jQuery("#savecontactbtnstatus")[0].innerHTML = "保存成功！"
+					jQuery("#savecontactbtnstatus").show();
+					setTimeout("jQuery('#contractinfos').click();jQuery('#savecontactbtnstatus').hide();",2000); 									
+				}
+			},
+			error:function(data){
+				jQuery("#savecontactbtnstatus")[0].innerHTML = "保存失败！"
+				jQuery("#savecontactbtnstatus").show();
+			}
+		});
+    })
+	
+	jQuery("#savebasebtn").click(function(){
+		var param =new Object();
+		param["Lc_mobilePhone1"] = jQuery("#Lc_mobilePhone1").val();
+		param["Lc_qq"] = jQuery("#Lc_qq").val();
+		param["Lc_birthday"] = jQuery("#Lc_birthday").val();
+		param["Lc_weibo"] = jQuery("#Lc_weibo").val();
+		
+		jQuery.ajax({
+		    url: '/updateexcontactinfo',
+		    type: 'POST',
+			data: param,
+		    success:function(data){
+        		data = eval("(" + data + ")");
+				if (data.result)
+				{
+					jQuery("#savecontactbtnstatus")[0].innerHTML = "保存成功！"
+					jQuery("#savecontactbtnstatus").show();
+					setTimeout("jQuery('#contractinfos').click();jQuery('#savecontactbtnstatus').hide();",2000); 					
+				}
+			},
+			error:function(data){
+				jQuery("#savecontactbtnstatus")[0].innerHTML = "保存失败！"
+				jQuery("#savecontactbtnstatus").show();
+			}
+		});
+    })
+	
+	
     
 });
 
