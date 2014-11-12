@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"commonPackage/model/account"
+	"commonPackage/viewModel"
 	"service/db"
 )
 
@@ -30,5 +31,51 @@ func (h *MyinfoController) PayInfo() {
 
 		h.TplNames = "pages/home/payinfo.html"
 	}
+
+}
+
+//扩展信息修改
+func (f *MyinfoController) UpdateExContactInfo() {
+	mystruct := ""
+	if f.userinfo != nil {
+		var vm viewModel.EditUserInfoExModel
+		vm.Lc_mobilePhone1 = f.GetString("Lc_mobilePhone1")
+		vm.Lc_qq = f.GetString("Lc_qq")
+		vm.Lc_weixin = f.GetString("Lc_weixin")
+		vm.Lc_weibo = f.GetString("Lc_weibo")
+		err := db.UpdateAccountEx(f.userinfo.Id, &vm)
+		if err != nil {
+			mystruct = `{result:false}`
+		} else {
+			mystruct = `{result:true}`
+		}
+	} else {
+		//用户未登录，返回修改失败
+		mystruct = `{result:false}`
+	}
+	f.Data["json"] = &mystruct
+	f.ServeJson()
+
+}
+func (f *MyinfoController) UpdateExBaseInfo() {
+	mystruct := ""
+	if f.userinfo != nil {
+		var vm viewModel.EditUserInfoExModel
+		vm.Lc_mobilePhone1 = f.GetString("Lc_mobilePhone1")
+		vm.Lc_qq = f.GetString("Lc_qq")
+		vm.Lc_weixin = f.GetString("Lc_weixin")
+		vm.Lc_weibo = f.GetString("Lc_weibo")
+		err := db.UpdateAccountEx(f.userinfo.Id, &vm)
+		if err != nil {
+			mystruct = `{result:false}`
+		} else {
+			mystruct = `{result:true}`
+		}
+	} else {
+		//用户未登录，返回修改失败
+		mystruct = `{result:false}`
+	}
+	f.Data["json"] = &mystruct
+	f.ServeJson()
 
 }
