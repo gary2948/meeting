@@ -4,6 +4,7 @@
 {{end}}
 {{define "body" }}
 
+<script type="text/javascript" src="static/newstyle/js/tools.js"></script>
         
 <div class="pageheader">
             <!--form action="results.html" method="post" class="searchbar">
@@ -308,11 +309,22 @@
                                         </p>
                                         <p class="icon_p">
                                             <label>语言:</label>
-											<input type="text" value="{{.userinfoex.Lc_language}}" id="Lc_language" placeholder="语言" />
+											<select value="{{.userinfoex.Lc_language}}" id="Lc_language">
+                                                <option value="中文">中文</option>
+                                                <option value="英语">英语</option>
+                                                <option value="日语">日语</option>
+                                                <option value="朝鲜语">朝鲜语</option>
+                                                <option value="法语">法语</option>
+                                                <option value="西班牙语">西班牙语</option>
+                                                <option value="泰语">泰语</option>
+                                                <option value="阿拉伯语">阿拉伯语</option>
+                                                <option value="俄语">俄语</option>
+                                                <option value="葡萄牙语">葡萄牙语</option>
+                                            </select>
                                         </p>
                                         <p class="icon_p">
                                             <label>简介:</label>
-                                            <textarea name="about" class="span8"></textarea>
+                                            <textarea name="about" class="span8" id="Lc_introduction">{{.userinfo.Lc_introduction}}</textarea>
                                         </p>
                                        <p class="icon_p tl_r">
                                            <input type="button" class="addbtn" value="保存" style="float:right;" id="savebasebtn"/>
@@ -330,7 +342,7 @@
                                         </p-->
                                         <p class="icon_p">
                                             <label>性别:</label>
-                                             <span>{{.userinfo.Lc_sex}}</span>
+                                             <span id="Lc_sex_label">{{.userinfo.Lc_sex}}</span>
                                         </p>
                                         <p class="icon_p">
                                             <label>生日:</label>
@@ -342,7 +354,7 @@
                                         </p>
                                         <p class="icon_p">
                                             <label>简介:</label>
-                                             <span>阿斯达大旗网恶趣味企鹅去委屈委屈委屈额气味气味气味气味气味</span>
+                                             <span id="Lc_introduction_label">{{.userinfo.Lc_introduction}}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -551,7 +563,8 @@ jQuery(document).ready(function(){
 	//alert(jQuery("#Lc_birthday")[0].defaultValue)
 	jQuery("#Lc_birthday").attr("value", jQuery("#Lc_birthday")[0].defaultValue.split(" ")[0])
 	jQuery("#Lc_birthday_label")[0].innerHTML =  jQuery("#Lc_birthday")[0].defaultValue.split(" ")[0]
-	
+	//语言字段处理
+	jQuery("#Lc_language_label")[0].innerHTML = getlanguage(jQuery("#Lc_language_label")[0].innerHTML)
 	
 	jQuery("#savecontactbtn").click(function(){
 		var param =new Object();
@@ -576,6 +589,11 @@ jQuery(document).ready(function(){
 					jQuery("#savecontactbtnstatus").show();
 					setTimeout("jQuery('#contractinfos').click();jQuery('#savecontactbtnstatus').hide();",2000); 									
 				}
+				else
+				{
+					jQuery("#savecontactbtnstatus")[0].innerHTML = "保存失败！"
+					jQuery("#savecontactbtnstatus").show();
+				}
 			},
 			error:function(data){
 				jQuery("#savecontactbtnstatus")[0].innerHTML = "保存失败！"
@@ -584,29 +602,40 @@ jQuery(document).ready(function(){
 		});
     })
 	
+	//基本信息
 	jQuery("#savebasebtn").click(function(){
 		var param =new Object();
-		param["Lc_mobilePhone1"] = jQuery("#Lc_mobilePhone1").val();
-		param["Lc_qq"] = jQuery("#Lc_qq").val();
+		param["Lc_sex"] = jQuery("input[name='sax']:checked").val();
 		param["Lc_birthday"] = jQuery("#Lc_birthday").val();
-		param["Lc_weibo"] = jQuery("#Lc_weibo").val();
+		param["Lc_language"] = jQuery("#Lc_language").val();
+		alert(jQuery("#Lc_language").val())
+		param["Lc_introduction"] = jQuery("#Lc_introduction").val();
 		
 		jQuery.ajax({
-		    url: '/updateexcontactinfo',
+		    url: '/updatebaseinfo',
 		    type: 'POST',
 			data: param,
 		    success:function(data){
         		data = eval("(" + data + ")");
 				if (data.result)
 				{
-					jQuery("#savecontactbtnstatus")[0].innerHTML = "保存成功！"
-					jQuery("#savecontactbtnstatus").show();
-					setTimeout("jQuery('#contractinfos').click();jQuery('#savecontactbtnstatus').hide();",2000); 					
+					jQuery("#Lc_birthday_label")[0].innerHTML = jQuery("#Lc_birthday").val();
+					jQuery("#Lc_language_label")[0].innerHTML = jQuery("#Lc_language").val();
+					jQuery("#Lc_sex_label")[0].innerHTML = jQuery("input[name='sax']:checked").val();
+					jQuery("#Lc_introduction_label")[0].innerHTML = jQuery("#Lc_introduction").val();
+					jQuery("#savebasebtnstatus")[0].innerHTML = "保存成功！"
+					jQuery("#savebasebtnstatus").show();
+					setTimeout("jQuery('#main_infos').click();jQuery('#savebasebtnstatus').hide();",2000); 					
+				}
+				else
+				{
+					jQuery("#savebasebtnstatus")[0].innerHTML = "保存失败！"
+					jQuery("#savebasebtnstatus").show();
 				}
 			},
 			error:function(data){
-				jQuery("#savecontactbtnstatus")[0].innerHTML = "保存失败！"
-				jQuery("#savecontactbtnstatus").show();
+				jQuery("#savebasebtnstatus")[0].innerHTML = "保存失败！"
+				jQuery("#savebasebtnstatus").show();
 			}
 		});
     })
