@@ -90,6 +90,7 @@ const (
 	JSON_KINDID        = "KINDID"
 	JSON_UPTOKEN       = "UPTOKEN"
 	JSON_DOWNLOADURL   = "DOWNLOADURL"
+	JSON_MYRTMPURL     = "MYRTMPURL"
 )
 
 const (
@@ -293,7 +294,7 @@ func Uptoken(fileKey ...string) string {
 
 	putPolicy := rs.PutPolicy{
 		Scope:        BucketName,
-		CallbackUrl:  "http://58.246.49.158:7001/callback",
+		CallbackUrl:  "http://58.246.49.158:8000/callback",
 		CallbackBody: callbackBody,
 		//ReturnUrl:   returnUrl,
 		//ReturnBody: `{"success":true,"name":"sunflowerb.jpg"}`,
