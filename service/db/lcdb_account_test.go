@@ -3,7 +3,6 @@ package db
 import (
 	"commonPackage"
 	"commonPackage/model/account"
-	"service/uuid"
 	"testing"
 )
 
@@ -44,19 +43,26 @@ func TestGetPersonEx(t *testing.T) {
 	commonPackage.Printf(pe)
 }
 
-func TestUUID(t *testing.T) {
-	engine, _ := GetAccountEng()
-	//checkError(err)
-	users := &[]account.Lctb_userInfo{}
+//func TestUUID(t *testing.T) {
+//	engine, _ := GetAccountEng()
+//	//checkError(err)
+//	users := &[]account.Lctb_userInfo{}
 
-	engine.Find(users)
+//	engine.Find(users)
 
-	n := len(*users)
+//	n := len(*users)
 
-	for i := 0; i < n; i++ {
-		user := (*users)[i]
-		user.Lc_UUID, _ = uuid.GenUUID()
-		engine.Id(user.Id).Cols("lc_UUID").Update(&user)
+//	for i := 0; i < n; i++ {
+//		user := (*users)[i]
+//		user.Lc_UUID, _ = uuid.GenUUID()
+//		engine.Id(user.Id).Cols("lc_UUID").Update(&user)
+//	}
+
+//}
+
+func TestPasswd(t *testing.T) {
+	err := ExchangePwd(4, "654321")
+	if err != nil {
+		t.Error(err)
 	}
-
 }

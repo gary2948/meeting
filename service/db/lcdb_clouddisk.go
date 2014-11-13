@@ -92,7 +92,7 @@ func GetFileMapKey(fileMapId int64) (string, bool) {
 	}
 }
 
-func getFileMapId(fileMapKey string) (int64, bool) {
+func GetFileMapId(fileMapKey string) (int64, bool) {
 	engine, err := GetCloudDiskEng()
 	checkError(err)
 
@@ -112,7 +112,7 @@ func UpdateLinkFileMapId(fileId int64, linkFilemapId string) error {
 	cfile := clouddisk.Lctb_cloudFiles{}
 	has, err := engine.Id(fileId).Get(&cfile)
 	if err == nil && has {
-		lfid, has := getFileMapId(linkFilemapId)
+		lfid, has := GetFileMapId(linkFilemapId)
 		if has {
 			cfile.Lc_linkFilesMapId = lfid
 			_, err = engine.Update(&cfile)
@@ -131,12 +131,12 @@ func AddFile(userId, parentId, size int64, fileMapId, linkFilemapId, fileName st
 	cfile := &clouddisk.Lctb_cloudFiles{}
 	cParentfile := &clouddisk.Lctb_cloudFiles{}
 
-	fmId, has := getFileMapId(fileMapId) //文件必须有
+	fmId, has := GetFileMapId(fileMapId) //文件必须有
 	if !has {
 		return 0, commonPackage.NewErr(commonPackage.ErrSys)
 	}
 
-	lfmId, _ := getFileMapId(linkFilemapId) //附属文件不一定有
+	lfmId, _ := GetFileMapId(linkFilemapId) //附属文件不一定有
 
 	//判断父亲存在不
 	if parentId != 0 {
@@ -656,7 +656,7 @@ func AddFileMap(fileSystemId string) (id int64, err error) {
 
 	fm := clouddisk.Lctb_filesMap{}
 
-	has, err := engine.Id(fileSystemId).Get(&fm)
+	has, err := engine.Where("lc_file_system_id = ?", fileSystemId).Get(&fm)
 	if err == nil {
 		if has {
 			return fm.Id, nil

@@ -74,6 +74,18 @@ func AddAccount(user *account.Lctb_userInfo) (int64, error) {
 	return user.Id, err
 }
 
+func ExchangePwd(userId int64, pwd string) error {
+	engine, err := GetAccountEng()
+	checkError(err)
+
+	user := account.Lctb_userInfo{}
+	user.Lc_passwd = StringMD5Value(pwd)
+
+	_, err = engine.Id(userId).Cols("lc_passwd").Update(&user)
+
+	return err
+}
+
 func UpdateAccount(userId int64, userInfo *viewModel.EditUserInfoModel) error {
 	engine, err := GetAccountEng()
 	checkError(err)
@@ -174,7 +186,7 @@ func GetAccountsById(userIds []int64, users *[]account.Lctb_userInfo) error {
 	engine, err := GetAccountEng()
 	checkError(err)
 
-	err = engine.In("Id", userIds).Find(users)
+	err = engine.In("id", userIds).Find(users)
 
 	return err
 }
