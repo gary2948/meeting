@@ -68,12 +68,21 @@ func AddFolder(ws *websocket.Conn, jsonBody *simplejson.Json) ([]byte, error) {
 }
 
 func GetUploadtoken(ws *websocket.Conn, jsonBody *simplejson.Json) ([]byte, error) {
-	fileKey, err := jsonBody.Get(JSON_FILEMAPID).String()
+	fileKey, err := jsonBody.Get(JSON_MD5).String()
 	CheckError(err)
 	reJson := simplejson.New()
-	uptoken := Uptoken(fileKey)
-	reJson.Set(JSON_CONTENT, uptoken)
-	reJson.Set(JSON_OK, true)
+	fileId, err := db.AddFileMap(fileKey)
+	if err == nil {
+		uptoken := Uptoken(fileKey)
+
+		reJson.Set(JSON_UPTOKEN, uptoken)
+		reJson.Set(JSON_FILEMAPID, fileId)
+		reJson.Set(JSON_OK, true)
+	} else {
+		reJson.Set(JSON_OK, false)
+		reJson.Set(JSON_ERR, err.Error())
+	}
+
 	return reJson.Encode()
 }
 
@@ -94,13 +103,22 @@ func UpdateLinFileMapId(ws *websocket.Conn, jsonBody *simplejson.Json) ([]byte, 
 }
 
 func GetDownLoadUrl(ws *websocket.Conn, jsonBody *simplejson.Json) ([]byte, error) {
-	fiileMapId := jsonBody.Get(JSON_FILEMAPID).MustInt64(0)
-	key, has := db.GetFileMapKey(fiileMapId)
+	fileId := jsonBody.Get(JSON_FILEID).MustInt64(0)
+	cfile := clouddisk.Lctb_cloudFiles{}
+	_, err := db.GetCloudFileById(fileId, &cfile)
 	reJson := simplejson.New()
-	if has {
-		url := DownloadUrl(key)
-		reJson.Set(JSON_OK, true)
-		reJson.Set(JSON_CONTENT, url)
+	if err == nil {
+		fileMapKey, has := db.GetFileMapKey(cfile.Lc_filesMapId)
+		if has {
+			url := DownloadUrl(fileMapKey)
+			reJson.Set(JSON_OK, true)
+			reJson.Set(JSON_MD5, fileMapKey)
+			reJson.Set(JSON_DOWNLOADURL, url)
+			reJson.Set(JSON_CONTENT, cfile)
+		} else {
+			reJson.Set(JSON_OK, false)
+			reJson.Set(JSON_ERR, ErrFileId)
+		}
 	} else {
 		reJson.Set(JSON_OK, false)
 		reJson.Set(JSON_ERR, ErrFileId)

@@ -47,9 +47,10 @@ func reDoServer(ws *websocket.Conn, recmd, jsonBytes []byte) {
 
 func doServer(ws *websocket.Conn, head string, body []byte) {
 	jsonBody, err := simplejson.NewJson(body)
-	Println(head)
-	Printb(body)
-	CheckError(err)
+	if err != nil {
+		return
+	}
+
 	switch head {
 	case login:
 		jsonBytes, err := Login(ws, jsonBody)
@@ -151,7 +152,7 @@ func doServer(ws *websocket.Conn, head string, body []byte) {
 	case getDownloadtoken:
 		jsonBytes, err := GetDownLoadUrl(ws, jsonBody)
 		CheckError(err)
-		reDoServer(ws, []byte(reGetUploadtoken), jsonBytes)
+		reDoServer(ws, []byte(reGetDownloadtoken), jsonBytes)
 	case getFilesByFolder:
 		jsonBytes, err := GetUserFolderViewFiles(ws, jsonBody)
 		CheckError(err)
@@ -294,6 +295,10 @@ func doServer(ws *websocket.Conn, head string, body []byte) {
 		jsonBytes, err := GetRTMPURL(ws, jsonBody)
 		CheckError(err)
 		reDoServer(ws, []byte(reGetRTMPURL), jsonBytes)
+	case askVedio:
+		jsonBytes, err := AskVedio(ws, jsonBody)
+		CheckError(err)
+		reDoServer(ws, []byte(reAskVedio), jsonBytes)
 	default:
 		Println("无效命令")
 		//ws.Write([]byte("无效命令"))

@@ -85,6 +85,16 @@ func (g *Group) RemoveClientAddr(clientAddr string) bool {
 	return true
 }
 
+func (g *Group) SendMsgToUser(clintId int64, msg []byte) bool {
+	c := g.IdClients[clintId]
+	if c == nil {
+		return false
+	}
+
+	c.Conn.WriteMessage(websocket.BinaryMessage, msg)
+	return true
+}
+
 type myServer struct {
 }
 
@@ -118,8 +128,8 @@ func pong(msg string) error {
 func callback(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	key := r.Form.Get("key")
-	_, err := db.AddFileMap(key)
-	if err != nil {
+	_, has := db.GetFileMapId(key)
+	if has {
 		w.WriteHeader(http.StatusBadRequest)
 	} else {
 		w.WriteHeader(http.StatusOK)

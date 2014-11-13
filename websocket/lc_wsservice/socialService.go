@@ -40,7 +40,7 @@ func GetFriendList(ws *websocket.Conn, jsonBody *simplejson.Json) ([]byte, error
 
 func FollowUser(ws *websocket.Conn, jsonBody *simplejson.Json) ([]byte, error) {
 	uId := jsonBody.Get(JSON_USERID).MustInt64(0)
-	flId := jsonBody.Get(JSON_FOLLOWUID).MustInt64(0)
+	flId := jsonBody.Get(JSON_KINDID).MustInt64(0)
 	flIds, err := Int64Array(jsonBody.Get(JSON_FOLLOWUIDS))
 
 	reJson := simplejson.New()
@@ -69,13 +69,12 @@ func SendPersonMsg(ws *websocket.Conn, jsonBody *simplejson.Json, msgType int) (
 		bmm, err := jsonBody.Encode()
 		client, ok := G.IdClients[toUId]
 
-		if msgType == TextMsg {
-			err = client.Conn.WriteMessage(websocket.BinaryMessage, ByteJoin([]byte(reseive), bmm))
-		} else if msgType == ImgMsg {
-			err = client.Conn.WriteMessage(websocket.BinaryMessage, ByteJoin([]byte(reseiveImg), bmm))
-		}
-
 		if ok {
+			if msgType == TextMsg {
+				err = client.Conn.WriteMessage(websocket.BinaryMessage, ByteJoin([]byte(reseive), bmm))
+			} else if msgType == ImgMsg {
+				err = client.Conn.WriteMessage(websocket.BinaryMessage, ByteJoin([]byte(reseiveImg), bmm))
+			}
 			if err != nil {
 				_, err = db.SendPersonMessage(uId, toUId, postTime, string(bmm), UnreadMsg, msgType)
 			} else {

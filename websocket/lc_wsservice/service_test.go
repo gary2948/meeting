@@ -995,14 +995,39 @@ func TestRTMPURL(t *testing.T) {
 		return
 	}
 
+	//m := simplejson.New()
+	//m.Set(JSON_USERID, 1)
+
+	b := `3005020{"MD5":"da5a0eafd8f28fe5e8bfa2255245de64"}"`
+
+	//b, _ := m.Encode()
+	//mmsg := ByteJoin([]byte(getRTMPURL), []byte(b))
+
+	websocket.Message.Send(ws, b)
+
+	remsg := make([]byte, 1024)
+	websocket.Message.Receive(ws, &remsg)
+	Println(string(remsg[7:]))
+}
+
+func TestAskVedio(t *testing.T) {
+	once.Do(startServer)
+
+	ws, err := newConn(t)
+	if err != nil {
+		t.Errorf("WebSocket handshake error: %v", err)
+		return
+	}
+
 	m := simplejson.New()
+	m.Set(JSON_GROUPID, 1)
 	m.Set(JSON_USERID, 1)
+	uids := []int64{4, 5}
+	m.Set(JSON_USERIDS, uids)
 
-	b, _ := m.Encode()
-	mmsg := ByteJoin([]byte(getRTMPURL), b)
+	cmd, _ := m.Encode()
 
-	websocket.Message.Send(ws, mmsg)
-
+	websocket.Message.Send(ws, ByteJoin([]byte(askVedio), cmd))
 	remsg := make([]byte, 1024)
 	websocket.Message.Receive(ws, &remsg)
 	Println(string(remsg[7:]))

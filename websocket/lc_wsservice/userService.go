@@ -124,3 +124,61 @@ func GetRTMPURL(ws *websocket.Conn, jsonBody *simplejson.Json) ([]byte, error) {
 	return reJson.Encode()
 
 }
+
+func AskVedio(ws *websocket.Conn, jsonBody *simplejson.Json) ([]byte, error) {
+	uid := jsonBody.Get(JSON_USERID).MustInt64(0)
+	uids, _ := Int64Array(jsonBody.Get(JSON_USERIDS))
+	user := &account.Lctb_userInfo{}
+	has, err := db.GetAccountById(uid, user)
+
+	reJson := simplejson.New()
+	if has && err == nil {
+
+		users := []account.Lctb_userInfo{}
+		err = db.GetAccountsById(uids, &users)
+		if err != nil {
+			reJson.Set(JSON_OK, false)
+			reJson.Set(JSON_ERR, ErrUserId)
+		} else {
+			urls := []simplejson.Json{}
+
+			for _, v := range users {
+				rurl := simplejson.New()
+				rurl.Set(JSON_USERID, v.Id)
+				rurl.Set(JSON_CONTENT, RTMP_PRIX+v.Lc_UUID)
+				urls = append(urls, *rurl)
+
+				otherUrls := []simplejson.Json{}
+				otherUrl := simplejson.New()
+				otherUrl.Set(JSON_USERID, user.Id)
+				otherUrl.Set(JSON_CONTENT, RTMP_PRIX+user.Lc_UUID)
+				otherUrls = append(otherUrls, *otherUrl)
+
+				boardJson := simplejson.New()
+				boardJson.Set(JSON_MYRTMPURL, RTMP_PRIX+v.Lc_UUID)
+				boardJson.Set(JSON_USERID, uid)
+				for _, vv := range users {
+
+					if v != vv {
+						otherUrl2 := simplejson.New()
+						otherUrl2.Set(JSON_USERID, vv.Id)
+						otherUrl2.Set(JSON_CONTENT, RTMP_PRIX+vv.Lc_UUID)
+						otherUrls = append(otherUrls, *otherUrl2)
+					}
+				}
+				boardJson.Set(JSON_CONTENT, otherUrls)
+				boardMsg, _ := boardJson.Encode()
+
+				G.SendMsgToUser(v.Id, ByteJoin([]byte(boardAskVedio), boardMsg))
+			}
+			reJson.Set(JSON_OK, true)
+			reJson.Set(JSON_CONTENT, urls)
+			reJson.Set(JSON_MYRTMPURL, RTMP_PRIX+user.Lc_UUID)
+		}
+	} else {
+		reJson.Set(JSON_OK, false)
+		reJson.Set(JSON_ERR, ErrUserId)
+	}
+
+	return reJson.Encode()
+}

@@ -118,4 +118,7 @@ const (
 	reSearchUserByEmail   = "4008010" //返回搜索
 	getRTMPURL            = "4008020" //获取音频视频地址
 	reGetRTMPURL          = "4008030" //返回获取音频视频地址
+	askVedio              = "4008040" //请求发起视频
+	reAskVedio            = "4008050" //返回
+	boardAskVedio         = "4008060" //转发
 )
