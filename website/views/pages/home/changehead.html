@@ -88,7 +88,7 @@ margin-top:10px;margin-left:20px;
                     <div class="setup_but">  <a class="afile" href="javascript:void(0)">选择图片
 						<input type="file" name="file" accept="image/jpeg" onchange="previewImage(this)" /></a>
 
-                      <input type="submit" class="headqueding" value="确定" onClick="//submit_avatar();">
+                      <input type="submit" class="headqueding" disabled="disabled" value="确定" onClick="//submit_avatar();">
 
                         <input id="id_top" type="hidden" name="top" value="90">
                         <input id="id_left" type="hidden" name="left" value="61">
@@ -187,6 +187,21 @@ function submit_avatar(){
      //图片上传预览    IE是用了滤镜。
         function previewImage(file)
         {
+	       var fileSize = 0;         
+	       if (!file.files) {     
+	         var filePath = file.value;     
+	         var fileSystem = new ActiveXObject("Scripting.FileSystemObject");        
+	         var file1 = fileSystem.GetFile (filePath);     
+	         fileSize = file1.Size;    
+	       } else {    
+	        fileSize = file.files[0].size;     
+	        }   
+	        var size = fileSize / 1024;    
+	        if(size>1000){  
+	         alert("附件不能大于1M");
+	         file.value="";
+	         return
+	        }
           var MAXWIDTH  = 260; 
           var MAXHEIGHT = 180;
           var div = document.getElementById('preview');
@@ -246,6 +261,7 @@ function submit_avatar(){
             status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
             div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
           }
+		jQuery(".headqueding").removeAttr("disabled");
         }
         function clacImgZoomParam( maxWidth, maxHeight, width, height ){
             var param = {top:0, left:0, width:width, height:height};
@@ -269,6 +285,7 @@ function submit_avatar(){
             param.top = Math.round((maxHeight - param.height) / 2);
             return param;
         }
+
 </script>
 
 {{end}}
