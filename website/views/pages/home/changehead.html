@@ -68,14 +68,14 @@ margin-top:10px;margin-left:20px;
                 
                     <div id="preview"><img id="avatar" alt="请上传头像" src="{{.userinfo.Lc_photoFile}}"></div>
                     
-                    <form id="crop_form" method="post" action=".">
-                        <!--通过生成尺寸和旋转角度 后台获取尺寸和旋转角度再进行裁剪-->
+                    <!--form id="crop_form" method="post" action=".">
+                        <通过生成尺寸和旋转角度 后台获取尺寸和旋转角度再进行裁剪>
                         <input id="id_top" type="hidden" name="top" value="90">
                         <input id="id_left" type="hidden" name="left" value="61">
                         <input id="id_right" type="hidden" name="right" value="201">
                         <input id="id_bottom" type="hidden" name="bottom" value="200">
                         <input id="rotation" type="hidden" value="0" name="rotation">
-                    </form>
+                    </form-->
                     
                     <div class="portrait_revolve">
                         <div class="revolve_left"></div>
@@ -84,10 +84,18 @@ margin-top:10px;margin-left:20px;
                         <div class="revolve_right"></div>
                     </div>
                     
-                    <div class="setup_but">  <a class="afile" href="javascript:void(0)">选择图片<input type="file" accept="image/png,image/gif,image/jpeg" onchange="previewImage(this)" /></a>
+					<form id="crop_form" method="post" action="/changehead"  enctype="multipart/form-data">
+                    <div class="setup_but">  <a class="afile" href="javascript:void(0)">选择图片
+						<input type="file" name="file" accept="image/jpeg" onchange="previewImage(this)" /></a>
 
-                      <input type="button" class="headqueding" value="确定" onClick="submit_avatar();">
+                      <input type="submit" class="headqueding" value="确定" onClick="//submit_avatar();">
 
+                        <input id="id_top" type="hidden" name="top" value="90">
+                        <input id="id_left" type="hidden" name="left" value="61">
+                        <input id="id_right" type="hidden" name="right" value="201">
+                        <input id="id_bottom" type="hidden" name="bottom" value="200">
+                        <input id="rotation" type="hidden" value="0" name="rotation">
+                    </form>
                     </div>
                 </div>
 
@@ -117,6 +125,8 @@ margin-top:10px;margin-left:20px;
             </div><!--maincontentinner-->
 <script type="text/javascript">
 jQuery(document).ready(function (){
+	jQuery('#lef_nav li').removeClass("active");
+    jQuery('#lef_nav li')[3].className = "active";
     function adjust(el, selection) {
         var scaleX = jQuery(el).width() / (selection.width || 1);
         var scaleY = jQuery(el).height() / (selection.width || 1);

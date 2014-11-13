@@ -507,7 +507,8 @@
             </div><!--maincontentinner-->
 <script type="text/javascript">
 jQuery(document).ready(function(){
-
+	jQuery('#lef_nav li').removeClass("active");
+    jQuery('#lef_nav li')[2].className = "active";
     jQuery("#contractinfos").click(function(){
 		jQuery('#savecontactbtnstatus').hide();
         if(jQuery(this).parent().next().is(":hidden")){

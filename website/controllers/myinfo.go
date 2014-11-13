@@ -59,6 +59,7 @@ func (f *MyinfoController) UpdateExContactInfo() {
 		//用户未登录，返回修改失败
 		mystruct = `{result:false}`
 	}
+
 	f.Data["json"] = &mystruct
 	f.ServeJson()
 
