@@ -10,6 +10,7 @@ import (
 	"image/jpeg"
 	"image/png"
 	"os"
+	"strconv"
 )
 
 type ChangeheadController struct {
@@ -33,6 +34,9 @@ func (h *ChangeheadController) Post() {
 		left, _ := h.GetInt("left")
 		right, _ := h.GetInt("right")
 		bottom, _ := h.GetInt("bottom")
+		rotation := h.GetString("rotation")
+		fmt.Println(rotation)
+		h.Redirect("/changehead", 302)
 		fmt.Println(top)
 		fmt.Println(left)
 		fmt.Println(right)
@@ -42,58 +46,49 @@ func (h *ChangeheadController) Post() {
 		file.Close() // 关闭上传的文件，不然的话会出现临时文件不能清除的情况
 
 		h.SaveToFile("file", path) //存文件
+
+		//缩放
 		src, err := LoadImage(path)
 		if err != nil {
 			panic(err)
 		}
-
 		dst := image.NewRGBA(image.Rect(0, 0, 280, 280)) //1200x800 tumbnail
 		err = graphics.Scale(dst, src)
 		graphics.Scale(dst, src)
 
 		//dst = image.NewRGBA(image.Rect(int(top), int(left), int(right), int(bottom)))
-		//err = graphics.Rotate(dst, src, &graphics.RotateOptions{3.5})
+		//rotationf, _ := strconv.ParseFloat(rotation, 64)
+		//err = graphics.Rotate(dst, src, &graphics.RotateOptions{rotationf})
 		if err != nil {
 			panic(err)
 		}
-
 		// 需要保存的文件
-		imgcounter := 123
-		saveImage(fmt.Sprintf("./static/img/IMG_2718tttt111.PNG", imgcounter), dst)
+		saveImage(fmt.Sprintf("./static/img/IMG_2718tttt111.PNG"), dst)
 
-		h.Redirect("/changehead", 302)
-		f1, err := os.Open(path)
+		//裁剪
+		src, err = LoadImage("./static/img/IMG_2718tttt111.PNG")
 		if err != nil {
 			panic(err)
 		}
-		defer f1.Close()
-		m1, err := jpeg.Decode(f1)
+		dst = image.NewRGBA(image.Rect(int(top), int(left), int(right), int(bottom)))
+		rotationf, _ := strconv.ParseFloat(rotation, 64)
+		err = graphics.Rotate(dst, src, &graphics.RotateOptions{rotationf})
 		if err != nil {
 			panic(err)
 		}
-		bounds := m1.Bounds()
+		// 需要保存的文件
+		saveImage(fmt.Sprintf("./static/img/IMG_2718tttt111.PNG"), dst)
 
-		m := image.NewRGBA(bounds)
-		draw.Draw(m, image.Rect(int(top), int(left), int(right), int(bottom)), m1, image.Pt(250, 60), draw.Src)
-
-		imgfile, err := os.Create("./static/img/IMG_2718111.png")
-		defer imgfile.Close()
-		err = jpeg.Encode(imgfile, m, &jpeg.Options{90})
-		fmt.Println("00000000")
-		fmt.Println(err)
-		fmt.Println("00000000")
 		ret := new(io.PutRet)
-		//err := io.PutFile(nil, ret, commonPackage.Uptoken(), h1.Filename, path, nil)
+		err := io.PutFile(nil, ret, commonPackage.Uptoken(), h1.Filename, "./static/img/IMG_2718tttt111.PNG", nil)
 
 		durl := commonPackage.DownloadUrl(h1.Filename)
+		var vm2 viewModel.EditUserInfoModel
+		vm2.Lc_introduction = f.GetString("Lc_introduction")
 		fmt.Println(durl)
+
 		fmt.Println(ret)
 		h.Redirect("/changehead", 302)
-
-		h.Data["userinfo"] = h.userinfo
-
-		h.Data["doctotal"] = 0
-
 	}
 
 }

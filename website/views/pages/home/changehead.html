@@ -160,17 +160,24 @@ jQuery(document).ready(function (){
 
 
 var value = 0;
+var arcvalue = 0;
 function avatarrotateleft(){
     value -=90;
+	arcvalue +=4.71
     jQuery('#avatar').rotate({ animateTo:value});
     jQuery('#avatar1').rotate({ animateTo:value});
     jQuery('#avatar2').rotate({ animateTo:value});
+	
+    jQuery('#rotation').val(arcvalue);
 }
 function avatarrotateright(){
     value +=90;
+	arcvalue +=1.57
     jQuery('#avatar').rotate({ animateTo:value});
     jQuery('#avatar1').rotate({ animateTo:value});
     jQuery('#avatar2').rotate({ animateTo:value});
+	
+    jQuery('#rotation').val(arcvalue);
 }
 function select_avatar(){
     jQuery('#avatar_id').click();
