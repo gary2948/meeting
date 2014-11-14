@@ -5,7 +5,7 @@
 {{define "body" }}
 <div class="pageheader">
 
-         <span class="creatmeetingbtn"><a href="#">写新信息</a></span>
+         <span class="creatmeetingbtn"><a href="#Sendmessage" data-toggle="modal">写新信息</a></span>
 
          <form style="float:right;">
            <input type="submit" class="addbtn fr" value="搜索" />
@@ -74,4 +74,67 @@
                 {{template "template/footer.html"}}
                 
             </div><!--maincontentinner-->
+			
+			
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade in" id="Sendmessage">
+    <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+        <h3 id="myModalLabel">发送消息</h3>
+    </div>
+    <div class="modal-body">
+		<textarea rows="10" style="width:97%;resize:none;" id="mes"></textarea>
+    </div>
+    <div class="modal-footer">
+	    <span style="color:red" id="resultsendmessage"></span>
+        <button data-dismiss="modal" class="btn">关闭</button>
+        <button class="btn btn-primary" id="itsendmessageBtn">发送</button>
+    </div>
+</div><!--#myModal-->
+
+<script type="text/javascript">
+
+jQuery("#itsendmessageBtn").click(function(){
+	var mes =jQuery("#mes").val();
+	if(!mes){
+		alert("信息不能为空！");
+		return
+	}else{
+	  var param={"resUserId":146, "mes":mes, "status":0, "msgType":0};
+	
+		jQuery.ajax({
+		    url: '/sendmessages',
+		    type: 'POST',
+			data: param,
+		    success:function(data){
+	       		data = eval("(" + data + ")");
+				if (data.result)
+				{
+					jQuery("#resultsendmessage")[0].innerHTML="发送成功";
+					jQuery("#Sendmessage").hide();
+				
+				}
+				else
+				{
+					jQuery("#resultsendmessage")[0].innerHTML="发送失败";
+	
+				}
+			},
+			error:function(data){
+				jQuery("#resultsendmessage")[0].innerHTML="发送失败";
+	
+			}
+		});
+	}
+
+
+
+})
+
+
+
+
+</script>
+
+
+
 {{end}}
