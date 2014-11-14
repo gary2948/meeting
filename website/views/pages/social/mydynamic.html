@@ -18,12 +18,12 @@ jQuery(document).ready(function() {
 
 <div class="pageheader_dt">
             <div class="lefthead_img">
-                <a href="#"><img src="static/newstyle/images/righthead.jpg"></a>
+                <a href="/changehead"><img src="{{.userinfo.Lc_photoFile}}"></a>
             </div>
             <div class="right_dtai_info">
-               <div class="dt_rel_name">某某某  <span class="leave_x"><i class="fa fa-clock-o"></i>离线</span></div>
+               <div class="dt_rel_name">{{.userinfo.Lc_nickName}}  <span class="leave_x"><i class="fa fa-clock-o"></i>离线</span></div>
                <div class="commen_one_tr">粉丝：99 &nbsp;&nbsp;&nbsp;关注：999&nbsp;&nbsp;&nbsp;微博：900</div>
-               <div class="commen_one_tr">邮箱：213123123@163.com</div>
+               <div class="commen_one_tr">邮箱：{{.userinfo.Lc_email}}</div>
                <div class="commen_one_tr">手机：156898888888</div>
                <div class="commen_one_tr">
                <a href="#" class="add_addbtn"><span class="fa fa-plus"></span> 加关注</a>
