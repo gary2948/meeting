@@ -4,8 +4,7 @@
 {{end}}
 {{define "body" }}
 
-<script type="text/javascript" src="static/newstyle/js/tools.js"></script>
-        
+<script type="text/javascript" src="static/newstyle/js/tools.js"></script>        
 <div class="pageheader">
             <!--form action="results.html" method="post" class="searchbar">
                 <input type="text" name="keyword" placeholder="输入搜索内容搜索..." />
@@ -91,13 +90,14 @@
                                 </td>
                             </tr>
 
-
+                          {{range $key, $val := .userExpe}}
+                           {{if eq $val.Lc_experKind 2}}
                               <tr>
                                 <td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">
                                 <span class="nametext" style="left:0;width:100%;height:auto;background-color:#f2f2f2;max-width:100%;">
                                       <div class="list_workinfo"> 
-                                             <div title="2003年9月-2007年6月">2003年9月-2007年6月</div>
-                                             <div title="公司名称啊啊">公司名称啊啊</div>
+                                             <div><span class="thestarttimes" data_num="{{$val.Lc_beginTime}}"></span>-<span class="theendtimes" data_num="{{$val.Lc_endTime}}"></span></div>
+                                             <div title="{{$val.Lc_unitName}}">{{$val.Lc_unitName}}</div>
                                              <div title="职位啊啊啊啊啊">职位啊啊啊啊啊</div>
                                         </div>
                                      </span>
@@ -113,7 +113,7 @@
                                 <td>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">公司名称:</label>
-                                            <input class="right_input" type="text" name=""  value="" />
+                                            <input class="right_input" type="text" name=""  value="{{$val.Lc_unitName}}" />
                                         </p>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">职位头衔:</label>
@@ -125,11 +125,11 @@
                                      </p>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">在职时间:</label>
-                                            <input class="right_input" type="date" name=""  value="" />
+                                            <input class="right_input ziye_starttime" type="date" name="" datavalue="{{$val.Lc_beginTime}}"  value="" />
                                      </p>
                                       <p class="icon_p">
                                             <label class="left_name" style="width:70px;">至</label>
-                                            <input class="right_input" type="date" name=""  value="" />
+                                            <input class="right_input ziye_endtime" type="date" name="" datavalue="{{$val.Lc_endTime}}"  value="" />
                                         </p>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">简单描述:</label>
@@ -145,59 +145,8 @@
                                         </p>
                                 </td>
                             </tr>
-
- <tr>
-                                <td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">
-                                <span class="nametext" style="left:0;width:100%;height:auto;background-color:#f2f2f2;max-width:100%;">
-                                      <div class="list_workinfo"> 
-                                             <div title="2003年9月-2007年6月">2003年9月-2007年6月</div>
-                                             <div title="公司名称啊啊">公司名称啊啊</div>
-                                             <div title="职位啊啊啊啊啊">职位啊啊啊啊啊</div>
-                                        </div>
-                                     </span>
-                                        <span class="fileactions" style="margin-top:-15px;">
-                                            <a href="javascript:void(0)" class="action action-share changeedu">
-                                                <img class="svg" src="static/newstyle/images/svg/rename.svg">
-                                                <span>修改</span>
-                                            </a>
-                                        </span>
-                                </td>
-                            </tr>
-                              <tr style="display:none;">
-                                <td>
-                                     <p class="icon_p">
-                                            <label class="left_name" style="width:70px;">公司名称:</label>
-                                            <input class="right_input" type="text" name=""  value="" />
-                                        </p>
-                                     <p class="icon_p">
-                                            <label class="left_name" style="width:70px;">职位头衔:</label>
-                                            <input class="right_input" type="text" name=""  value="" />
-                                     </p>
-                                     <p class="icon_p">
-                                            <label class="left_name" style="width:70px;">工作地点:</label>
-                                            <input class="right_input" type="text" name=""  value="" />
-                                     </p>
-                                     <p class="icon_p">
-                                            <label class="left_name" style="width:70px;">在职时间:</label>
-                                            <input class="right_input" type="date" name=""  value="" />
-                                            <label class="left_name" style="width:70px;">至</label>
-                                            <input class="right_input" type="date" name=""  value="" />
-
-                                     </p>
-                                     <p class="icon_p">
-                                            <label class="left_name" style="width:70px;">简单描述:</label>
-                                            <textarea  class="right_input" name="" class="span8"></textarea>
-                                     </p>
-                                       <p class="icon_p tl_r">
-                                           <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />
-                                           <input type="button" class="addbtn fr " value="保存" />
-                                            <a href="#" class="deleteaction">
-                                                <img class="svg" src="static/newstyle/images/svg/delete.svg">
-                                                <span>删除</span>
-                                            </a>
-                                        </p>
-                                </td>
-                            </tr>
+							 {{end}}
+                          {{end}}
                         </tbody>
                         </table>  
 
@@ -392,12 +341,14 @@
                                         </p>
                                 </td>
                             </tr> 
+							{{range $key, $val := .userExpe}}
+							 {{if eq $val.Lc_experKind 1}}
                               <tr>
                                 <td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">
                                 <span class="nametext" style="left:0;width:100%;height:auto;max-width:100%;">
                                       <p class="list_educate"> 
-                                             <span>2003年9月-2007年6月</span>
-                                             <span>某某大学</span>
+                                             <span class="thestarttimes" data_num="{{$val.Lc_beginTime}}"></span><span>-</span><span class="theendtimes" data_num="{{$val.Lc_endTime}}"></span>
+                                             <span>{{$val.Lc_unitName}}</span>
                                              <span>某某专业</span>
                                         </p>
                                      </span>
@@ -417,7 +368,7 @@
                                 <td>
                                    <p class="icon_p">
                                             <label class="left_name">学校名称:</label>
-                                            <input class="right_input" type="text" name=""  value="" />
+                                            <input class="right_input" type="text" name=""  value="{{$val.Lc_unitName}}" />
                                         </p>
                                      <p class="icon_p">
                                             <label class="left_name">所学专业:</label>
@@ -425,11 +376,11 @@
                                      </p>
                                      <p class="icon_p">
                                             <label class="left_name">入学时间:</label>
-                                            <input class="right_input" type="date" name=""  value="" />
+                                            <input class="right_input ziye_starttime" type="date" name=""  datavalue="{{$val.Lc_beginTime}}"   value="" />
                                      </p>
                                      <p class="icon_p">
                                             <label class="left_name">毕业时间:</label>
-                                            <input class="right_input" type="date" name=""  value="" />
+                                            <input class="right_input ziye_endtime" type="date" name=""   datavalue="{{$val.Lc_endTime}}"  value="" />
                                      </p>
                                        <p class="icon_p tl_r">
                                            <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />
@@ -437,53 +388,9 @@
                                         </p>
                                 </td>
                             </tr>
+							 {{end}}
+                          {{end}}
 
-
-                              <tr >
-                                <td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">
-                                <span class="nametext" style="left:0;width:100%;height:auto;max-width:100%;">
-                                      <p class="list_educate"> 
-                                             <span>2003年9月-2007年6月</span>
-                                             <span>某某大学</span>
-                                             <span>某某专业</span>
-                                        </p>
-                                     </span>
-                                        <span class="fileactions" style="margin-top:6px;">
-                                            <a href="javascript:void(0)" class="action action-share changeedu">
-                                                <img class="svg" src="static/newstyle/images/svg/rename.svg">
-                                                <span>修改</span>
-                                            </a>
-                                            <a href="#" class="action action-download" data-action="Download">
-                                                <img class="svg" src="static/newstyle/images/svg/delete.svg">
-                                                <span>删除</span>
-                                            </a>
-                                        </span>
-                                </td>
-                            </tr>
-                              <tr style="display:none;">
-                                <td>
-                                   <p class="icon_p">
-                                            <label class="left_name">学校名称:</label>
-                                            <input class="right_input" type="text" name=""  value="" />
-                                        </p>
-                                     <p class="icon_p">
-                                            <label class="left_name">所学专业:</label>
-                                            <input class="right_input" type="text" name=""  value="" />
-                                     </p>
-                                     <p class="icon_p">
-                                            <label class="left_name">入学时间:</label>
-                                            <input class="right_input" type="date" name=""  value="" />
-                                     </p>
-                                     <p class="icon_p">
-                                            <label class="left_name">毕业时间:</label>
-                                            <input class="right_input" type="date" name=""  value="" />
-                                     </p>
-                                       <p class="icon_p tl_r">
-                                           <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />
-                                           <input type="button" class="addbtn fr " value="保存" />
-                                        </p>
-                                </td>
-                            </tr>
                         </tbody>
                         </table>  
 
@@ -506,6 +413,7 @@
                 
             </div><!--maincontentinner-->
 <script type="text/javascript">
+
 jQuery(document).ready(function(){
 	jQuery('#lef_nav li').removeClass("active");
     jQuery('#lef_nav li')[2].className = "active";
@@ -566,6 +474,28 @@ jQuery(document).ready(function(){
 	jQuery("#Lc_birthday_label")[0].innerHTML =  jQuery("#Lc_birthday")[0].defaultValue.split(" ")[0]
 	//语言字段处理
 	jQuery("#Lc_language_label")[0].innerHTML = getlanguage(jQuery("#Lc_language_label")[0].innerHTML)
+	
+	//日期字段处理
+	jQuery(".ziye_starttime").each(function(){
+		var getdate=jQuery(this).attr("datavalue");
+		jQuery(this).attr("value",getdate.split(" ")[0]);
+	
+	})
+	jQuery(".ziye_endtime").each(function(){
+		var getdate=jQuery(this).attr("datavalue");
+		jQuery(this).attr("value",getdate.split(" ")[0]);
+	
+	})
+	jQuery(".thestarttimes").each(function(){
+		var getdate=jQuery(this).attr("data_num");
+		jQuery(this)[0].innerHTML=getdate.split(" ")[0];
+	
+	})
+	jQuery(".theendtimes").each(function(){
+		var getdate=jQuery(this).attr("data_num");
+		jQuery(this)[0].innerHTML=getdate.split(" ")[0];
+	
+	})
 	
 	jQuery("#savecontactbtn").click(function(){
 		var param =new Object();

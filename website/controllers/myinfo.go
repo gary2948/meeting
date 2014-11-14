@@ -20,12 +20,16 @@ func (h *MyinfoController) Get() {
 		//取用户联系信息
 		var userinfoex account.Lctb_userInfoEx
 		var userinfo account.Lctb_userInfo
+		var userExpe = make([]account.Lctb_personExperience, 0)
 		ret, _ := db.GetAccountExById(h.userinfo.Id, &userinfoex)
 		ret, _ = db.GetAccountById(h.userinfo.Id, &userinfo)
+		_ = db.GetPersonExperience(h.userinfo.Id, &userExpe)
 		if ret {
 			h.Data["userinfoex"] = userinfoex
 			h.Data["userinfo"] = userinfo
+			h.Data["userExpe"] = userExpe
 		}
+		//fmt.Println(userExpe)
 		h.TplNames = "pages/home/myinfo.html"
 	}
 
