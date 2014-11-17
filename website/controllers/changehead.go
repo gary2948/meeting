@@ -3,11 +3,10 @@ package controllers
 import (
 	"code.google.com/p/graphics-go/graphics"
 	"commonPackage"
+	"commonPackage/viewModel"
 	"fmt"
 	"github.com/qiniu/api/io"
 	"image"
-	"image/draw"
-	"image/jpeg"
 	"image/png"
 	"os"
 	"strconv"
@@ -80,11 +79,11 @@ func (h *ChangeheadController) Post() {
 		saveImage(fmt.Sprintf("./static/img/IMG_2718tttt111.PNG"), dst)
 
 		ret := new(io.PutRet)
-		err := io.PutFile(nil, ret, commonPackage.Uptoken(), h1.Filename, "./static/img/IMG_2718tttt111.PNG", nil)
+		err = io.PutFile(nil, ret, commonPackage.Uptoken(), h1.Filename, "./static/img/IMG_2718tttt111.PNG", nil)
 
 		durl := commonPackage.DownloadUrl(h1.Filename)
 		var vm2 viewModel.EditUserInfoModel
-		vm2.Lc_introduction = f.GetString("Lc_introduction")
+		vm2.Lc_introduction = h.GetString("Lc_introduction")
 		fmt.Println(durl)
 
 		fmt.Println(ret)

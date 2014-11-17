@@ -26,7 +26,7 @@ func (h *SocialController) Message() {
 	}
 }
 
-func (f *SocialController) sendMessages() {
+func (f *SocialController) SendMessages() {
 	mystruct := ""
 	if f.userinfo != nil {
 		f.Data["userinfo"] = f.userinfo
