@@ -86,7 +86,7 @@
     </div>
     <div class="modal-footer">
 	    <span style="color:red" id="resultsendmessage"></span>
-        <button data-dismiss="modal" class="btn">关闭</button>
+        <button data-dismiss="modal" class="btn" id="closethisbtn">关闭</button>
         <button class="btn btn-primary" id="itsendmessageBtn">发送</button>
     </div>
 </div><!--#myModal-->
@@ -102,7 +102,7 @@ jQuery("#itsendmessageBtn").click(function(){
 	  var param={"resUserId":146, "mes":mes, "status":0, "msgType":0};
 	
 		jQuery.ajax({
-		    url: '/sendmessages',
+		    url: '/sendmsg',
 		    type: 'POST',
 			data: param,
 		    success:function(data){
@@ -110,7 +110,8 @@ jQuery("#itsendmessageBtn").click(function(){
 				if (data.result)
 				{
 					jQuery("#resultsendmessage")[0].innerHTML="发送成功";
-					jQuery("#Sendmessage").hide();
+					//jQuery("#Sendmessage").hide();
+					setTimeout("jQuery('#closethisbtn').click();",100); 
 				
 				}
 				else
