@@ -114,8 +114,10 @@
                               <tr style="display:none;">
                                 <td>
                                      <p class="icon_p">
+									        <input type="hidden"  name="Lc_experKind"  value="2" />
+									        <input type="hidden"  name="Lc_unitType"  value="2" />
                                             <label class="left_name" style="width:70px;">公司名称:</label>
-                                            <input class="right_input" type="text" name=""  value="{{$val.Lc_unitName}}" />
+                                            <input class="right_input" type="text" name="Lc_unitName"  value="{{$val.Lc_unitName}}" />
                                         </p>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">职位头衔:</label>
@@ -127,11 +129,11 @@
                                      </p>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">在职时间:</label>
-                                            <input class="right_input ziye_starttime" type="date" name="" datavalue="{{$val.Lc_beginTime}}"  value="" />
+                                            <input class="right_input ziye_starttime" type="date" name="Lc_beginTime" datavalue="{{$val.Lc_beginTime}}"  value="" />
                                      </p>
                                       <p class="icon_p">
                                             <label class="left_name" style="width:70px;">至</label>
-                                            <input class="right_input ziye_endtime" type="date" name="" datavalue="{{$val.Lc_endTime}}"  value="" />
+                                            <input class="right_input ziye_endtime" type="date" name="Lc_endTime" datavalue="{{$val.Lc_endTime}}"  value="" />
                                         </p>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">简单描述:</label>
@@ -139,7 +141,8 @@
                                      </p>
                                        <p class="icon_p tl_r">
                                            <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />
-                                           <input type="button" class="addbtn fr " value="保存" />
+                                           <input type="button" class="addbtn fr save_personexp" onclick="changePersonExp(this)" value="保存" />
+                                           <label  style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>
                                             <a href="#" class="deleteaction">
                                                 <img class="svg" src="static/newstyle/images/svg/delete.svg">
                                                 <span>删除</span>
@@ -371,8 +374,10 @@
                               <tr style="display:none;">
                                 <td>
                                    <p class="icon_p">
+									        <input type="hidden"  name="Lc_experKind"  value="1" />
+									        <input type="hidden"  name="Lc_unitType"  value="1" />
                                             <label class="left_name">学校名称:</label>
-                                            <input class="right_input" type="text" name=""  value="{{$val.Lc_unitName}}" />
+                                            <input class="right_input" type="text" name="Lc_unitName"  value="{{$val.Lc_unitName}}" />
                                         </p>
                                      <p class="icon_p">
                                             <label class="left_name">所学专业:</label>
@@ -380,15 +385,16 @@
                                      </p>
                                      <p class="icon_p">
                                             <label class="left_name">入学时间:</label>
-                                            <input class="right_input ziye_starttime" type="date" name=""  datavalue="{{$val.Lc_beginTime}}"   value="" />
+                                            <input class="right_input ziye_starttime" type="date" name="Lc_beginTime"  datavalue="{{$val.Lc_beginTime}}"   value="" />
                                      </p>
                                      <p class="icon_p">
                                             <label class="left_name">毕业时间:</label>
-                                            <input class="right_input ziye_endtime" type="date" name=""   datavalue="{{$val.Lc_endTime}}"  value="" />
+                                            <input class="right_input ziye_endtime" type="date" name="Lc_endTime"   datavalue="{{$val.Lc_endTime}}"  value="" />
                                      </p>
                                        <p class="icon_p tl_r">
                                            <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />
-                                           <input type="button" class="addbtn fr " value="保存" />
+                                           <input type="button" class="addbtn fr save_personexp" onclick="changePersonExp(this)" value="保存" />
+                                           <label  style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>
                                         </p>
                                 </td>
                             </tr>
@@ -446,6 +452,56 @@ function trim(text)
     return text;
   }
 }
+
+	//修改个人经历信息
+	function changePersonExp(obj){
+
+	    var Lc_experKind=jQuery(obj).parent().parent().find("input[name=Lc_experKind]").val();
+		var Lc_unitType=jQuery(obj).parent().parent().find("input[name=Lc_unitType]").val();
+		var Lc_unitName=jQuery(obj).parent().parent().find("input[name=Lc_unitName]").val();
+		var Lc_beginTime=jQuery(obj).parent().parent().find("input[name=Lc_beginTime]").val();
+		var Lc_endTime=jQuery(obj).parent().parent().find("input[name=Lc_endTime]").val();
+		if(!trim(Lc_unitName)){
+			alert("名称不能为空");
+			return;
+			
+		}
+		if(!Lc_beginTime){
+			Lc_beginTime=new Date().Format("yyyy-MM-dd");	
+		}
+		if(!Lc_endTime){
+			Lc_endTime=new Date().Format("yyyy-MM-dd");	
+		}
+		var param={Lc_experKind:Lc_experKind,Lc_unitType:Lc_unitType,Lc_unitName:Lc_unitName,Lc_beginTime:Lc_beginTime,Lc_endTime:Lc_endTime}
+		jQuery.ajax({
+		    url: '/updatepersonexp',
+		    type: 'POST',
+			data: param,
+		    success:function(data){
+        		data = eval("(" + data + ")");
+				if (data.result)
+				{
+				jQuery(obj).next().show();
+		        jQuery(obj).parent().parent().parent().hide();
+		        jQuery(obj).parent().parent().parent().prev().show();
+									
+				}
+				else
+				{
+				jQuery(obj).next().show();
+				jQuery(obj).next()[0].innerHTML="保存失败";
+				}
+			},
+			error:function(data){
+				jQuery(obj).next().show();
+				jQuery(obj).next()[0].innerHTML="保存失败";
+			}
+		});
+
+	}
+
+
+
 
 jQuery(document).ready(function(){
 	jQuery('#lef_nav li').removeClass("active");
@@ -545,8 +601,10 @@ jQuery(document).ready(function(){
                              ' <tr style="display:none;">'+
                                ' <td>'+
                                      '<p class="icon_p">'+
+									       ' <input type="hidden"  name="Lc_experKind"  value="2" />'+
+									       ' <input type="hidden"  name="Lc_unitType"  value="2" />'+
                                           '  <label class="left_name" style="width:70px;">公司名称:</label>'+
-                                          '  <input class="right_input" type="text" name=""  value="'+Lc_unitName+'" />'+
+                                          '  <input class="right_input" type="text" name="Lc_unitName"  value="'+Lc_unitName+'" />'+
                                        ' </p>'+
                                     ' <p class="icon_p">'+
                                           '  <label class="left_name" style="width:70px;">职位头衔:</label>'+
@@ -558,11 +616,11 @@ jQuery(document).ready(function(){
                                     ' </p>'+
                                     ' <p class="icon_p">'+
                                          '   <label class="left_name" style="width:70px;">在职时间:</label>'+
-                                           ' <input class="right_input ziye_starttime" type="date" name="" datavalue="'+Lc_beginTime+'"  value="'+Lc_beginTime+'" />'+
+                                           ' <input class="right_input ziye_starttime" type="date" name="Lc_beginTime" datavalue="'+Lc_beginTime+'"  value="'+Lc_beginTime+'" />'+
                                     ' </p>'+
                                      ' <p class="icon_p">'+
                                           '  <label class="left_name" style="width:70px;">至</label>'+
-                                           ' <input class="right_input ziye_endtime" type="date" name="" datavalue="'+Lc_endTime+'"  value="'+Lc_endTime+'" />'+
+                                           ' <input class="right_input ziye_endtime" type="date" name="Lc_endTime" datavalue="'+Lc_endTime+'"  value="'+Lc_endTime+'" />'+
                                        ' </p>'+
                                     ' <p class="icon_p">'+
                                            ' <label class="left_name" style="width:70px;">简单描述:</label>'+
@@ -570,7 +628,8 @@ jQuery(document).ready(function(){
                                     ' </p>'+
                                       ' <p class="icon_p tl_r">'+
                                           ' <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />'+
-                                          ' <input type="button" class="addbtn fr " value="保存" />'+
+                                          ' <input type="button" class="addbtn fr save_personexp" onclick="changePersonExp(this)" value="保存" />'+
+                                          ' <label  style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>'+
                                            ' <a href="#" class="deleteaction">'+
                                                ' <img class="svg" src="static/newstyle/images/svg/delete.svg">'+
                                                ' <span>删除</span>'+
@@ -648,8 +707,10 @@ jQuery(document).ready(function(){
                              ' <tr style="display:none;">'+
                                ' <td>'+
                                  '  <p class="icon_p">'+
+									       ' <input type="hidden"  name="Lc_experKind"  value="1" />'+
+									       ' <input type="hidden"  name="Lc_unitType"  value="1" />'+
                                       '      <label class="left_name">学校名称:</label>'+
-                                          '  <input class="right_input" type="text" name=""  value="'+Lc_unitName+'" />'+
+                                          '  <input class="right_input" type="text" name="Lc_unitName"  value="'+Lc_unitName+'" />'+
                                         '</p>'+
                                     ' <p class="icon_p">'+
                                            ' <label class="left_name">所学专业:</label>'+
@@ -657,15 +718,16 @@ jQuery(document).ready(function(){
                                     ' </p>'+
                                      '<p class="icon_p">'+
                                            ' <label class="left_name">入学时间:</label>'+
-                                            '<input class="right_input ziye_starttime" type="date" name=""  datavalue="'+Lc_beginTime+'"   value="'+Lc_beginTime+'" />'+
+                                            '<input class="right_input ziye_starttime" type="date" name="Lc_beginTime"  datavalue="'+Lc_beginTime+'"   value="'+Lc_beginTime+'" />'+
                                     ' </p>'+
                                      '<p class="icon_p">'+
                                            ' <label class="left_name">毕业时间:</label>'+
-                                           ' <input class="right_input ziye_endtime" type="date" name=""   datavalue="'+Lc_endTime+'"  value="'+Lc_endTime+'" />'+
+                                           ' <input class="right_input ziye_endtime" type="date" name="Lc_endTime"   datavalue="'+Lc_endTime+'"  value="'+Lc_endTime+'" />'+
                                     ' </p>'+
                                        '<p class="icon_p tl_r">'+
                                           ' <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />'+
-                                          ' <input type="button" class="addbtn fr " value="保存" />'+
+                                          ' <input type="button" class="addbtn fr save_personexp" onclick="changePersonExp(this)" value="保存" />'+
+										   ' <label  style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>'+
                                         '</p>'+
                                 '</td>'+
                             '</tr>';
@@ -685,6 +747,8 @@ jQuery(document).ready(function(){
 		});
 	
 	})
+	
+	
 	
 	//生日字段处理
 	//alert(jQuery("#Lc_birthday")[0].defaultValue)

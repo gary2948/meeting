@@ -112,6 +112,49 @@ func (f *MyinfoController) AddPersonexp() {
 
 }
 
+//教育信息和职业信息的修改
+func (f *MyinfoController) UpdatePersonexp() {
+	mystruct := ""
+	if f.userinfo != nil {
+		var userExpe account.Lctb_personExperience
+		userExpe.Lc_experKind, _ = strconv.Atoi(f.GetString("Lc_experKind"))
+		userExpe.Lc_unitType, _ = strconv.Atoi(f.GetString("Lc_unitType"))
+		userExpe.Lc_unitName = f.GetString("Lc_unitName")
+		userExpe.Lc_userInfoId = f.userinfo.Id
+		if f.GetString("Lc_beginTime") != "" {
+			dates := strings.Split(f.GetString("Lc_beginTime"), "-")
+			year, _ := strconv.Atoi(dates[0])
+			month, _ := strconv.Atoi(dates[1])
+			day, _ := strconv.Atoi(dates[2])
+			beginTime := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local)
+			userExpe.Lc_beginTime = beginTime
+		}
+		if f.GetString("Lc_endTime") != "" {
+			dates := strings.Split(f.GetString("Lc_endTime"), "-")
+			year, _ := strconv.Atoi(dates[0])
+			month, _ := strconv.Atoi(dates[1])
+			day, _ := strconv.Atoi(dates[2])
+			endTime := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local)
+			userExpe.Lc_endTime = endTime
+		}
+		var exps *[]account.Lctb_personExperience = new([]account.Lctb_personExperience)
+		exps = &[]account.Lctb_personExperience{userExpe}
+		err := db.UpdatePersonExperience(f.userinfo.Id, exps)
+		if err != nil {
+			mystruct = `{result:false}`
+		} else {
+			mystruct = `{result:true}`
+		}
+	} else {
+		//用户未登录，返回失败
+		mystruct = `{result:false}`
+	}
+
+	f.Data["json"] = &mystruct
+	f.ServeJson()
+
+}
+
 func (f *MyinfoController) UpdateBaseInfo() {
 	mystruct := ""
 	if f.userinfo != nil {
