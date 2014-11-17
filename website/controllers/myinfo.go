@@ -77,6 +77,7 @@ func (f *MyinfoController) AddPersonexp() {
 		userExpe.Lc_experKind, _ = strconv.Atoi(f.GetString("Lc_experKind"))
 		userExpe.Lc_unitType, _ = strconv.Atoi(f.GetString("Lc_unitType"))
 		userExpe.Lc_unitName = f.GetString("Lc_unitName")
+		userExpe.Lc_userInfoId = f.userinfo.Id
 		if f.GetString("Lc_beginTime") != "" {
 			dates := strings.Split(f.GetString("Lc_beginTime"), "-")
 			year, _ := strconv.Atoi(dates[0])

@@ -54,7 +54,7 @@
                                         <h4 class="widgettitle">职业信息</h4>
                                      </div>
                        <div class="widgetcontent">
-                        <table style="width:100%;">  
+                        <table style="width:100%;" id="zy_tables">  
                             <tbody id="fileList"> 
                               <tr style="display:none;" class="zhich_tr_new">
                                 <td>
@@ -316,13 +316,15 @@
                                          </div>
                                     <h4 class="widgettitle">教育信息</h4>
                        <div class="widgetcontent">
-                        <table style="width:100%;">  
+                        <table style="width:100%;" id="jy_tables">  
                             <tbody id="fileList"> 
                               <tr style="display:none;" class="new_edulist">
                                 <td>
                                    <p class="icon_p">
+											<input type="hidden" id="Lc_experKind_jy" name="Lc_experKind"  value="1" />
+									        <input type="hidden" id="Lc_unitType_jy" name="Lc_unitType"  value="1" />
                                             <label class="left_name">学校名称:</label>
-                                            <input class="right_input" type="text" name=""  value="" />
+                                            <input class="right_input" type="text" id="Lc_unitName_jy" name="Lc_unitName"  value="" />
                                         </p>
                                      <p class="icon_p">
                                             <label class="left_name">所学专业:</label>
@@ -330,16 +332,16 @@
                                      </p>
                                      <p class="icon_p">
                                             <label class="left_name">入学时间:</label>
-                                            <input class="right_input" type="date" name=""  value="" />
+                                            <input class="right_input" type="date" id="Lc_beginTime_jy" name="Lc_beginTime"  value="" />
                                      </p>
                                      <p class="icon_p">
                                             <label class="left_name">毕业时间:</label>
-                                            <input class="right_input" type="date" name=""  value="" />
+                                            <input class="right_input" type="date" id="Lc_endTime_jy" name="Lc_endTime"  value="" />
                                      </p>
                                        <p class="icon_p tl_r">
                                            <input type="button" class="addbtn fr jyquxiao_btn jy_qx" value="取消" />
-                                           <input type="button" class="addbtn fr save_edu2" value="保存" />
-                                           <label style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>
+                                           <input type="button" class="addbtn fr save_edu2" id="jy_addnew_exp" value="保存" />
+                                           <label id="jy_status" style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>
                                         </p>
                                 </td>
                             </tr> 
@@ -415,6 +417,23 @@
                 
             </div><!--maincontentinner-->
 <script type="text/javascript">
+//时间格式化函数
+Date.prototype.Format = function (fmt) { 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
+
 //字符串去掉空格函数
 function trim(text)
 {
@@ -431,7 +450,7 @@ function trim(text)
 jQuery(document).ready(function(){
 	jQuery('#lef_nav li').removeClass("active");
     jQuery('#lef_nav li')[2].className = "active";
-    jQuery("#contractinfos").click(function(){
+    jQuery("#contractinfos").live("click",function(){
 		jQuery('#savecontactbtnstatus').hide();
         if(jQuery(this).parent().next().is(":hidden")){
             jQuery(this).parent().next().show();
@@ -443,7 +462,7 @@ jQuery(document).ready(function(){
 
     })
 
-    jQuery("#main_infos").click(function(){
+    jQuery("#main_infos").live("click",function(){
         if(jQuery(this).parent().next().is(":hidden")){
             jQuery(this).parent().next().show();
             jQuery(this).parent().next().next().hide();
@@ -453,30 +472,31 @@ jQuery(document).ready(function(){
         }
     })
 
-    jQuery(".changeedu").click(function(){
+    jQuery(".changeedu").live("click",function(){
         jQuery(this).parent().parent().parent().hide();
         jQuery(this).parent().parent().parent().next().show();
     })
-    jQuery(".save_edu").click(function(){
+    jQuery(".save_edu").live("click",function(){
         jQuery(this).parent().parent().parent().hide();
         jQuery(this).parent().parent().parent().prev().show();
     })
-    jQuery("#addnew_edu").click(function(){
+    jQuery("#addnew_edu").live("click",function(){
         jQuery(".new_edulist").show();
 
     })
-    jQuery(".zc_qx").click(function(){
+    jQuery(".zc_qx").live("click",function(){
         jQuery(".zhich_tr_new").hide();
 
     })
-    jQuery(".jy_qx").click(function(){
+    jQuery(".jy_qx").live("click",function(){
         jQuery(".new_edulist").hide();
 
     })
-    jQuery("#zhich_info").click(function(){
+    jQuery("#zhich_info").live("click",function(){
         jQuery(".zhich_tr_new").show();
 
     })
+	//增加职业信息
 	jQuery("#zy_addnew_exp").click(function(){
 		var Lc_experKind=jQuery("#Lc_experKind_zy").val();
 		var Lc_unitType=jQuery("#Lc_unitType_zy").val();
@@ -488,6 +508,12 @@ jQuery(document).ready(function(){
 			return;
 			
 		}
+		if(!Lc_beginTime){
+			Lc_beginTime=new Date().Format("yyyy-MM-dd");	
+		}
+		if(!Lc_endTime){
+			Lc_endTime=new Date().Format("yyyy-MM-dd");	
+		}
 		var param={Lc_experKind:Lc_experKind,Lc_unitType:Lc_unitType,Lc_unitName:Lc_unitName,Lc_beginTime:Lc_beginTime,Lc_endTime:Lc_endTime}
 		jQuery.ajax({
 		    url: '/addpersonexp',
@@ -498,7 +524,61 @@ jQuery(document).ready(function(){
 				if (data.result)
 				{
 					jQuery("#zy_status").show();
-					setTimeout("jQuery('.zhich_tr_new').hide();",200); 	
+					setTimeout("jQuery('.zhich_tr_new').hide();",200); 
+					var newtrs='<tr>'+
+                                '<td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">'+
+                               ' <span class="nametext" style="left:0;width:100%;height:auto;background-color:#f2f2f2;max-width:100%;">'+
+                                     ' <div class="list_workinfo"> '+
+                                            ' <div><span class="thestarttimes" data_num="'+Lc_beginTime+'">'+Lc_beginTime+'</span>-<span class="theendtimes" data_num="'+Lc_endTime+'">'+Lc_endTime+'</span></div>'+
+                                            ' <div title="'+Lc_unitName+'">'+Lc_unitName+'</div>'+
+                                            ' <div title="职位啊啊啊啊啊">职位啊啊啊啊啊</div>'+
+                                       ' </div>'+
+                                     '</span>'+
+                                       ' <span class="fileactions" style="margin-top:-15px;">'+
+                                          '  <a href="javascript:void(0)" class="action action-share changeedu">'+
+                                              ' <img class="svg" src="static/newstyle/images/svg/rename.svg">'+
+                                               ' <span>修改</span>'+
+                                           ' </a>'+
+                                        '</span>'+
+                                '</td>'+
+                            '</tr>'+
+                             ' <tr style="display:none;">'+
+                               ' <td>'+
+                                     '<p class="icon_p">'+
+                                          '  <label class="left_name" style="width:70px;">公司名称:</label>'+
+                                          '  <input class="right_input" type="text" name=""  value="'+Lc_unitName+'" />'+
+                                       ' </p>'+
+                                    ' <p class="icon_p">'+
+                                          '  <label class="left_name" style="width:70px;">职位头衔:</label>'+
+                                          '  <input class="right_input" type="text" name=""  value="" />'+
+                                     '</p>'+
+                                    ' <p class="icon_p">'+
+                                           ' <label class="left_name" style="width:70px;">工作地点:</label>'+
+                                           ' <input class="right_input" type="text" name=""  value="" />'+
+                                    ' </p>'+
+                                    ' <p class="icon_p">'+
+                                         '   <label class="left_name" style="width:70px;">在职时间:</label>'+
+                                           ' <input class="right_input ziye_starttime" type="date" name="" datavalue="'+Lc_beginTime+'"  value="'+Lc_beginTime+'" />'+
+                                    ' </p>'+
+                                     ' <p class="icon_p">'+
+                                          '  <label class="left_name" style="width:70px;">至</label>'+
+                                           ' <input class="right_input ziye_endtime" type="date" name="" datavalue="'+Lc_endTime+'"  value="'+Lc_endTime+'" />'+
+                                       ' </p>'+
+                                    ' <p class="icon_p">'+
+                                           ' <label class="left_name" style="width:70px;">简单描述:</label>'+
+                                           ' <textarea  class="right_input" name="" class="span8"></textarea>'+
+                                    ' </p>'+
+                                      ' <p class="icon_p tl_r">'+
+                                          ' <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />'+
+                                          ' <input type="button" class="addbtn fr " value="保存" />'+
+                                           ' <a href="#" class="deleteaction">'+
+                                               ' <img class="svg" src="static/newstyle/images/svg/delete.svg">'+
+                                               ' <span>删除</span>'+
+                                          ' </a>'+
+                                       ' </p>'+
+                                '</td>'+
+                           ' </tr>';
+					jQuery("#zy_tables").append(newtrs);
 									
 				}
 				else
@@ -510,6 +590,97 @@ jQuery(document).ready(function(){
 			error:function(data){
 				jQuery("#zy_status").show();
 				jQuery("#zy_status")[0].innerHTML="保存失败";
+			}
+		});
+	
+	})
+	
+	//增加教育信息
+	jQuery("#jy_addnew_exp").click(function(){
+		var Lc_experKind=jQuery("#Lc_experKind_jy").val();
+		var Lc_unitType=jQuery("#Lc_unitType_jy").val();
+		var Lc_unitName=jQuery("#Lc_unitName_jy").val();
+		var Lc_beginTime=jQuery("#Lc_beginTime_jy").val();
+		var Lc_endTime=jQuery("#Lc_endTime_jy").val();
+		if(!trim(Lc_unitName)){
+			alert("学校名称不能为空");
+			return;
+			
+		}
+		if(!Lc_beginTime){
+			Lc_beginTime=new Date().Format("yyyy-MM-dd");	
+		}
+		if(!Lc_endTime){
+			Lc_endTime=new Date().Format("yyyy-MM-dd");	
+		}
+		var param={Lc_experKind:Lc_experKind,Lc_unitType:Lc_unitType,Lc_unitName:Lc_unitName,Lc_beginTime:Lc_beginTime,Lc_endTime:Lc_endTime}
+		jQuery.ajax({
+		    url: '/addpersonexp',
+		    type: 'POST',
+			data: param,
+		    success:function(data){
+        		data = eval("(" + data + ")");
+				if (data.result)
+				{
+					jQuery("#jy_status").show();
+					setTimeout("jQuery('.new_edulist').hide();",200); 
+					var newtrs='<tr>'+
+                                '<td class="filename ui-draggable ui-droppable" style="width:100%; height:45px;border:none;">'+
+                                '<span class="nametext" style="left:0;width:100%;height:auto;max-width:100%;">'+
+                                     ' <p class="list_educate"> '+
+                                            ' <span class="thestarttimes" data_num="'+Lc_beginTime+'"">'+Lc_beginTime+'</span><span>-</span><span class="theendtimes" data_num="'+Lc_endTime+' ">'+Lc_endTime+'</span>'+
+                                             '<span>'+Lc_unitName+'</span>'+
+                                            ' <span>某某专业</span>'+
+                                        '</p>'+
+                                    ' </span>'+
+                                       ' <span class="fileactions" style="margin-top:6px;">'+
+                                           ' <a href="javascript:void(0)" class="action action-share changeedu">'+
+                                              '  <img class="svg" src="static/newstyle/images/svg/rename.svg">'+
+                                                '<span>修改</span>'+
+                                            '</a>'+
+                                            '<a href="#" class="action action-download" data-action="Download">'+
+                                                '<img class="svg" src="static/newstyle/images/svg/delete.svg">'+
+                                               ' <span>删除</span>'+
+                                           ' </a>'+
+                                        '</span>'+
+                                '</td>'+
+                            '</tr>'+
+                             ' <tr style="display:none;">'+
+                               ' <td>'+
+                                 '  <p class="icon_p">'+
+                                      '      <label class="left_name">学校名称:</label>'+
+                                          '  <input class="right_input" type="text" name=""  value="'+Lc_unitName+'" />'+
+                                        '</p>'+
+                                    ' <p class="icon_p">'+
+                                           ' <label class="left_name">所学专业:</label>'+
+                                           ' <input class="right_input" type="text" name=""  value="" />'+
+                                    ' </p>'+
+                                     '<p class="icon_p">'+
+                                           ' <label class="left_name">入学时间:</label>'+
+                                            '<input class="right_input ziye_starttime" type="date" name=""  datavalue="'+Lc_beginTime+'"   value="'+Lc_beginTime+'" />'+
+                                    ' </p>'+
+                                     '<p class="icon_p">'+
+                                           ' <label class="left_name">毕业时间:</label>'+
+                                           ' <input class="right_input ziye_endtime" type="date" name=""   datavalue="'+Lc_endTime+'"  value="'+Lc_endTime+'" />'+
+                                    ' </p>'+
+                                       '<p class="icon_p tl_r">'+
+                                          ' <input type="button" class="addbtn fr quxiao_btn save_edu" value="取消" />'+
+                                          ' <input type="button" class="addbtn fr " value="保存" />'+
+                                        '</p>'+
+                                '</td>'+
+                            '</tr>';
+					jQuery("#jy_tables").append(newtrs);	
+									
+				}
+				else
+				{
+				jQuery("#jy_status").show();
+				jQuery("#jy_status")[0].innerHTML="保存失败";
+				}
+			},
+			error:function(data){
+				jQuery("#jy_status").show();
+				jQuery("#jy_status")[0].innerHTML="保存失败";
 			}
 		});
 	
