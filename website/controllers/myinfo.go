@@ -79,8 +79,22 @@ func (f *MyinfoController) AddPersonexp() {
 		userExpe.Lc_experKind, _ = int64(expkind)
 		userExpe.Lc_unitType, _ = int64(unittype)
 		userExpe.Lc_unitName = f.GetString("Lc_unitName")
-		userExpe.Lc_beginTime = f.GetString("Lc_beginTime")
-		userExpe.Lc_endTime = f.GetString("Lc_endTime")
+		if f.GetString("Lc_beginTime") != "" {
+			dates := strings.Split(f.GetString("Lc_beginTime"), "-")
+			year, _ := strconv.Atoi(dates[0])
+			month, _ := strconv.Atoi(dates[1])
+			day, _ := strconv.Atoi(dates[2])
+			beginTime := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local)
+			userExpe.Lc_beginTime = beginTime
+		}
+		if f.GetString("Lc_endTime") != "" {
+			dates := strings.Split(f.GetString("Lc_endTime"), "-")
+			year, _ := strconv.Atoi(dates[0])
+			month, _ := strconv.Atoi(dates[1])
+			day, _ := strconv.Atoi(dates[2])
+			endTime := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local)
+			userExpe.Lc_endTime = endTime
+		}
 		exps := [...]account.Lctb_personExperience{userExpe}
 		err := db.AddPersonExperience(*exps)
 		if err != nil {
