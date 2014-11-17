@@ -122,7 +122,7 @@ func registRoter() {
 	//小组通讯录
 	beego.Router("/groupcontact", &controllers.SocialController{}, "*:Groupcontact")
 	//发私信
-	beego.Router("/sendmsg", &controller.SocialController{}, "post:SendMessages")
+	beego.Router("/sendmsg", &controllers.SocialController{}, "post:SendMessages")
 
 	/////////////////////
 	//
