@@ -86,6 +86,19 @@ func ExchangePwd(userId int64, pwd string) error {
 	return err
 }
 
+func UpdatePhotoFile(userId int64, photoFile string) error {
+	engine, err := GetAccountEng()
+	checkError(err)
+
+	user := account.Lctb_userInfo{}
+	user.Lc_photoFile = photoFile
+
+	_, err = engine.Id(userId).Cols("lc_photo_file").Update(&user)
+
+	return err
+
+}
+
 func UpdateAccount(userId int64, userInfo *viewModel.EditUserInfoModel) error {
 	engine, err := GetAccountEng()
 	checkError(err)
@@ -223,6 +236,30 @@ func GetPersonExperience(userId int64, pe *[]account.Lctb_personExperience) erro
 	engine, err := GetAccountEng()
 	checkError(err)
 	err = engine.Where("lc_user_info_id=?", userId).Find(pe)
+	return err
+}
+
+func AddPersonExperience(pe *[]account.Lctb_personExperience) error {
+	engine, err := GetAccountEng()
+	checkError(err)
+
+	n, err := engine.Insert(pe)
+	if n == 0 || err != nil {
+		return errors.New(commonPackage.ErrSys)
+	}
+
+	return err
+}
+
+func UpdatePersonExperience(userId int64, pe *[]account.Lctb_personExperience) error {
+	engine, err := GetAccountEng()
+	checkError(err)
+
+	n, err := engine.Where("lc_user_info_id = ?", userId).Update(pe)
+	if n == 0 || err != nil {
+		return errors.New(commonPackage.ErrSys)
+	}
+
 	return err
 }
 
