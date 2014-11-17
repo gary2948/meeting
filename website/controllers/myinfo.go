@@ -74,10 +74,8 @@ func (f *MyinfoController) AddPersonexp() {
 	mystruct := ""
 	if f.userinfo != nil {
 		var userExpe account.Lctb_personExperience
-		expkind, _ := f.GetInt("Lc_experKind")
-		unittype, _ := f.GetInt("Lc_unitType")
-		userExpe.Lc_experKind, _ = int64(expkind)
-		userExpe.Lc_unitType, _ = int64(unittype)
+		userExpe.Lc_experKind, _ = strconv.Atoi(f.GetString("Lc_experKind"))
+		userExpe.Lc_unitType, _ = strconv.Atoi(f.GetString("Lc_unitType"))
 		userExpe.Lc_unitName = f.GetString("Lc_unitName")
 		if f.GetString("Lc_beginTime") != "" {
 			dates := strings.Split(f.GetString("Lc_beginTime"), "-")
@@ -95,8 +93,9 @@ func (f *MyinfoController) AddPersonexp() {
 			endTime := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local)
 			userExpe.Lc_endTime = endTime
 		}
-		exps := [...]account.Lctb_personExperience{userExpe}
-		err := db.AddPersonExperience(*exps)
+		var exps *[]account.Lctb_personExperience = new([]account.Lctb_personExperience)
+		exps = &[]account.Lctb_personExperience{userExpe}
+		err := db.AddPersonExperience(exps)
 		if err != nil {
 			mystruct = `{result:false}`
 		} else {
