@@ -86,6 +86,8 @@ func registRoter() {
 	beego.Router("/updateexcontactinfo", &controllers.MyinfoController{}, "post:UpdateExContactInfo")
 	//修改基本信息
 	beego.Router("/updatebaseinfo", &controllers.MyinfoController{}, "post:UpdateBaseInfo")
+	//新增个人经历
+	beego.Router("/addpersonexp", &controllers.MyinfoController{}, "post:AddPersonexp")
 	/////////////////////
 	//
 	//会议

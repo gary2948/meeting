@@ -59,8 +59,10 @@
                               <tr style="display:none;" class="zhich_tr_new">
                                 <td>
                                      <p class="icon_p">
+									        <input type="hidden" id="Lc_experKind_zy" name="Lc_experKind"  value="2" />
+									        <input type="hidden" id="Lc_unitType_zy" name="Lc_unitType"  value="2" />
                                             <label class="left_name" style="width:70px;">公司名称:</label>
-                                            <input class="right_input" type="text" name=""  value="" />
+                                            <input class="right_input" type="text" id="Lc_unitName_zy" name="Lc_unitName"  value="" />
                                         </p>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">职位头衔:</label>
@@ -72,11 +74,11 @@
                                      </p>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">在职时间:</label>
-                                            <input class="right_input" type="date" name=""  value="" />
+                                            <input class="right_input" type="date" id="Lc_beginTime_zy" name="Lc_beginTime"  value="" />
                                      </p>
                                       <p class="icon_p">
                                             <label class="left_name" style="width:70px;">至</label>
-                                            <input class="right_input" type="date" name=""   value="" />
+                                            <input class="right_input" type="date" id="Lc_endTime_zy" name="Lc_endTime"   value="" />
                                         </p>
                                      <p class="icon_p">
                                             <label class="left_name" style="width:70px;">简单描述:</label>
@@ -84,7 +86,7 @@
                                      </p>
                                        <p class="icon_p tl_r">
                                            <input type="button" class="addbtn fr quxiao_btn zc_qx " value="取消" />
-                                           <input type="button" class="addbtn fr save_edu2" value="保存" />
+                                           <input type="button" class="addbtn fr save_edu2" id="zy_addnew_exp" value="保存" />
                                            <label style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>
                                         </p>
                                 </td>
@@ -413,6 +415,18 @@
                 
             </div><!--maincontentinner-->
 <script type="text/javascript">
+//字符串去掉空格函数
+function trim(text)
+{
+  if (typeof(text) == "string")
+  {
+    return text.replace(/^\s*|\s*$/g, "");
+  }
+  else
+  {
+    return text;
+  }
+}
 
 jQuery(document).ready(function(){
 	jQuery('#lef_nav li').removeClass("active");
@@ -463,10 +477,43 @@ jQuery(document).ready(function(){
         jQuery(".zhich_tr_new").show();
 
     })
-    jQuery(".save_edu2").click(function(){
-        jQuery(this).next().show();
-
-    })
+	jQuery("#zy_addnew_exp").click(function(){
+		var Lc_experKind=jQuery("#Lc_experKind_zy").val();
+		var Lc_unitType=jQuery("#Lc_unitType_zy").val();
+		var Lc_unitName=jQuery("#Lc_unitName_zy").val();
+		var Lc_beginTime=jQuery("#Lc_beginTime_zy").val();
+		var Lc_endTime=jQuery("#Lc_endTime_zy").val();
+		if(!trim(Lc_unitName)){
+			alert("公司名称不能为空");
+			return;
+			
+		}
+		var param={Lc_experKind:Lc_experKind,Lc_unitType:Lc_unitType,Lc_unitName:Lc_unitName,Lc_beginTime:Lc_beginTime,Lc_endTime:Lc_endTime}
+		jQuery.ajax({
+		    url: '/addpersonexp',
+		    type: 'POST',
+			data: param,
+		    success:function(data){
+        		data = eval("(" + data + ")");
+				if (data.result)
+				{
+					jQuery(this).next().show();
+					setTimeout("jQuery('this').parent().parent().parent().hide();",200); 	
+									
+				}
+				else
+				{
+				jQuery(this).next()[0].innerHTML="保存失败";
+				jQuery(this).next().show();
+				}
+			},
+			error:function(data){
+				jQuery(this).next()[0].innerHTML="保存失败";
+				jQuery(this).next().show();
+			}
+		});
+	
+	})
 	
 	//生日字段处理
 	//alert(jQuery("#Lc_birthday")[0].defaultValue)

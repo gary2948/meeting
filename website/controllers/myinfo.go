@@ -68,6 +68,34 @@ func (f *MyinfoController) UpdateExContactInfo() {
 	f.ServeJson()
 
 }
+
+//教育信息和职业信息的新增
+func (f *MyinfoController) AddPersonexp() {
+	mystruct := ""
+	if f.userinfo != nil {
+		var userExpe account.Lctb_personExperience
+		userExpe.Lc_experKind, err: = f.GetInt("Lc_experKind")
+		userExpe.Lc_unitType, err: = f.GetInt("Lc_unitType")
+		userExpe.Lc_unitName = f.GetString("Lc_unitName")
+		userExpe.Lc_beginTime = f.GetString("Lc_beginTime")
+		userExpe.Lc_endTime = f.GetString("Lc_endTime")
+		exps := [...]account.Lctb_personExperience{userExpe}
+		err := db.AddPersonExperience(exps)
+		if err != nil {
+			mystruct = `{result:false}`
+		} else {
+			mystruct = `{result:true}`
+		}
+	} else {
+		//用户未登录，返回失败
+		mystruct = `{result:false}`
+	}
+
+	f.Data["json"] = &mystruct
+	f.ServeJson()
+
+}
+
 func (f *MyinfoController) UpdateBaseInfo() {
 	mystruct := ""
 	if f.userinfo != nil {
