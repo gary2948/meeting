@@ -74,13 +74,15 @@ func (f *MyinfoController) AddPersonexp() {
 	mystruct := ""
 	if f.userinfo != nil {
 		var userExpe account.Lctb_personExperience
-		userExpe.Lc_experKind, err: = f.GetInt("Lc_experKind")
-		userExpe.Lc_unitType, err: = f.GetInt("Lc_unitType")
+		expkind, _ := f.GetInt("Lc_experKind")
+		unittype, _ := f.GetInt("Lc_unitType")
+		userExpe.Lc_experKind, _ = int64(expkind)
+		userExpe.Lc_unitType, _ = int64(unittype)
 		userExpe.Lc_unitName = f.GetString("Lc_unitName")
 		userExpe.Lc_beginTime = f.GetString("Lc_beginTime")
 		userExpe.Lc_endTime = f.GetString("Lc_endTime")
 		exps := [...]account.Lctb_personExperience{userExpe}
-		err := db.AddPersonExperience(exps)
+		err := db.AddPersonExperience(*exps)
 		if err != nil {
 			mystruct = `{result:false}`
 		} else {
