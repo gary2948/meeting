@@ -87,7 +87,7 @@
                                        <p class="icon_p tl_r">
                                            <input type="button" class="addbtn fr quxiao_btn zc_qx " value="取消" />
                                            <input type="button" class="addbtn fr save_edu2" id="zy_addnew_exp" value="保存" />
-                                           <label style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>
+                                           <label id="zy_status" style="color:red;float:right;margin-right: 10px;margin-top:1px;display: none;">保存成功!</label>
                                         </p>
                                 </td>
                             </tr>
@@ -497,19 +497,19 @@ jQuery(document).ready(function(){
         		data = eval("(" + data + ")");
 				if (data.result)
 				{
-					jQuery(this).next().show();
-					setTimeout("jQuery('this').parent().parent().parent().hide();",200); 	
+					jQuery("#zy_status").show();
+					setTimeout("jQuery('.zhich_tr_new').hide();",200); 	
 									
 				}
 				else
 				{
-				jQuery(this).next()[0].innerHTML="保存失败";
-				jQuery(this).next().show();
+				jQuery("#zy_status").show();
+				jQuery("#zy_status")[0].innerHTML="保存失败";
 				}
 			},
 			error:function(data){
-				jQuery(this).next()[0].innerHTML="保存失败";
-				jQuery(this).next().show();
+				jQuery("#zy_status").show();
+				jQuery("#zy_status")[0].innerHTML="保存失败";
 			}
 		});
 	
