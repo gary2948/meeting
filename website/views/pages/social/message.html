@@ -92,6 +92,16 @@
 </div><!--#myModal-->
 
 <script type="text/javascript">
+jQuery("#closethisbtn").click(function(){
+	if(jQuery("#mes").val()){
+		jQuery("#mes").val("")
+	}
+	if(jQuery("#resultsendmessage")[0].innerHTML){
+		jQuery("#resultsendmessage")[0].innerHTML=""
+	}
+
+
+})
 
 jQuery("#itsendmessageBtn").click(function(){
 	var mes =jQuery("#mes").val();
