@@ -94,13 +94,12 @@ func (f *MyinfoController) AddPersonexp() {
 			endTime := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local)
 			userExpe.Lc_endTime = endTime
 		}
-		var exps *[]account.Lctb_personExperience = new([]account.Lctb_personExperience)
-		exps = &[]account.Lctb_personExperience{userExpe}
-		err := db.AddPersonExperience(exps)
+
+		Id, err := db.AddPersonExperience(userExpe)
 		if err != nil {
 			mystruct = `{result:false}`
 		} else {
-			mystruct = `{result:true}`
+			mystruct = `{result:true, Id:` + Id + `}`
 		}
 	} else {
 		//用户未登录，返回失败
@@ -138,9 +137,7 @@ func (f *MyinfoController) UpdatePersonexp() {
 			endTime := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local)
 			userExpe.Lc_endTime = endTime
 		}
-		var exps *[]account.Lctb_personExperience = new([]account.Lctb_personExperience)
-		exps = &[]account.Lctb_personExperience{userExpe}
-		err := db.UpdatePersonExperience(userExpe.Id, exps)
+		err := db.UpdatePersonExperience(userExpe.Id, userExpe)
 		if err != nil {
 			mystruct = `{result:false}`
 		} else {
