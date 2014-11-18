@@ -245,7 +245,7 @@ func AddPersonExperience(pe account.Lctb_personExperience) (int64, error) {
 
 	n, err := engine.Insert(pe)
 	if n == 0 || err != nil {
-		return int64(-1), errors.New(commonPackage.ErrSys)
+		return -1, errors.New(commonPackage.ErrSys)
 	}
 
 	return pe.Id, err
