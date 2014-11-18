@@ -243,7 +243,7 @@ func AddPersonExperience(pe account.Lctb_personExperience) (int64, error) {
 	engine, err := GetAccountEng()
 	checkError(err)
 
-	n, err := engine.Insert(pe)
+	n, err := engine.Insert(&pe)
 	if n == 0 || err != nil {
 		return -1, errors.New(commonPackage.ErrSys)
 	}
