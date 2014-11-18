@@ -239,23 +239,23 @@ func GetPersonExperience(userId int64, pe *[]account.Lctb_personExperience) erro
 	return err
 }
 
-func AddPersonExperience(pe *[]account.Lctb_personExperience) error {
+func AddPersonExperience(pe account.Lctb_personExperience) (int64, error) {
 	engine, err := GetAccountEng()
 	checkError(err)
 
 	n, err := engine.Insert(pe)
 	if n == 0 || err != nil {
-		return errors.New(commonPackage.ErrSys)
+		return int64(-1), errors.New(commonPackage.ErrSys)
 	}
 
-	return err
+	return pe.Id, err
 }
 
-func UpdatePersonExperience(Id int64, pe *[]account.Lctb_personExperience) error {
+func UpdatePersonExperience(Id int64, pe account.Lctb_personExperience) error {
 	engine, err := GetAccountEng()
 	checkError(err)
 
-	n, err := engine.Where("id = ?", Id).Update(pe)
+	n, err := engine.Id(Id).Update(&pe)
 	if n == 0 || err != nil {
 		return errors.New(commonPackage.ErrSys)
 	}
