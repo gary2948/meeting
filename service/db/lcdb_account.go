@@ -235,7 +235,7 @@ func GetAccountExById(userId int64, userEx *account.Lctb_userInfoEx) (bool, erro
 func GetPersonExperience(userId int64, pe *[]account.Lctb_personExperience) error {
 	engine, err := GetAccountEng()
 	checkError(err)
-	err = engine.Desc("id").Where("lc_user_info_id=?", userId).Find(pe)
+	err = engine.Asc("id").Where("lc_user_info_id=?", userId).Find(pe)
 	return err
 }
 
