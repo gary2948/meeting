@@ -96,10 +96,11 @@ func (f *MyinfoController) AddPersonexp() {
 		}
 
 		Id, err := db.AddPersonExperience(userExpe)
+		tempid := strconv.FormatInt(Id, 10)
 		if err != nil {
 			mystruct = `{result:false}`
 		} else {
-			mystruct = `{result:true, Id:` + Id + `}`
+			mystruct = `{result:true, Id:` + tempid + `}`
 		}
 	} else {
 		//用户未登录，返回失败

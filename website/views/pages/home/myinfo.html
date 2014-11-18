@@ -99,7 +99,7 @@
                                 <span class="nametext" style="left:0;width:100%;height:auto;background-color:#f2f2f2;max-width:100%;">
                                       <div class="list_workinfo"> 
                                              <div><span class="thestarttimes" data_num="{{$val.Lc_beginTime}}"></span>-<span class="theendtimes" data_num="{{$val.Lc_endTime}}"></span></div>
-                                             <div title="{{$val.Lc_unitName}}">{{$val.Lc_unitName}}</div>
+                                             <div title="{{$val.Lc_unitName}}" class="Lc_unitName">{{$val.Lc_unitName}}</div>
                                              <div title="职位啊啊啊啊啊">职位啊啊啊啊啊</div>
                                         </div>
                                      </span>
@@ -356,7 +356,7 @@
                                 <span class="nametext" style="left:0;width:100%;height:auto;max-width:100%;">
                                       <p class="list_educate"> 
                                              <span class="thestarttimes" data_num="{{$val.Lc_beginTime}}"></span><span>-</span><span class="theendtimes" data_num="{{$val.Lc_endTime}}"></span>
-                                             <span>{{$val.Lc_unitName}}</span>
+                                             <span  class="Lc_unitName">{{$val.Lc_unitName}}</span>
                                              <span>某某专业</span>
                                         </p>
                                      </span>
@@ -487,6 +487,9 @@ function trim(text)
 				jQuery(obj).next().show();
 		        jQuery(obj).parent().parent().parent().hide();
 		        jQuery(obj).parent().parent().parent().prev().show();
+				jQuery(obj).parent().parent().parent().prev().find(".Lc_unitName").html(Lc_unitName);
+				jQuery(obj).parent().parent().parent().prev().find(".thestarttimes").html(Lc_beginTime);
+				jQuery(obj).parent().parent().parent().prev().find(".theendtimes").html(Lc_endTime);
 									
 				}
 				else
@@ -541,6 +544,11 @@ jQuery(document).ready(function(){
     })
     jQuery("#addnew_edu").live("click",function(){
         jQuery(".new_edulist").show();
+		jQuery("#Lc_unitName_jy").val("");
+		jQuery("#Lc_beginTime_jy").val("");
+		jQuery("#Lc_endTime_jy").val("");
+		jQuery("#jy_status").hide();
+		
 
     })
     jQuery(".zc_qx").live("click",function(){
@@ -553,6 +561,10 @@ jQuery(document).ready(function(){
     })
     jQuery("#zhich_info").live("click",function(){
         jQuery(".zhich_tr_new").show();
+		jQuery("#Lc_unitName_zy").val("");
+		jQuery("#Lc_beginTime_zy").val("");
+		jQuery("#Lc_endTime_zy").val("");
+		jQuery("#zy_status").hide();
 
     })
 	//增加职业信息
@@ -589,7 +601,7 @@ jQuery(document).ready(function(){
                                ' <span class="nametext" style="left:0;width:100%;height:auto;background-color:#f2f2f2;max-width:100%;">'+
                                      ' <div class="list_workinfo"> '+
                                             ' <div><span class="thestarttimes" data_num="'+Lc_beginTime+'">'+Lc_beginTime+'</span>-<span class="theendtimes" data_num="'+Lc_endTime+'">'+Lc_endTime+'</span></div>'+
-                                            ' <div title="'+Lc_unitName+'">'+Lc_unitName+'</div>'+
+                                            ' <div title="'+Lc_unitName+'"  class="Lc_unitName">'+Lc_unitName+'</div>'+
                                             ' <div title="职位啊啊啊啊啊">职位啊啊啊啊啊</div>'+
                                        ' </div>'+
                                      '</span>'+
@@ -606,6 +618,7 @@ jQuery(document).ready(function(){
                                      '<p class="icon_p">'+
 									       ' <input type="hidden"  name="Lc_experKind"  value="2" />'+
 									       ' <input type="hidden"  name="Lc_unitType"  value="2" />'+
+											'<input type="hidden"  name="Id"  value="'+data.Id+'" />'+
                                           '  <label class="left_name" style="width:70px;">公司名称:</label>'+
                                           '  <input class="right_input" type="text" name="Lc_unitName"  value="'+Lc_unitName+'" />'+
                                        ' </p>'+
@@ -691,7 +704,7 @@ jQuery(document).ready(function(){
                                 '<span class="nametext" style="left:0;width:100%;height:auto;max-width:100%;">'+
                                      ' <p class="list_educate"> '+
                                             ' <span class="thestarttimes" data_num="'+Lc_beginTime+'"">'+Lc_beginTime+'</span><span>-</span><span class="theendtimes" data_num="'+Lc_endTime+' ">'+Lc_endTime+'</span>'+
-                                             '<span>'+Lc_unitName+'</span>'+
+                                             '<span  class="Lc_unitName">'+Lc_unitName+'</span>'+
                                             ' <span>某某专业</span>'+
                                         '</p>'+
                                     ' </span>'+
@@ -712,6 +725,7 @@ jQuery(document).ready(function(){
                                  '  <p class="icon_p">'+
 									       ' <input type="hidden"  name="Lc_experKind"  value="1" />'+
 									       ' <input type="hidden"  name="Lc_unitType"  value="1" />'+
+											'<input type="hidden"  name="Id"  value="'+data.Id+'" />'+
                                       '      <label class="left_name">学校名称:</label>'+
                                           '  <input class="right_input" type="text" name="Lc_unitName"  value="'+Lc_unitName+'" />'+
                                         '</p>'+
