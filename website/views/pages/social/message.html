@@ -7,9 +7,9 @@
 
          <span class="creatmeetingbtn"><a href="#Sendmessage" data-toggle="modal">写新信息</a></span>
 
-         <form style="float:right;">
+         <form style="float:right;" method="post" action="searchaccountbyemail">
            <input type="submit" class="addbtn fr" value="搜索" />
-           <input type="text" class="addinput" placeholder="输入搜索内容" />
+           <input type="text" name="email" class="addinput" placeholder="输入用户邮箱地址" />
 
          </form>
 
@@ -26,22 +26,28 @@
 
                                     <div  class="pane" id="tabs_jx" style="width:98%;margin:10px auto;">
                                     <table style="width:100%" class="main_meeting_table">
+									{{if .ret }}
                                         <tr class="main_meeting sixinhover">
                                         <td align="center" style="border-right:none;"  width="6%"><div class="ztais aite"></div></td>
                                             <td style="border-right:none;" width="64%">
                                             <a href="#" class="meeting_a_thime">
-                                                <div class="fl"> <img src="static/newstyle/images/nohead.png" border="0" /></div>
+                                                <div class="fl"> <img src="{{.searchuser.Lc_photoFile}}" border="0" /></div>
                                                 <div class="fl mt3 ml10">
-                                                  <div class="mywork">张三</div>
+                                                  <div class="mywork">{{.searchuser.Lc_nickName}}</div>
                                                   <div class="clear"></div>
-                                                  <div class="meet_time">当代活雷锋</div>
+                                                  <div class="meet_time">{{.searchuser.Lc_email}}</div>
                                                 </div>
                                              </a>
 
                                             </td>
-                                            <td align="center" class="righthovers" width="30%">2014-09-09 13:44</td>
+                                            <td align="center" class="righthovers" width="30%">{{.searchuser.Lc_regTime}}</td>
                                         </tr>
-                                        <tr class="main_meeting sixinhover">
+										{{else}}
+                                      <tr class="main_meeting sixinhover">    
+                                            <td colspan="3">无搜索结果</td>
+                                        </tr>
+									  {{end}}
+                                        <!--tr class="main_meeting sixinhover">
                                         <td align="center" style="border-right:none;"  width="6%"><div class="ztais xinfeng"></div></td>
                                             <td style="border-right:none;" width="64%">
                                             <a href="#" class="meeting_a_thime">
@@ -55,7 +61,7 @@
 
                                             </td>
                                             <td align="center" class="righthovers" width="30%">2014-09-09 13:44</td>
-                                        </tr>
+                                        </tr -->
                                     </table>
 
 

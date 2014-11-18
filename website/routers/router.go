@@ -128,6 +128,8 @@ func registRoter() {
 	beego.Router("/groupcontact", &controllers.SocialController{}, "*:Groupcontact")
 	//发私信
 	beego.Router("/sendmsg", &controllers.SocialController{}, "post:SendMessages")
+	//通过邮箱搜索用户
+	beego.Router("/searchaccountbyemail", &controllers.SocialController{}, "post:SearchAccountByEmail")
 
 	/////////////////////
 	//

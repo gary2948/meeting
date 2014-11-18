@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"commonPackage/model/account"
 	"fmt"
 	"service/db"
 	"time"
@@ -51,6 +52,24 @@ func (f *SocialController) SendMessages() {
 	f.ServeJson()
 
 }
+
+//通过邮箱搜索用户
+func (f *SocialController) SearchAccountByEmail() {
+	if f.userinfo != nil {
+		var searchuser account.Lctb_userInfo
+		var userEmail = f.GetString("email")
+		ret, _ := db.GetAccountByEmail(userEmail, &searchuser)
+		fmt.Println(ret)
+		f.Data["userinfo"] = f.userinfo
+		f.Data["ret"] = ret
+		if ret {
+			f.Data["searchuser"] = searchuser
+			fmt.Println(searchuser)
+		}
+		f.TplNames = "pages/social/message.html"
+	}
+}
+
 func (h *SocialController) Group() {
 	if h.userinfo != nil {
 		h.Data["userinfo"] = h.userinfo
