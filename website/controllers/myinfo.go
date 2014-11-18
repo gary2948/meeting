@@ -120,7 +120,8 @@ func (f *MyinfoController) UpdatePersonexp() {
 		userExpe.Lc_experKind, _ = strconv.Atoi(f.GetString("Lc_experKind"))
 		userExpe.Lc_unitType, _ = strconv.Atoi(f.GetString("Lc_unitType"))
 		userExpe.Lc_unitName = f.GetString("Lc_unitName")
-		userExpe.Lc_userInfoId = f.userinfo.Id
+		tempid, _ := strconv.Atoi(f.GetString("Id"))
+		userExpe.Id = int64(tempid)
 		if f.GetString("Lc_beginTime") != "" {
 			dates := strings.Split(f.GetString("Lc_beginTime"), "-")
 			year, _ := strconv.Atoi(dates[0])
@@ -139,7 +140,7 @@ func (f *MyinfoController) UpdatePersonexp() {
 		}
 		var exps *[]account.Lctb_personExperience = new([]account.Lctb_personExperience)
 		exps = &[]account.Lctb_personExperience{userExpe}
-		err := db.UpdatePersonExperience(f.userinfo.Id, exps)
+		err := db.UpdatePersonExperience(userExpe.Id, exps)
 		if err != nil {
 			mystruct = `{result:false}`
 		} else {

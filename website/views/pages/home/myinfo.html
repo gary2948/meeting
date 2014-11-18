@@ -116,6 +116,7 @@
                                      <p class="icon_p">
 									        <input type="hidden"  name="Lc_experKind"  value="2" />
 									        <input type="hidden"  name="Lc_unitType"  value="2" />
+											<input type="hidden"  name="Id"  value="{{$val.Id}}" />
                                             <label class="left_name" style="width:70px;">公司名称:</label>
                                             <input class="right_input" type="text" name="Lc_unitName"  value="{{$val.Lc_unitName}}" />
                                         </p>
@@ -376,6 +377,7 @@
                                    <p class="icon_p">
 									        <input type="hidden"  name="Lc_experKind"  value="1" />
 									        <input type="hidden"  name="Lc_unitType"  value="1" />
+											<input type="hidden"  name="Id"  value="{{$val.Id}}" />
                                             <label class="left_name">学校名称:</label>
                                             <input class="right_input" type="text" name="Lc_unitName"  value="{{$val.Lc_unitName}}" />
                                         </p>
@@ -461,6 +463,7 @@ function trim(text)
 		var Lc_unitName=jQuery(obj).parent().parent().find("input[name=Lc_unitName]").val();
 		var Lc_beginTime=jQuery(obj).parent().parent().find("input[name=Lc_beginTime]").val();
 		var Lc_endTime=jQuery(obj).parent().parent().find("input[name=Lc_endTime]").val();
+		var Id=jQuery(obj).parent().parent().find("input[name=Id]").val();
 		if(!trim(Lc_unitName)){
 			alert("名称不能为空");
 			return;
@@ -472,7 +475,7 @@ function trim(text)
 		if(!Lc_endTime){
 			Lc_endTime=new Date().Format("yyyy-MM-dd");	
 		}
-		var param={Lc_experKind:Lc_experKind,Lc_unitType:Lc_unitType,Lc_unitName:Lc_unitName,Lc_beginTime:Lc_beginTime,Lc_endTime:Lc_endTime}
+		var param={Id:Id,Lc_experKind:Lc_experKind,Lc_unitType:Lc_unitType,Lc_unitName:Lc_unitName,Lc_beginTime:Lc_beginTime,Lc_endTime:Lc_endTime}
 		jQuery.ajax({
 		    url: '/updatepersonexp',
 		    type: 'POST',
