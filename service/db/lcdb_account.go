@@ -251,11 +251,11 @@ func AddPersonExperience(pe *[]account.Lctb_personExperience) error {
 	return err
 }
 
-func UpdatePersonExperience(userId int64, pe *[]account.Lctb_personExperience) error {
+func UpdatePersonExperience(Id int64, pe *[]account.Lctb_personExperience) error {
 	engine, err := GetAccountEng()
 	checkError(err)
 
-	n, err := engine.Where("lc_user_info_id = ?", userId).Update(pe)
+	n, err := engine.Where("id = ?", Id).Update(pe)
 	if n == 0 || err != nil {
 		return errors.New(commonPackage.ErrSys)
 	}
