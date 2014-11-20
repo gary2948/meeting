@@ -4,6 +4,7 @@ import (
 	"commonPackage/model/account"
 	"fmt"
 	"service/db"
+	"strconv"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -72,6 +73,28 @@ func (f *SocialController) SearchAccountByEmail() {
 		}
 		//f.TplNames = "pages/social/message.html"
 	}
+}
+
+//关注用户
+func (f *SocialController) FollowtheUsers() {
+	mystruct := ""
+	if f.userinfo != nil {
+		Followid := f.GetString("followid")
+		tempid, _ := strconv.Atoi(Followid)
+		var exps = []int64{int64(tempid)}
+		err := db.FollowUser(f.userinfo.Id, 1, exps)
+		fmt.Println(err)
+		if err != nil {
+			mystruct = `{result:false}`
+		} else {
+			mystruct = `{result:true}`
+		}
+	} else {
+		//用户未登录，返回失败
+		mystruct = `{result:false}`
+	}
+	f.Data["json"] = &mystruct
+	f.ServeJson()
 }
 
 func (h *SocialController) Group() {

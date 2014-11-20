@@ -248,14 +248,14 @@ jQuery(document).ready(function(){
 	               '<div class="dt_rel_name">'+Lc_nickName+' </div>'+
 	              ' <div class="commen_one_tr">邮箱：'+data.Lc_email+'</div>'+
 	               '<div class="commen_one_tr">手机：'+data.Lc_mobilePhone+'</div>'+
-	               '<div class="commen_one_tr"><a href="#" class="add_addbtn"><span class="fa fa-plus"></span> 加关注</a></div>'+
+	               '<div class="commen_one_tr"><a href="javascript:void(0)" id="getFollowuser" class="add_addbtn" data_id='+data.Id+'><span class="fa fa-plus"></span> 加关注</a></div>'+
 	            '</div>';
 				
 				jQuery("#email_result").html(emailhtml);
 
 				}else{
 				  jQuery("#email_noresult").html("当前无搜索结果");
-				jQuery("#email_result").html("");
+				 jQuery("#email_result").html("");
 				}
 			},
 			error:function(data){
@@ -268,6 +268,37 @@ jQuery(document).ready(function(){
 
 
     })
+	jQuery("#getFollowuser").live("click",function(){
+		var followid=jQuery(this).attr("data_id");
+		if(followid){
+			var param={followid:followid}
+		jQuery.ajax({
+		    url: '/searchaccountbyemail',
+		    type: 'POST',
+			data: param,
+		    success:function(data){
+        		data = eval("(" + data + ")");
+				if (data.result){
+					$("#getFollowuser").html('<span class="fa fa-check"></span> 已关注</a>')
+					$("#getFollowuser").css({"background-color":"#aaa", "cursor":"defult"})
+				}
+				else{
+					alert("关注失败！");
+					
+				}
+			},
+			error:function(data){
+					alert("关注失败！");
+			}
+		 })
+			
+		}
+	
+	
+	})
+	
+	
+	
 	
     //加载即调用
     confine();      
