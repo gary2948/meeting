@@ -63,10 +63,14 @@ func (f *SocialController) SearchAccountByEmail() {
 		f.Data["userinfo"] = f.userinfo
 		f.Data["ret"] = ret
 		if ret {
-			f.Data["searchuser"] = searchuser
+			f.Data["json"] = searchuser
+			f.ServeJson()
 			fmt.Println(searchuser)
+		} else {
+			f.Data["json"] = `{result:false}`
+			f.ServeJson()
 		}
-		f.TplNames = "pages/social/message.html"
+		//f.TplNames = "pages/social/message.html"
 	}
 }
 

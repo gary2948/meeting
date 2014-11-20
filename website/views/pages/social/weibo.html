@@ -37,57 +37,19 @@ function css(obj, attr, value)
         maxNum - Math.floor(iLen) >= 0 ? (css(oMaxNum, "color", ""), oCountTxt.innerHTML = "\u8fd8\u80fd\u8f93\u5165", bSend = true) : (css(oMaxNum, "color", "#f60"), oCountTxt.innerHTML = "\u5df2\u8d85\u51fa", bSend = false)
     }
 
+//字符串去掉空格函数
+function trim(text)
+{
+  if (typeof(text) == "string")
+  {
+    return text.replace(/^\s*|\s*$/g, "");
+  }
+  else
+  {
+    return text;
+  }
+}
 
-jQuery(document).ready(function() {
-
-    //加载即调用
-    confine();      
-    jQuery(".wb_textarea").focus(function(){
-        confine();  
-    })
-
-    jQuery(".wb_textarea").keyup(function(){
-        confine();  
-    })
-    jQuery(".wb_textarea").change(function(){
-        confine();  
-    })
-
-    var myDate = new Date();
-    var themonth=parseInt(myDate.getMonth())+1; 
-    var thedate=myDate.getDate(); 
-    var theweek=myDate.getDay();
-    var week;
-    switch (theweek)
-    {
-    case 0:
-      week="星期天";
-      break;
-    case 1:
-      week="星期一";
-      break;
-    case 2:
-      week="星期二";
-      break;
-    case 3:
-      week="星期三";
-      break;
-    case 4:
-      week="星期四";
-      break;
-    case 5:
-      week="星期五";
-      break;
-    case 6:
-      week="星期六";
-      break;
-    }
-   jQuery("#month").html(themonth+"月");
-   jQuery("#date_d").html(thedate);
-   jQuery("#week_b").html(week);
-
-
-})
 
 </script>
         
@@ -209,14 +171,149 @@ jQuery(document).ready(function() {
 
 
 
-
                   
 
                      </div>
+					<div class="commen_one_tr" style="margin-left:2%;margin-top:15px; float:left;">
+					  <a href="#searchemail" id="hsearch_btn" data-toggle="modal" class="add_addbtn"><span class="fa fa-search"></span> 搜索好友</a>
+					</div>
+
                 </div><!--tabbedwidget-->
                         
                 
                 {{template "template/footer.html"}}
                 
             </div><!--maincontentinner-->
+			
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade in" id="searchemail">
+    <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+        <h3 id="myModalLabel">搜索好友</h3>
+    </div>
+    <div class="modal-body" style="min-height:350px;">
+           <input type="button" class="addbtn fr" id="thesearchEmailbtn" value="搜索" />
+           <input type="text" name="email"  class="addinput" placeholder="输入用户邮箱地址"  style="height:30px;width:440px;" />
+		
+		<div class="searchemaillist">
+	      <div class="pageheader_dt" style="border-bottom:none;">
+		     <div class="ithas" id="email_result">
+
+			</div>
+			<div class="itnohave" id="email_noresult"></div>
+	      </div>
+		</div>
+			
+    </div>
+    <div class="modal-footer"></div>
+</div><!--#myModal-->
+<style>
+.searchemaillist{float:left;width:524px;margin:20px auto;}
+.ithas{overflow:hidden;}
+.itnohave{clear:left;float:left;dispaly:none;}
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery("#hsearch_btn").live("click",function(){
+		setTimeout("jQuery('#thesearchEmailbtn').next().focus();",500); 
+		setTimeout("jQuery('#thesearchEmailbtn').next().focus();",1000); 	
+	})
+    jQuery("#thesearchEmailbtn").live("click",function(){
+		var email=jQuery(this).next().val();
+		if(trim(email)==""){
+			alert("搜索邮箱不能为空");
+			return;
+		}else{	
+		var param={email:email}
+		jQuery.ajax({
+		    url: '/searchaccountbyemail',
+		    type: 'POST',
+			data: param,
+		    success:function(data){
+				if (data.Id)
+				{
+				jQuery("#email_noresult").html("");
+				var Lc_photoFile=data.Lc_photoFile;
+				if(Lc_photoFile==""){
+					Lc_photoFile="static/newstyle/images/nohead.png"
+				}
+				var Lc_nickName=data.Lc_nickName;
+				if(Lc_nickName==""){
+					Lc_nickName=data.Lc_realName;
+				}
+				  var emailhtml='<div class="lefthead_img">'+
+	                '<a href="/changehead"><img src="'+Lc_photoFile+'"></a>'+
+	            '</div>'+
+	           ' <div class="right_dtai_info">'+
+	               '<div class="dt_rel_name">'+Lc_nickName+' </div>'+
+	              ' <div class="commen_one_tr">邮箱：'+data.Lc_email+'</div>'+
+	               '<div class="commen_one_tr">手机：'+data.Lc_mobilePhone+'</div>'+
+	               '<div class="commen_one_tr"><a href="#" class="add_addbtn"><span class="fa fa-plus"></span> 加关注</a></div>'+
+	            '</div>';
+				
+				jQuery("#email_result").html(emailhtml);
+
+				}else{
+				  jQuery("#email_noresult").html("当前无搜索结果");
+				jQuery("#email_result").html("");
+				}
+			},
+			error:function(data){
+				  jQuery("#email_noresult").html("<span style='color:red'>搜索失败,返回错误</span>");
+				jQuery("#email_result").html("");	
+			}
+		});
+			
+		}
+
+
+    })
+	
+    //加载即调用
+    confine();      
+    jQuery(".wb_textarea").focus(function(){
+        confine();  
+    })
+
+    jQuery(".wb_textarea").keyup(function(){
+        confine();  
+    })
+    jQuery(".wb_textarea").change(function(){
+        confine();  
+    })
+
+    var myDate = new Date();
+    var themonth=parseInt(myDate.getMonth())+1; 
+    var thedate=myDate.getDate(); 
+    var theweek=myDate.getDay();
+    var week;
+    switch (theweek)
+    {
+    case 0:
+      week="星期天";
+      break;
+    case 1:
+      week="星期一";
+      break;
+    case 2:
+      week="星期二";
+      break;
+    case 3:
+      week="星期三";
+      break;
+    case 4:
+      week="星期四";
+      break;
+    case 5:
+      week="星期五";
+      break;
+    case 6:
+      week="星期六";
+      break;
+    }
+   jQuery("#month").html(themonth+"月");
+   jQuery("#date_d").html(thedate);
+   jQuery("#week_b").html(week);
+
+})
+</script>
 {{end}}
