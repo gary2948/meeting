@@ -210,6 +210,9 @@ function trim(text)
 .searchemaillist{float:left;width:524px;margin:20px auto;}
 .ithas{overflow:hidden;}
 .itnohave{clear:left;float:left;dispaly:none;}
+.ml15{margin-left:15px;}
+#cancel_guanzhu.already_addbtn {background-color: #999;color: #fff;cursor: default;padding: 5px 12px;}
+#cancel_guanzhu.already_addbtn:hover{text-decoration:none;}
 </style>
 <script type="text/javascript">
 jQuery(document).ready(function(){
@@ -248,7 +251,8 @@ jQuery(document).ready(function(){
 	               '<div class="dt_rel_name">'+Lc_nickName+' </div>'+
 	              ' <div class="commen_one_tr">邮箱：'+data.Lc_email+'</div>'+
 	               '<div class="commen_one_tr">手机：'+data.Lc_mobilePhone+'</div>'+
-	               '<div class="commen_one_tr"><a href="javascript:void(0)" id="getFollowuser" class="add_addbtn" data_id='+data.Id+'><span class="fa fa-plus"></span> 加关注</a></div>'+
+	               '<div class="commen_one_tr"><a href="javascript:void(0)" id="getFollowuser" class="add_addbtn" data_id='+data.Id+'><span class="fa fa-plus"></span> 加关注</a>'+
+				'<a href="javascript:void(0)" id="cancel_guanzhu" class="already_addbtn ml15" data_id='+data.Id+'><span class="fa fa-times"></span> 取消关注</a></div>'+
 	            '</div>';
 				
 				jQuery("#email_result").html(emailhtml);
@@ -273,14 +277,16 @@ jQuery(document).ready(function(){
 		if(followid){
 			var param={followid:followid}
 		jQuery.ajax({
-		    url: '/searchaccountbyemail',
+		    url: '/followtheusers',
 		    type: 'POST',
 			data: param,
 		    success:function(data){
         		data = eval("(" + data + ")");
 				if (data.result){
-					$("#getFollowuser").html('<span class="fa fa-check"></span> 已关注</a>')
-					$("#getFollowuser").css({"background-color":"#aaa", "cursor":"defult"})
+					jQuery("#getFollowuser").html('<span class="fa fa-check"></span> 已关注');
+					jQuery("#getFollowuser").css({"background-color":"#aaa", "cursor":"default"});
+					jQuery("#cancel_guanzhu").css({"background-color":"#3b6c8e", "cursor":"pointer"})
+					
 				}
 				else{
 					alert("关注失败！");
@@ -291,12 +297,39 @@ jQuery(document).ready(function(){
 					alert("关注失败！");
 			}
 		 })
-			
 		}
 	
+	})
+	//取消关注
+	
+	jQuery("#cancel_guanzhu").live("click",function(){
+		var followid=jQuery(this).attr("data_id");
+		if(followid){
+			var param={followid:followid}
+		jQuery.ajax({
+		    url: '/ufollowtheusers',
+		    type: 'POST',
+			data: param,
+		    success:function(data){
+        		data = eval("(" + data + ")");
+				if (data.result){
+					jQuery("#getFollowuser").html('<span class="fa fa-plus"></span> 加关注');
+					jQuery("#getFollowuser").removeAttr("style");
+					jQuery("#cancel_guanzhu").removeAttr("style")
+					
+				}
+				else{
+					alert("取消关注失败！");
+					
+				}
+			},
+			error:function(data){
+					alert("取消关注失败！");
+			}
+		 })
+		}
 	
 	})
-	
 	
 	
 	

@@ -97,6 +97,27 @@ func (f *SocialController) FollowtheUsers() {
 	f.ServeJson()
 }
 
+//取消关注
+func (f *SocialController) UfollowtheUsers() {
+	mystruct := ""
+	if f.userinfo != nil {
+		Followid := f.GetString("followid")
+		tempid, _ := strconv.Atoi(Followid)
+		err := db.UnFollowUser(f.userinfo.Id, int64(tempid))
+		fmt.Println(err)
+		if err != nil {
+			mystruct = `{result:false}`
+		} else {
+			mystruct = `{result:true}`
+		}
+	} else {
+		//用户未登录，返回失败
+		mystruct = `{result:false}`
+	}
+	f.Data["json"] = &mystruct
+	f.ServeJson()
+}
+
 func (h *SocialController) Group() {
 	if h.userinfo != nil {
 		h.Data["userinfo"] = h.userinfo
