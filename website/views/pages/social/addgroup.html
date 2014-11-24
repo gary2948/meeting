@@ -14,9 +14,10 @@
         <div class="maincontent">
             <div class="maincontentinner">
                 <div class="row-fluid">
+				<form method="post" action="/creatnewgroup" id="creatnewgroup_form">
                     <div id="dashboard-left" class="span8" style="min-height: 500px;">
                      <div class="group_name">
-                     <span class="red">*</span>小组名称：<input type="text" value="" maxlength="40" placeholder="输入小组名称"> 
+                     <span class="red">*</span>小组名称：<input type="text" value="" maxlength="40" id="groupName" name="groupName" placeholder="输入小组名称"> 
                        <span style="color:#999;">&nbsp;&nbsp;&nbsp;最多输入20个汉字或者40个字母</span>
                      </div>
                      <div class="group_addmethod">
@@ -26,15 +27,36 @@
                      <input type="radio" name="method" > 仅管理员邀请 </span>
                      </div>
                      <div class="group_name" style="text-indent: 0;margin-top:50px;">
-                     <span class="creatmeetingbtn" style="float:none;margin-left:95px;"><a href="#">创建</a></span>
+                     <span class="creatmeetingbtn" style="float:none;margin-left:95px;"><a href="javascript:void(0)" id="creatnegroupbtn">创建</a></span>
+					 &nbsp;&nbsp;&nbsp;<span style="color:red">{{.mystruct}}</span>
 
                      </div>
 
                 </div><!--tabbedwidget-->
+				</form>
                         
                 
                 {{template "template/footer.html"}}
                 
             </div><!--maincontentinner-->
+			
+			<script>
+			jQuery(initpage);
+			function initpage(){
+				function formsubmit_creatGroup(){
+					if(trim(jQuery("#groupName").val())==""){
+						alert("小组名称不能为空！");
+						jQuery("#groupName").focus();
+						return;
+					}else{
+						jQuery("#creatnewgroup_form").submit();
+					}
+				}
+				jQuery("#creatnegroupbtn").on("click",formsubmit_creatGroup);
+			}
+			
+			
+			</script>
+			
 {{end}}
         

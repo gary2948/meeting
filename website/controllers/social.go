@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"commonPackage/model/account"
+	"commonPackage/model/social"
 	"fmt"
 	"service/db"
 	"strconv"
@@ -118,9 +119,39 @@ func (f *SocialController) UfollowtheUsers() {
 	f.ServeJson()
 }
 
+//创建小组
+func (f *SocialController) CreatnewGroup() {
+	mystruct := ""
+	if f.userinfo != nil {
+		groupName := f.GetString("groupName")
+		group_id, err := db.CreateGroup(f.userinfo.Id, groupName)
+		fmt.Println(group_id)
+		if err != nil {
+			mystruct = `创建失败`
+		} else {
+			mystruct = `创建成功`
+		}
+		f.Data["mystruct"] = mystruct
+		f.Data["userinfo"] = f.userinfo
+		f.TplNames = "pages/social/group.html"
+	} else {
+		//用户未登录
+		mystruct = `创建失败`
+		f.Data["mystruct"] = mystruct
+		f.Data["userinfo"] = f.userinfo
+		f.TplNames = "login.html"
+	}
+}
+
 func (h *SocialController) Group() {
 	if h.userinfo != nil {
+		var userGroup = make([]social.Lctb_talkGroup, 0)
+
+		_ = db.GetUserGroups(h.userinfo.Id, &userGroup)
+		fmt.Println(userGroup)
 		h.Data["userinfo"] = h.userinfo
+		h.Data["userGroup"] = userGroup
+		//fmt.Println(userExpe)
 		h.TplNames = "pages/social/group.html"
 	}
 }

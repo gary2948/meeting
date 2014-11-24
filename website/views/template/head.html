@@ -34,6 +34,18 @@ jQuery(document).ready(function(){
     jQuery("#progress_bar4").animate({width:percent4},1000);
     
 });
+//字符串去掉空格函数
+function trim(text)
+{
+  if (typeof(text) == "string")
+  {
+    return text.replace(/^\s*|\s*$/g, "");
+  }
+  else
+  {
+    return text;
+  }
+}
 
 </script>
         {{template "head"}}
