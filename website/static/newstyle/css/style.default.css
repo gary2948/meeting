@@ -1814,7 +1814,7 @@ transition: all 0.3s linear;
 .xinfeng{background-image: url("../images/envelope.png")}
 .sixinhover{cursor:pointer; }
 .show_infos{position:relative;width:30%;right:0;height:100%;background-color: #999;}
-.sixinhover .righthovers:hover{background-image: url("../images/xiangqing.png"); background-position: right center;background-size: contain; background-repeat: no-repeat; }
+.sixinhover:hover .righthovers{background-image: url("../images/xiangqing.png"); background-position: right center;background-size: contain; background-repeat: no-repeat; }
 .topbar_fl>.inner_topbar>div{float:left;margin:5px 5px 5px 3px;}
 .topbar_fl {width:100%; overflow: hidden;text-align: center;border-bottom: 1px solid #f2f2f2;}
 td>.already_addbtn{background-color: #999;color:#fff;cursor: default;padding:5px 12px;}
