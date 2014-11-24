@@ -131,9 +131,12 @@ func (f *SocialController) CreatnewGroup() {
 		} else {
 			mystruct = `创建成功`
 		}
+		var userGroup = make([]social.Lctb_talkGroup, 0)
+		_ = db.GetUserGroups(f.userinfo.Id, &userGroup)
+		f.Data["userGroup"] = userGroup
 		f.Data["mystruct"] = mystruct
 		f.Data["userinfo"] = f.userinfo
-		f.TplNames = "pages/social/group.html"
+		f.TplNames = "pages/success.html"
 	} else {
 		//用户未登录
 		mystruct = `创建失败`

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>操作成功</title>
+<link rel="stylesheet" href="static/newstyle/css/style.default.css" type="text/css" />
+<style>
+.loginpanelinner .font-size{font-size:25px;color:#fff;line-height: 2.0;}
+.loginpanelinner .mt10{margin-top:10px;}
+.loginpanelinner .bqa:link,.loginpanelinner .bqa:active,.loginpanelinner .bqa:visited{color:#74a4c6;}
+.loginpanelinner .bqa:hover{color:#f2f2f2;}
+</style>
+
+</head>
+
+<body class="loginpage">
+
+<div class="loginpanel">
+    <div class="loginpanelinner">
+        <div class="logo animate0 bounceIn"><img src="static/newstyle/images/logo.png" alt="" /></div>
+        <div class="animate1 bounceIn font-size">
+        恭喜你，创建小组成功！<span id="dt_nums">1</span>秒钟后自动跳转！
+        </div>
+        <div class="animate2 bounceIn font-size mt10">
+        也可以 <a href="/group" class="bqa" target="_self">点击此处</a> 进行跳转！
+        </div>
+    </div><!--loginpanelinner-->
+</div><!--loginpanel-->
+
+<div class="loginfooter">
+    <p>&copy; 2014. 励铖软件 All Rights Reserved.</p>
+</div>
+
+</body>
+</html>
+<script>
+var tdnum=document.getElementById("dt_nums").innerHTML;
+function countSecond()
+{
+    if(tdnum>0){
+       tdnum = tdnum-1;
+    　document.getElementById("dt_nums").innerHTML=tdnum;
+    　 setTimeout("countSecond()", 1000)
+    }else{
+        window.location.href="/group";
+    }
+}
+
+
+countSecond()
+</script>
