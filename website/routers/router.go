@@ -134,6 +134,8 @@ func registRoter() {
 	beego.Router("/followtheusers", &controllers.SocialController{}, "post:FollowtheUsers")
 	//取消关注
 	beego.Router("/ufollowtheusers", &controllers.SocialController{}, "post:UfollowtheUsers")
+	//关注列表
+	beego.Router("/followlist", &controllers.SocialController{}, "*:Followlist")
 	//创建小组
 	beego.Router("/creatnewgroup", &controllers.SocialController{}, "post:CreatnewGroup")
 

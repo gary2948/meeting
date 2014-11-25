@@ -21,6 +21,12 @@ func (h *SocialController) Weibo() {
 		h.TplNames = "pages/social/weibo.html"
 	}
 }
+func (h *SocialController) Followlist() {
+	if h.userinfo != nil {
+		h.Data["userinfo"] = h.userinfo
+		h.TplNames = "pages/social/followlist.html"
+	}
+}
 
 func (h *SocialController) Message() {
 	if h.userinfo != nil {

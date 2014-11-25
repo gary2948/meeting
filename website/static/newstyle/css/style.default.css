@@ -244,6 +244,8 @@ h1,h2,h3,h4,h5 { font-weight: normal; line-height: normal; }
 .shortcuts li .iconsi-wendang { background: url(../images/icons/icon-wendang.png) no-repeat center center; }
 .shortcuts li .iconsi-huiyi { background: url(../images/icons/meeting.png) no-repeat center center; }
 .shortcuts li .iconsi-cloud { background: url(../images/icons/cloud.png) no-repeat center center; }
+.shortcuts li .iconsi-guanzhu { background: url(../images/icons/guanzhu.png) no-repeat center center; }
+.shortcuts li .iconsi-fans { background: url(../images/icons/fans.png) no-repeat center center; }
 
 .widget {
 	-moz-box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
