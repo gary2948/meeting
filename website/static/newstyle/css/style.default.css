@@ -40,7 +40,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	line-height: 21px;
 	outline: none;
 }
-
+html,body{height:100%;}
 ::selection { background: #ccc; color: #fff; text-shadow: none; } /* Safari */
 ::-moz-selection { background: #ccc; color: #fff; text-shadow: none; } /* Firefox */
 :-moz-placeholder { color: #ccc; }
@@ -1213,7 +1213,7 @@ ul.list-inline li { display: inline-block; margin: 0 5px 10px 0; }
 
 .footer {
 		  font-size: 11px; color: #666; padding-top: 15px; margin-top: 40px;
-		  border-top: 1px solid #ccc; overflow: hidden; clear: both; }
+		  border-top: 1px solid #ccc; overflow: hidden; clear: both; position:relative;bottom:0;width:auto}
 .footer .footer-left { float: left; }
 .footer .footer-right { float: right; }
 
@@ -1853,6 +1853,8 @@ padding: 6px 20px;
 .suoding_it p{line-height: 2.0;padding:5px;}
 .changepassword_table tr td{color:#666;padding: 10px;}
 .changepassword_table tr{line-height: 2.0;}
+.mainwrapper{height:100%;}
+.rightpanel{height:calc(100% - 110px)}
 /*** MEDIA QUERIES ***/
 @media only screen and (max-width: 1090px){
 .headmenu > li.right{display: none;}

@@ -15,7 +15,7 @@ jQuery(document).ready(function() {
 </script>
 <style>
   ul li{list-style-type:none;}
- .gz_list{margin:15px;overflow:hidden;}
+ .gz_list{margin:0px 15px 15px 15px;overflow:hidden;}
  .gz_list li{width:250px;height:90px; background-color:#eee;padding:10px;float:left;margin-left:15px;margin-top:15px;}
  .gz_list li:hover{background-color:#e9e9e9;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.2);-moz-box-shadow: 0 1px 1px rgba(0,0,0,.2);box-shadow: 0 1px 1px rgba(0,0,0,.2);}
  .gz_left img{width:50px;margin-top:15px;}
@@ -23,48 +23,42 @@ jQuery(document).ready(function() {
  .gz_right{float:left;margin-left:10px;}
  .gz_right .name{width:160px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:15px;font-weight:bold;}
  .gz_right .guanzhu_icon{color:#808080}
+.topgroups{width:100%;line-height:1.5;font-size:16px;font-weight:bold;text-indent:1.5em;}
 </style>
 
         <div class="maincontent">
             <div class="maincontentinner">
             <div class="row-fluid">
                     <div id="dashboard-left" class="span8" >
+					{{range $key, $val := .userkinds}}
+					<div class="topgroups">{{$val.KindName}}</div>
 					  <ul class="gz_list"> 
+					  {{range $keys, $vallist := $val.CONTENT}}
 					    <li>
-						 <div class="gz_left"><img src="static/newstyle/images/nohead.png" /></div>
+						 <div class="gz_left"><img src="{{if $vallist.Lc_photoFile }}
+						                     {{$vallist.Lc_photoFile }}
+											{{else}}
+                                           static/newstyle/images/nohead.png
+											{{end}}" /></div>
 						 <div class="gz_right">
-						  <div class="name">张飒飒</div>
+						  <div class="name">{{$vallist.Lc_nickName}}</div>
 						  <div class="guanzhu_icon"><span class="fa fa-check"></span>已关注</div>
 						
 						 </div>
 					    </li>
-					    <li>
-						 <div class="gz_left"><img src="static/newstyle/images/nohead.png" /></div>
-						 <div class="gz_right">
-						  <div class="name">张飒飒</div>
-						  <div class="guanzhu_icon"><span class="fa fa-check"></span>已关注</div>
-						
-						 </div>
-					    </li>
-					    <li>
-						 <div class="gz_left"><img src="static/newstyle/images/nohead.png" /></div>
-						 <div class="gz_right">
-						  <div class="name">张飒飒</div>
-						  <div class="guanzhu_icon"><span class="fa fa-check"></span>已关注</div>
-						
-						 </div>
-					    </li>
-					
-					
-					
-					
+						{{end}}
+	
 					  </ul>
+					{{end}}
+					
+					
                      </div>
 
                 </div><!--tabbedwidget-->
                         
-                
-                {{template "template/footer.html"}}
+                	{{template "template/footer.html"}}
+             </div>
                 
             </div><!--maincontentinner-->
+
 {{end}}
