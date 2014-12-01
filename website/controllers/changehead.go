@@ -9,7 +9,9 @@ import (
 	"image"
 	"image/png"
 	"os"
+	"service/db"
 	"strconv"
+	"website/utils"
 )
 
 type ChangeheadController struct {
@@ -33,15 +35,16 @@ func (h *ChangeheadController) Post() {
 		left, _ := h.GetInt("left")
 		right, _ := h.GetInt("right")
 		bottom, _ := h.GetInt("bottom")
-		rotation := h.GetString("rotation")
-		fmt.Println(rotation)
-		h.Redirect("/changehead", 302)
+		//rotation := h.GetString("rotation")
 		fmt.Println(top)
 		fmt.Println(left)
 		fmt.Println(right)
 		fmt.Println(bottom)
-		file, h1, _ := h.GetFile("file") //获取上传的文件
-		path := "./static/img/" + h1.Filename
+
+		now := utils.GetRandFileName()
+
+		file, _, _ := h.GetFile("file") //获取上传的文件
+		path := "./static/img/head/" + now + ".png"
 		file.Close() // 关闭上传的文件，不然的话会出现临时文件不能清除的情况
 
 		h.SaveToFile("file", path) //存文件
@@ -55,38 +58,42 @@ func (h *ChangeheadController) Post() {
 		err = graphics.Scale(dst, src)
 		graphics.Scale(dst, src)
 
-		//dst = image.NewRGBA(image.Rect(int(top), int(left), int(right), int(bottom)))
-		//rotationf, _ := strconv.ParseFloat(rotation, 64)
-		//err = graphics.Rotate(dst, src, &graphics.RotateOptions{rotationf})
 		if err != nil {
 			panic(err)
 		}
 		// 需要保存的文件
-		saveImage(fmt.Sprintf("./static/img/IMG_2718tttt111.PNG"), dst)
+		savepath := "./static/img/head/" + now + ".png"
+		saveImage(fmt.Sprintf(savepath), dst)
 
-		//裁剪
-		src, err = LoadImage("./static/img/IMG_2718tttt111.PNG")
+		/*//裁剪
+		src, err = LoadImage(savepath)
 		if err != nil {
 			panic(err)
 		}
-		dst = image.NewRGBA(image.Rect(int(top), int(left), int(right), int(bottom)))
+		dst = image.NewRGBA(image.Rect(int(top), int(left), int(right)-int(left), int(bottom)-int(top)))
 		rotationf, _ := strconv.ParseFloat(rotation, 64)
 		err = graphics.Rotate(dst, src, &graphics.RotateOptions{rotationf})
 		if err != nil {
 			panic(err)
 		}
 		// 需要保存的文件
-		saveImage(fmt.Sprintf("./static/img/IMG_2718tttt111.PNG"), dst)
-
+		//saveImage(fmt.Sprintf(savepath), dst)
+		*/
 		ret := new(io.PutRet)
-		err = io.PutFile(nil, ret, commonPackage.Uptoken(), h1.Filename, "./static/img/IMG_2718tttt111.PNG", nil)
+		err = io.PutFile(nil, ret, commonPackage.Uptoken("meetinwareimgs", now), now, path, nil)
+		if err != nil {
+			panic(err)
+		}
 
-		durl := commonPackage.DownloadUrl(h1.Filename)
+		durl := "http://meetinwareimgs.qiniudn.com/" + now + "?imageMogr2/crop/!" + strconv.Itoa(int(right)-int(left)) + "x" + strconv.Itoa(int(bottom)-int(top)) + "a" + strconv.Itoa(int(left)) + "a" + strconv.Itoa(int(top))
+		h.userinfo.Lc_photoFile = durl
 		var vm2 viewModel.EditUserInfoModel
-		vm2.Lc_introduction = h.GetString("Lc_introduction")
-		fmt.Println(durl)
+		vm2.Lc_photoFile = durl
+		err = db.UpdateAccount(h.userinfo.Id, &vm2)
+		if err != nil {
+			panic(err)
+		}
 
-		fmt.Println(ret)
 		h.Redirect("/changehead", 302)
 	}
 

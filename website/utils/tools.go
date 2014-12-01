@@ -1,7 +1,11 @@
 package utils
 
 import (
+	"crypto/md5"
+	"encoding/hex"
+	"math/rand"
 	"strconv"
+	"time"
 )
 
 //空间容量显示数据转换
@@ -26,4 +30,19 @@ func SizePercent(usize, msize int64) (ret string) {
 	p := float64(usize) / float64(msize)
 	ret = strconv.FormatFloat(p, 'f', 0, 64) + "%"
 	return ret
+}
+
+//根据时间生成随机文件名
+func GetRandFileName() string {
+	rand.Seed(time.Now().Unix())
+	randNumber := strconv.Itoa(rand.Intn(5))
+	now := strconv.FormatInt(time.Now().Unix(), 10)
+	return now + randNumber
+}
+
+func StringMD5Value(value string) (result string) {
+	var md = md5.New()
+	md.Write([]byte(value))
+	result = hex.EncodeToString(md.Sum(nil))
+	return
 }
