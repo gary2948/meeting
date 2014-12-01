@@ -269,6 +269,35 @@ function submit_avatar(){
             div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
           }
 		jQuery(".headqueding").removeAttr("disabled");
+	    function adjust(el, selection) {
+	        var scaleX = jQuery(el).width() / (selection.width || 1);
+	        var scaleY = jQuery(el).height() / (selection.width || 1);
+	        jQuery(el+' img').css({
+	            width: Math.round(scaleX*jQuery('#avatar').width() ) + 'px',
+	            height: Math.round(scaleY*jQuery('#avatar').height() ) + 'px',
+	            marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+	            marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+	        });
+	    }
+	    function preview(img, selection) {
+	        adjust('#img_small_preview', selection);
+	        adjust('#img_big_preview', selection);
+	    }
+	    jQuery('#avatar').imgAreaSelect({
+	        aspectRatio: "4:4",
+	        x1: 60,
+	        y1:60,
+	        x2: 200,
+	        y2: 200,
+	        onSelectEnd:function(img, selection) {
+	            jQuery('#id_top').val(selection.y1);
+	            jQuery('#id_left').val(selection.x1);
+	            jQuery('#id_right').val(selection.x2);
+	            jQuery('#id_bottom').val(selection.y2);
+	        },
+	        onSelectChange: preview
+	    });
+		
         }
         function clacImgZoomParam( maxWidth, maxHeight, width, height ){
             var param = {top:0, left:0, width:width, height:height};
