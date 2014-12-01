@@ -1854,7 +1854,6 @@ padding: 6px 20px;
 .changepassword_table tr td{color:#666;padding: 10px;}
 .changepassword_table tr{line-height: 2.0;}
 .mainwrapper{height:100%;}
-.rightpanel{height:calc(100% - 110px)}
 /*** MEDIA QUERIES ***/
 @media only screen and (max-width: 1090px){
 .headmenu > li.right{display: none;}
