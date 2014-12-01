@@ -26,7 +26,7 @@ func (h *SocialController) Followlist() {
 	if h.userinfo != nil {
 		var userkinds = make([]viewModel.FollowKind, 0)
 		_ = db.GetFollows(h.userinfo.Id, &userkinds)
-		fmt.Println(userkinds)
+		//fmt.Println(userkinds)
 		h.Data["userinfo"] = h.userinfo
 		h.Data["userkinds"] = userkinds
 		h.TplNames = "pages/social/followlist.html"

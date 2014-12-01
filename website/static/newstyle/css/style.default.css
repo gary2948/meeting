@@ -40,7 +40,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	line-height: 21px;
 	outline: none;
 }
-html,body{height:100%;}
 ::selection { background: #ccc; color: #fff; text-shadow: none; } /* Safari */
 ::-moz-selection { background: #ccc; color: #fff; text-shadow: none; } /* Firefox */
 :-moz-placeholder { color: #ccc; }
