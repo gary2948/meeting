@@ -112,6 +112,7 @@ func UpdateAccount(userId int64, userInfo *viewModel.EditUserInfoModel) error {
 		user.Lc_introduction = userInfo.Lc_introduction
 		user.Lc_sex = userInfo.Lc_sex
 		user.Lc_postAddress = userInfo.Lc_postAddress
+		user.Lc_photoFile = userInfo.Lc_photoFile
 		_, err = engine.Id(userId).Update(user)
 	} else {
 		err = commonPackage.NewErr(commonPackage.ErrUserId)
