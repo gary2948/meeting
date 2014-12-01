@@ -16,6 +16,7 @@ import (
 
 const TimeFormat = "2006-01-02 15:04:05"
 const RTMP_PRIX = `rtmp://115.29.172.111:1935/live/livestream.`
+const ImgSpace = `http://meetinwareimgs.qiniudn.com/`
 
 func init() {
 	ACCESS_KEY = "spVfjluxAEzJTIDFQ-uNqORCKU-1GpJi8XMpA_ki"
@@ -24,73 +25,82 @@ func init() {
 	SK = SECRET_KEY
 	BucketName = "xybstone"
 	Domain = `xybstone.qiniudn.com`
+	ImgBucketName = `meetinwareimgs`
+	ImgDomain = `meetinwareimgs.qiniudn.com`
+	LcCallbackUrl = `http://58.246.49.158:8000/callback`
 }
 
 var BucketName string
+var ImgBucketName string
 var AK string
 var SK string
 var Domain string
+var ImgDomain string
+var LcCallbackUrl string
 
 //json字段定义
 const (
-	JSON_USERID        = "USERID"
-	JSON_USERIDS       = "USERIDS"
-	JSON_TOUSERID      = "TOUSERID"
-	JSON_USERNAME      = "USERNAME"
-	JSON_USERINFO      = "USERINFO"
-	JSON_USERINFOS     = "USERINFOS"
-	JSON_PASSWORD      = "PASSWORD"
-	JSON_GROUPID       = "GROUPID"
-	JSON_GROUPNAME     = "GROUPNAME"
-	JSON_GROUPINFO     = "GROUPINFO"
-	JSON_CONTENT       = "CONTENT"
-	JSON_EMAIL         = "EMAIL"
-	JSON_EMAILS        = "EMAILS"
-	JSON_OK            = "OK"
-	JSON_ERR           = "ERR"
-	JSON_TXTMSG        = "TXTMSG"
-	JSON_IMGMSG        = "IMGMSG"
-	JSON_NAME          = "NAME"
-	JSON_ROLE          = "ROLE"
-	JSON_MEETINGID     = "MEETINGID"
-	JSON_MEETINGDATE   = "MEETINGDATE"
-	JSON_MEETINGSTATUS = "MEETINGSTATUS"
-	JSON_BEGINTIME     = "BEGINTIME"
-	JSON_ENDTIME       = "ENDTIME"
-	JSON_TAG           = "TAG"
-	JSON_QUICKSTART    = "QUICKSTART"
-	JSON_PLANDATE      = "PLANDATE"
-	JSON_PLANSPAN      = "PLANSPAN"
-	JSON_SCHEMA        = "SCHEMA"
-	JSON_TOPIC         = "TOPIC"
-	JSON_CODE          = "CODE"
-	JSON_URL           = "URL"
-	JSON_PARENTID      = "PARENTID" //文件夹ID
-	JSON_COUNT         = "COUNT"
-	JSON_FOLDERNAME    = "FOLDERNAME"
-	JSON_FLODERID      = "FLODERID"
-	JSON_FILEID        = "FILEID"
-	JSON_FILEIDS       = "FILEIDS" //[]int64
-	JSON_FILEMAPID     = "FILEMAPID"
-	JSON_LINKFILEMAPID = "LINKFILEMAPID"
-	JSON_MD5           = "MD5"
-	JSON_FILENAME      = "FILENAME"
-	JSON_SHAREFILETYPE = "SHAREFILETYPE"
-	JSON_SHARENAME     = "SHARENAME"
-	JSON_FILEEXT       = "FILEEXT"
-	JSON_FILESIZE      = "FILESIZE"
-	JSON_SHAREINFOID   = "SHAREINFOID"
-	JSON_FOLLOWUID     = "FOLLOWUID"
-	JSON_FOLLOWUIDS    = "FOLLOWUIDS"
-	JSON_TYPE          = "TYPE"
-	JSON_POSTTIME      = "POSTTIME"
-	JSON_LIMIT         = "LIMIT"
-	JSON_START         = "START"
-	JSON_KINDNAME      = "KINDNAME"
-	JSON_KINDID        = "KINDID"
-	JSON_UPTOKEN       = "UPTOKEN"
-	JSON_DOWNLOADURL   = "DOWNLOADURL"
-	JSON_MYRTMPURL     = "MYRTMPURL"
+	JSON_USERID         = "USERID"
+	JSON_USERIDS        = "USERIDS"
+	JSON_TOUSERID       = "TOUSERID"
+	JSON_USERNAME       = "USERNAME"
+	JSON_USERINFO       = "USERINFO"
+	JSON_USERINFOS      = "USERINFOS"
+	JSON_PASSWORD       = "PASSWORD"
+	JSON_GROUPID        = "GROUPID"
+	JSON_GROUPNAME      = "GROUPNAME"
+	JSON_GROUPINFO      = "GROUPINFO"
+	JSON_CONTENT        = "CONTENT"
+	JSON_EMAIL          = "EMAIL"
+	JSON_EMAILS         = "EMAILS"
+	JSON_OK             = "OK"
+	JSON_ERR            = "ERR"
+	JSON_TXTMSG         = "TXTMSG"
+	JSON_IMGMSG         = "IMGMSG"
+	JSON_NAME           = "NAME"
+	JSON_ROLE           = "ROLE"
+	JSON_MEETINGID      = "MEETINGID"
+	JSON_MEETINGDATE    = "MEETINGDATE"
+	JSON_MEETINGSTATUS  = "MEETINGSTATUS"
+	JSON_BEGINTIME      = "BEGINTIME"
+	JSON_ENDTIME        = "ENDTIME"
+	JSON_TAG            = "TAG"
+	JSON_QUICKSTART     = "QUICKSTART"
+	JSON_PLANDATE       = "PLANDATE"
+	JSON_PLANSPAN       = "PLANSPAN"
+	JSON_SCHEMA         = "SCHEMA"
+	JSON_TOPIC          = "TOPIC"
+	JSON_CODE           = "CODE"
+	JSON_URL            = "URL"
+	JSON_PARENTID       = "PARENTID" //文件夹ID
+	JSON_COUNT          = "COUNT"
+	JSON_FOLDERNAME     = "FOLDERNAME"
+	JSON_FLODERID       = "FLODERID"
+	JSON_FILEID         = "FILEID"
+	JSON_FILEIDS        = "FILEIDS" //[]int64
+	JSON_FILEMAPID      = "FILEMAPID"
+	JSON_LINKFILEMAPID  = "LINKFILEMAPID"
+	JSON_MD5            = "MD5"
+	JSON_FILENAME       = "FILENAME"
+	JSON_SHAREFILETYPE  = "SHAREFILETYPE"
+	JSON_SHARENAME      = "SHARENAME"
+	JSON_FILEEXT        = "FILEEXT"
+	JSON_FILESIZE       = "FILESIZE"
+	JSON_SHAREINFOID    = "SHAREINFOID"
+	JSON_FOLLOWUID      = "FOLLOWUID"
+	JSON_FOLLOWUIDS     = "FOLLOWUIDS"
+	JSON_TYPE           = "TYPE"
+	JSON_POSTTIME       = "POSTTIME"
+	JSON_LIMIT          = "LIMIT"
+	JSON_START          = "START"
+	JSON_KINDNAME       = "KINDNAME"
+	JSON_KINDID         = "KINDID"
+	JSON_UPTOKEN        = "UPTOKEN"
+	JSON_DOWNLOADURL    = "DOWNLOADURL"
+	JSON_MYRTMPURL      = "MYRTMPURL"
+	JSON_MEETINGFILES   = "MEETINGFILES"
+	JSON_MEETINGGEMODEL = "MEETINGGEMODEL"
+	JSON_USERPOWER      = "USERPOWER"
 )
 
 const (
@@ -282,7 +292,7 @@ func MergeJson(newJson []byte, OldJson *simplejson.Json) ([]byte, error) {
 	return OldJson.Encode()
 }
 
-func Uptoken(fileKey ...string) string {
+func Uptoken(bucketName string, fileKey ...string) string {
 	var callbackBody string
 	switch len(fileKey) {
 	case 0:
@@ -293,8 +303,8 @@ func Uptoken(fileKey ...string) string {
 	}
 
 	putPolicy := rs.PutPolicy{
-		Scope:        BucketName,
-		CallbackUrl:  "http://58.246.49.158:8000/callback",
+		Scope:        bucketName,
+		CallbackUrl:  LcCallbackUrl,
 		CallbackBody: callbackBody,
 		//ReturnUrl:   returnUrl,
 		//ReturnBody: `{"success":true,"name":"sunflowerb.jpg"}`,

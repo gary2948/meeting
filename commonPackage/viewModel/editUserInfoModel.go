@@ -8,4 +8,5 @@ type EditUserInfoModel struct {
 	Lc_introduction string
 	Lc_sex          string
 	Lc_postAddress  string
+	Lc_photoFile    string
 }
